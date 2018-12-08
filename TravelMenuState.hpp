@@ -29,6 +29,7 @@ private:
     std::stack<Stats*>*etat;
     std::string locationString;
     std::string miniMapString;
+    int     nbLieux;
 public:
             TravelMenuState(Personnage*& personnage, std::stack<Stats*>*etat);
     virtual ~TravelMenuState();

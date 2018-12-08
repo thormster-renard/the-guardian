@@ -16,6 +16,7 @@ TravelMenuState::TravelMenuState(Personnage*& personnage, std::stack<Stats*>*eta
 {
     this->etat = etat;
     this->locationString = "INCONNU";
+    this->nbLieux = 6;
 }
 
 TravelMenuState::~TravelMenuState()
@@ -38,7 +39,7 @@ void        TravelMenuState::printMenu()
     << "\n"
     << "Lieu: " << this->locationString << "\n"
     << this->personnage->toStringPosition() << "\n"
-    << "Mini carte: " << "\n"
+    << "Mini carte:    #(vide) F(ferme) V(ville) M(magasin) E(ennemi) T(tresor) "<< "\n"
     << this->miniMapString << "\n"
     << " (1) HAUT" << "\n"
     << " (2) BAS" << "\n"
@@ -92,7 +93,7 @@ void        TravelMenuState::updateMiniMap()
         for (size_t x = startX; x <= endX; x++)
         {
             srand(x + y);
-            int location = rand() % 3;
+            int location = rand() % this->nbLieux;
             if (x == this->personnage->getX() && y == this->personnage->getY())
                 ss << "P ";
             else
@@ -100,19 +101,22 @@ void        TravelMenuState::updateMiniMap()
                 switch (location)
                 {
                     case EMPTY:
-                        ss << "E ";
+                        ss << "# ";
                         break;
                     case FARM:
                         ss << "F ";
                         break;
                     case CITY:
-                        ss << "C ";
+                        ss << "V ";
                         break;
                     case SHOP:
+                        ss << "M ";
                         break;
                     case ENEMY:
+                        ss << "E ";
                         break;
                     case CHEST:
+                        ss << "T ";
                         break;
                 }
             }
@@ -127,7 +131,7 @@ void        TravelMenuState::updateEncounterMenu()
     int     location;
 
     srand(this->personnage->getSeed());
-    location = rand() % 3;
+    location = rand() % this->nbLieux;
     switch (location)
     {
         case EMPTY:
