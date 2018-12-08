@@ -54,8 +54,8 @@ void        CombatState::debutCombat()
 
         system("CLS");
         std::cout << "--------------------------------------------------------------------" << std::endl;
-        std::cout << "  Attaquant : " << attStr << "    Points de vie : " << this->personnage->getPV() << " / " << this->personnage->getPVMax() << "." << std::endl;
-        std::cout << "  Defenseur : " << defStr << "    Points de vie : " << ennemi.getPV() << " / " << ennemi.getPVMax() << "." << std::endl;
+        std::cout << "  Attaquant : " << attStr << std::endl;
+        std::cout << "  Defenseur : " << defStr << std::endl;
         std::cout << "       Tour : " << ++round << std::endl;
         std::cout << "--------------------------------------------------------------------" << std::endl;
 
@@ -88,6 +88,8 @@ void        CombatState::debutCombat()
         std::cout << "  Chance de  parer  l'ennemi : " << defense << "   Pourcentage de defense : " << defPercent << std::endl;
         std::cout << "  Potentiel de degats sur " << attStr << " : " << this->personnage->getDegatsMin() << " - " << this->personnage->getDegatsMax() << std::endl;
         std::cout << "  Potentiel de degats sur " << defStr << " : " << ennemi.getDegatsMin() << " - " << ennemi.getDegatsMax() << std::endl;
+        std::cout << "  Points de vie de " << this->personnage->getNom() << " : " << this->personnage->getPV() << " / " << this->personnage->getPVMax() << "." << std::endl;
+        std::cout << "  Points de vie de " << "ennemi : " << ennemi.getPV() << " / " << ennemi.getPVMax() << "." << std::endl;
         std::cout << "--------------------------------------------------------------------" << std::endl;
 
 
@@ -112,11 +114,6 @@ void        CombatState::debutCombat()
 
         system("PAUSE");
     }
-}
-
-void        CombatState::runAway()
-{
-
 }
 
 void        CombatState::printMenu()
@@ -146,6 +143,8 @@ void        CombatState::updateMenu()
                 system("PAUSE");
                 break;
             case 2:
+                std::cout << "Vous fuiez le combat." << std::endl;
+                std::cout << "Vous perdez de l'or et de l'experience. " << std::endl;
                 this->runAway();
                 break;
             case 3:

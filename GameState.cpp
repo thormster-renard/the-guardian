@@ -35,7 +35,6 @@ void         GameState::PrintMenu() const
     std::cout << "(2)  Carte\n";
     std::cout << "(3)  Artisan\n";
     std::cout << "(4)  Se reposer" << std::endl;
-    std::cout << "(5)  Combattre" << std::endl;
     std::cout << "(6)  Retour au menu précédent" << "\n" << std::endl;
 }
 
@@ -58,7 +57,6 @@ void        GameState::updateMenu()
             system("PAUSE");
             break;
         case 5:
-            this->etat->push(new CombatState(this->personnage, this->etat));
             break;
         case 6:
             this->setQuit(true);

@@ -17,6 +17,7 @@ Personnage::Personnage(std::string nom, std::string bio)
     //Initialisation des attributs && core
     this->nom = nom;
     this->bio = bio;
+    this->premierLache = true;
     this->niveau = 1;
     this->experience = 99;
     this->experience_suivante = 100;
@@ -159,6 +160,30 @@ bool        Personnage::canLevelUp()
 void        Personnage::addExp(const unsigned experience)
 {
     this->experience += experience;
+}
+
+std::string         Personnage::runAway()
+{
+    std::stringstream ss;
+
+    int     lostXP = rand() % (this->niveau * 5) + 1;
+    int     lostGold = rand() % (this->niveau * 5) + 1;;
+
+    if (this->premierLache)
+        std::cout << "Comme c'est la premiere fois que vous fuiez un combat, 
+        nous n'avons rien perdu, mais rappelez vous que la prochaine fois 
+        vous y laisserez de l'or et de l'experience." << std::endl;
+    else
+    {
+       this->premierLache = false;
+       this->experience -= lostXP;
+        if (this->experience < 0)
+            this->experience = 0;
+        this->gold -= lostGold;
+        if (this->gold < 0)
+            this->gold = 0;
+    }
+    return (ss.str());
 }
 
 void        Personnage::reset()

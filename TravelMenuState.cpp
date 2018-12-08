@@ -148,6 +148,7 @@ void        TravelMenuState::updateEncounterMenu()
             break;
         case ENEMY:
             this->locationString = "Nous devrions etre prudents, il y a des ENNEMIS par ici.";
+            this->etat->push(new CombatState(this->personnage, this->etat));
             break;
         case CHEST:
             this->locationString = "Je n'aime pas beaucoup les BANQUES, mais elles protegeront vos richesses. Votre coffre est par ici.";

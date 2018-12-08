@@ -25,6 +25,7 @@ private:
     //Core
     std::string nom;
     std::string bio;
+    bool premierLache;
     int niveau;
     int experience;
     int experience_suivante;
@@ -73,11 +74,12 @@ public:
     inline const int getChanceToucher() const { return (this->chance_toucher); };
     
     // Modifiers
-    void    reset();
-    void    takeDegats(const int);
-    void    setDead();
-    void    setPosition(const unsigned, const unsigned);
-    void    move(const int, const int);
+    const std::string runAway();
+                void  reset();
+                void  takeDegats(const int);
+                void  setDead();
+                void  setPosition(const unsigned, const unsigned);
+                void  move(const int, const int);
     
     // Fonctions
     std::string       getNom();
@@ -86,8 +88,8 @@ public:
     const std::string toStringNameBio();
     const std::string toStringStats();
     const std::string toStringPosition();
-    bool    canLevelUp();
-    void    addExp(const unsigned);
+                 bool canLevelUp();
+                 void addExp(const unsigned);
 };
 
 #endif

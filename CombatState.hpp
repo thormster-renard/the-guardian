@@ -30,7 +30,6 @@ public:
 
     // Fonctions
     void    debutCombat();
-    void    runAway();
     void    printMenu();
     void    update();
     void    updateMenu();

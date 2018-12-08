@@ -17,6 +17,7 @@
 #include    <iostream>
 #include    <iomanip>
 #include    <stack>
+#include    "CombatState.hpp"
 #include    "Personnage.hpp"
 #include    "Stats.hpp"
 
