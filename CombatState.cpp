@@ -145,7 +145,7 @@ void        CombatState::updateMenu()
             case 2:
                 std::cout << "Vous fuiez le combat." << std::endl;
                 std::cout << "Vous perdez de l'or et de l'experience. " << std::endl;
-                this->runAway();
+                this->personnage->runAway();
                 break;
             case 3:
                 system("CLS");
