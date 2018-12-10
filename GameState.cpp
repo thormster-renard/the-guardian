@@ -35,7 +35,7 @@ void         GameState::PrintMenu() const
     std::cout << "(2)  Carte\n";
     std::cout << "(3)  Artisan\n";
     std::cout << "(4)  Se reposer" << std::endl;
-    std::cout << "(6)  Retour au menu précédent" << "\n" << std::endl;
+    std::cout << "(6)  Retour au menu precedent" << "\n" << std::endl;
 }
 
 void        GameState::updateMenu()

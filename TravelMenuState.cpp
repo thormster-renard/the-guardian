@@ -24,10 +24,11 @@ TravelMenuState::~TravelMenuState()
 
 void        TravelMenuState::update()
 {
-    this->updateEncounterMenu();
+    
     this->updateMiniMap();
     this->printMenu();
     this->updateMenu();
+    this->updateEncounterMenu();
 }
 
 void        TravelMenuState::printMenu()
@@ -104,16 +105,16 @@ void        TravelMenuState::updateMiniMap()
                         ss << " # ";
                         break;
                     case FARM:
-                        ss << " F ";
+                        ss << "  Ferme  ";
                         break;
                     case CITY:
-                        ss << " V ";
+                        ss << "  Ville  ";
                         break;
                     case SHOP:
-                        ss << " M ";
+                        ss << " Magasin ";
                         break;
                     case CHEST:
-                        ss << " T ";
+                        ss << " Banque  ";
                         break;
                 }
             }
@@ -128,32 +129,38 @@ void        TravelMenuState::updateEncounterMenu()
     int     location;
     int     random;
 
-    srand(this->personnage->getSeed());
-    location = rand() % this->nbLieux;
-    switch (location)
+    if (!this->getQuit())
     {
-        case EMPTY:
-            this->locationString = "Il n'y a rien ici, continuons !";
-            random = rand() % 2;
-            if (random)
-            {
-                this->etat->push(new CombatState(this->personnage, this->etat));
-            }
-            break;
-        case FARM:
-            this->locationString = "C'est une FERME, allons voir de plus pres";
-            break;
-        case CITY:
-            this->locationString = "Bienvenue a CITY ! La plus grande ville de la region.";
-            break;
-        case SHOP:
-            this->locationString = "Bienvenue au doux barbare ! Le meilleur MAGASIN de tout l'Entreterre !";
-            break;
-        case CHEST:
-            this->locationString = "Je n'aime pas beaucoup les BANQUES, mais elles protegeront vos richesses. Votre coffre est par ici.";
-            break;
-        default:
-            this->locationString = "Halte ! Ce sont des MARECAGES, nous risquerions de nous perdre ou pire encore.";
-            break;
+        srand(this->personnage->getSeed());
+        location = rand() % this->nbLieux;
+        switch (location)
+        {
+            case EMPTY:
+                this->locationString = "Il n'y a rien ici, continuons !";
+                random = rand() % 2;
+                if (random)
+                {
+                    system("CLS");
+                    std::cout << "Ennemi en vue ! A l'attaque !!" << std::endl;
+                    system("PAUSE");
+                    this->etat->push(new CombatState(this->personnage, this->etat));
+                }
+                break;
+            case FARM:
+                this->locationString = "C'est une FERME, allons voir de plus pres";
+                break;
+            case CITY:
+                this->locationString = "Bienvenue a CITY ! La plus grande ville de la region.";
+                break;
+            case SHOP:
+                this->locationString = "Bienvenue au doux barbare ! Le meilleur MAGASIN de tout l'Entreterre !";
+                break;
+            case CHEST:
+                this->locationString = "Je n'aime pas beaucoup les BANQUES, mais elles protegeront vos richesses. Votre coffre est par ici.";
+                break;
+            default:
+                this->locationString = "Halte ! Ce sont des MARECAGES, nous risquerions de nous perdre ou pire encore.";
+                break;
+        }
     }
 }
