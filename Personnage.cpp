@@ -165,18 +165,24 @@ void        Personnage::addExp(const unsigned experience)
 const std::string         Personnage::runAway()
 {
     std::stringstream ss;
-
-    int     lostXP = rand() % (this->niveau * 5) + 1;
-    int     lostGold = rand() % (this->niveau * 5) + 1;;
+    int     lostGold;
+    int     lostXP;
 
     if (this->premierLache)
-        std::cout << "Comme c'est la premiere fois que vous fuiez un combat"
-        << "nous n'avons rien perdu, mais rappelez vous que la prochaine fois"
+    {
+        std::cout << "Comme c'est la premiere fois que vous fuiez un combat "
+        << "nous n'avons rien perdu, mais rappelez vous que la prochaine fois "
         << "vous y laisserez de l'or et de l'experience." << std::endl;
+        system("PAUSE");
+    }
     else
     {
-       this->premierLache = false;
-       this->experience -= lostXP;
+        this->premierLache = false;
+        std::cout << "Vous fuiez le combat." << std::endl;
+        lostXP = rand() % (this->niveau * 5) + 1;
+        lostGold = rand() % (this->niveau * 5) + 1;;
+        ss << "Vous avez perdu " << lostXP << " et " << lostGold;
+        this->experience -= lostXP;
         if (this->experience < 0)
             this->experience = 0;
         this->gold -= lostGold;

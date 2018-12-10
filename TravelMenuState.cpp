@@ -41,10 +41,10 @@ void        TravelMenuState::printMenu()
     << this->personnage->toStringPosition() << "\n"
     << "Mini carte:    #(vide) F(ferme) V(ville) M(magasin) E(ennemi) T(tresor) "<< "\n"
     << this->miniMapString << "\n"
-    << " (1) HAUT" << "\n"
+    << " (8) HAUT" << "\n"
     << " (2) BAS" << "\n"
-    << " (3) GAUCHE" << "\n"
-    << " (4) DROITE" << "\n"
+    << " (4) GAUCHE" << "\n"
+    << " (6) DROITE" << "\n"
     << " (5) Quitter le menu" << "\n"
     << "\n";
 }
@@ -53,16 +53,16 @@ void        TravelMenuState::updateMenu()
 {
     switch (this->getChoice())
         {
-            case 1:
+            case 8:
                 this->personnage->move(0, -1);
                 break;
             case 2:
                 this->personnage->move(0, 1);
                 break;
-            case 3:
+            case 4:
                 this->personnage->move(-1, 0);
                 break;
-            case 4:
+            case 6:
                 this->personnage->move(1, 0);
                 break;
             case 5:
@@ -95,28 +95,25 @@ void        TravelMenuState::updateMiniMap()
             srand(x + y);
             int location = rand() % this->nbLieux;
             if (x == this->personnage->getX() && y == this->personnage->getY())
-                ss << "P ";
+                ss << " P ";
             else
             {
                 switch (location)
                 {
                     case EMPTY:
-                        ss << "# ";
+                        ss << " # ";
                         break;
                     case FARM:
-                        ss << "F ";
+                        ss << " F ";
                         break;
                     case CITY:
-                        ss << "V ";
+                        ss << " V ";
                         break;
                     case SHOP:
-                        ss << "M ";
-                        break;
-                    case ENEMY:
-                        ss << "E ";
+                        ss << " M ";
                         break;
                     case CHEST:
-                        ss << "T ";
+                        ss << " T ";
                         break;
                 }
             }
@@ -129,6 +126,7 @@ void        TravelMenuState::updateMiniMap()
 void        TravelMenuState::updateEncounterMenu()
 {
     int     location;
+    int     random;
 
     srand(this->personnage->getSeed());
     location = rand() % this->nbLieux;
@@ -136,6 +134,11 @@ void        TravelMenuState::updateEncounterMenu()
     {
         case EMPTY:
             this->locationString = "Il n'y a rien ici, continuons !";
+            random = rand() % 2;
+            if (random)
+            {
+                this->etat->push(new CombatState(this->personnage, this->etat));
+            }
             break;
         case FARM:
             this->locationString = "C'est une FERME, allons voir de plus pres";
@@ -145,10 +148,6 @@ void        TravelMenuState::updateEncounterMenu()
             break;
         case SHOP:
             this->locationString = "Bienvenue au doux barbare ! Le meilleur MAGASIN de tout l'Entreterre !";
-            break;
-        case ENEMY:
-            this->locationString = "Nous devrions etre prudents, il y a des ENNEMIS par ici.";
-            this->etat->push(new CombatState(this->personnage, this->etat));
             break;
         case CHEST:
             this->locationString = "Je n'aime pas beaucoup les BANQUES, mais elles protegeront vos richesses. Votre coffre est par ici.";

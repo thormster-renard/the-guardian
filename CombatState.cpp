@@ -17,8 +17,7 @@ CombatState::CombatState(Personnage*& personnage, std::stack<Stats*>*etat) : per
     this->etat = etat;
 }
 
-CombatState::~CombatState()
-{}
+CombatState::~CombatState() {}
 
 void        CombatState::debutCombat()
 {
@@ -78,9 +77,7 @@ void        CombatState::debutCombat()
             << degats << " a " << defStr << std::endl;
         }
         else
-        {
             std::cout << "Vous avez manque votre coups !" << std::endl;
-        }
 
         std::cout << "--------------------------------------------------------------------" << std::endl;
         std::cout << "  Chance de victoire : " << totalHitDef << std::endl;
@@ -92,7 +89,6 @@ void        CombatState::debutCombat()
         std::cout << "  Points de vie de " << "ennemi : " << ennemi.getPV() << " / " << ennemi.getPVMax() << "." << std::endl;
         std::cout << "--------------------------------------------------------------------" << std::endl;
 
-
         if (this->personnage->isDead())
         {
             endCombat = true;
@@ -100,6 +96,7 @@ void        CombatState::debutCombat()
             std::cout << "Ah et.. comment dire.. vous avez perdu de l'experience et de l'argent." << std::endl;
             std::cout << "Vous vous demandez peut-etre pourquoi, non ?" << std::endl;
             std::cout << "Et bien dites vous qu'un enterrement, ca n'est pas gratuit !" << std::endl;
+            this->setQuit(true);
         }
         else if (ennemi.isDead())
         {
@@ -143,9 +140,10 @@ void        CombatState::updateMenu()
                 system("PAUSE");
                 break;
             case 2:
-                std::cout << "Vous fuiez le combat." << std::endl;
-                std::cout << "Vous perdez de l'or et de l'experience. " << std::endl;
-                this->personnage->runAway();
+                system("CLS");
+                std::cout << this->personnage->runAway() << std::endl;
+                system("PAUSE");
+                this->setQuit(true);
                 break;
             case 3:
                 system("CLS");
