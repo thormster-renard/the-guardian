@@ -105,6 +105,7 @@ void        CombatState::debutCombat()
             this->personnage->addExp(expGagne);
             std::cout << "Vous avez battu " << defStr << " !" << std::endl;
             std::cout << "Et vous avez gagne " << expGagne << " points d'experience." << std::endl;
+            this->setQuit(true);
         }
 
         tour = tour ? false : true;

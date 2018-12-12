@@ -18,6 +18,7 @@
 #include    <sstream>
 #include    <string>
 #include    <vector>
+#include    "Inventaire.hpp"
 
 class       Personnage
 {
@@ -53,7 +54,10 @@ private:
     // Location
     unsigned x;
     unsigned y;
-    //
+    
+    // Inventaire
+    Inventaire
+
     void updateStats();
 public:
     Personnage(std::string nom, std::string bio);

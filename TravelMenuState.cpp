@@ -16,7 +16,7 @@ TravelMenuState::TravelMenuState(Personnage*& personnage, std::stack<Stats*>*eta
 {
     this->etat = etat;
     this->locationString = "INCONNU";
-    this->nbLieux = 6;
+    this->nbLieux = 5;
 }
 
 TravelMenuState::~TravelMenuState()
@@ -40,7 +40,7 @@ void        TravelMenuState::printMenu()
     << "\n"
     << "Lieu: " << this->locationString << "\n"
     << this->personnage->toStringPosition() << "\n"
-    << "Mini carte:    #(vide) F(ferme) V(ville) M(magasin) E(ennemi) T(tresor) "<< "\n"
+    << "Mini carte:"<< "\n"
     << this->miniMapString << "\n"
     << " (8) HAUT" << "\n"
     << " (2) BAS" << "\n"
@@ -96,25 +96,25 @@ void        TravelMenuState::updateMiniMap()
             srand(x + y);
             int location = rand() % this->nbLieux;
             if (x == this->personnage->getX() && y == this->personnage->getY())
-                ss << " P ";
+                ss << "  Joueur  ";
             else
             {
                 switch (location)
                 {
                     case EMPTY:
-                        ss << " # ";
+                        ss << "Foret ";
                         break;
                     case FARM:
-                        ss << "  Ferme  ";
+                        ss << "Ferme ";
                         break;
                     case CITY:
-                        ss << "  Ville  ";
+                        ss << "Bourg ";
                         break;
                     case SHOP:
-                        ss << " Magasin ";
+                        ss << "Shops ";
                         break;
                     case CHEST:
-                        ss << " Banque  ";
+                        ss << "Banks ";
                         break;
                 }
             }
