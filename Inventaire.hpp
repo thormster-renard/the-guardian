@@ -18,9 +18,13 @@
 class       Inventaire
 {
 private:
+    unsigned    capacity;
+    unsigned    nbrItems;
     Item    **items;
+    void    initialize(const unsigned);
+    void    expand();
 public:
-            Inventaire();
+            Inventaire(unsigned capacity = 10);
     virtual ~Inventaire();
 };
 

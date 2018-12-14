@@ -56,7 +56,6 @@ private:
     unsigned y;
     
     // Inventaire
-    Inventaire
 
     void updateStats();
 public:

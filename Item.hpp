@@ -13,6 +13,8 @@
 #ifndef     __ITEM_HPP__
 #define     __ITEM_HPP__
 
+#include    <cmath>
+
 class       Item
 {
 private:
