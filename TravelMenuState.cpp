@@ -131,8 +131,8 @@ void        TravelMenuState::updateEncounterMenu()
 
     if (!this->getQuit())
     {
-        srand(this->personnage->getSeed());
         location = rand() % this->nbLieux;
+        srand(this->personnage->getSeed());
         switch (location)
         {
             case EMPTY:
