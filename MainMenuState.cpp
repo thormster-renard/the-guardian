@@ -16,6 +16,9 @@ MainMenuState::MainMenuState(std::vector<Personnage*>*listePersonnage, unsigned&
 {
     this->listePersonnage = listePersonnage;
     this->etat = etat;
+    //test
+    //this->listePersonnage->push_back(new Personnage("TEST", "DEBUGGING"));
+    //end test
 }
 
 MainMenuState::~MainMenuState()

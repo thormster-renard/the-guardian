@@ -17,6 +17,7 @@ TravelMenuState::TravelMenuState(Personnage*& personnage, std::stack<Stats*>*eta
     this->etat = etat;
     this->locationString = "INCONNU";
     this->nbLieux = 5;
+    this->updateEncounterMenu();
 }
 
 TravelMenuState::~TravelMenuState()
@@ -131,8 +132,8 @@ void        TravelMenuState::updateEncounterMenu()
 
     if (!this->getQuit())
     {
-        location = rand() % this->nbLieux;
         srand(this->personnage->getSeed());
+        location = rand() % this->nbLieux;
         switch (location)
         {
             case EMPTY:

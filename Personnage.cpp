@@ -31,7 +31,7 @@ Personnage::Personnage(std::string nom, std::string bio)
     this->intelligence = 1;
     this->x = 0;
     this->y = 0;
-    //this->updateStats();
+    this->updateStats();
 }
 
 Personnage::~Personnage() {}

@@ -18,10 +18,10 @@
 class       Item
 {
 private:
+
 public:
             Item();
     virtual ~Item();
-
 };
 
 #endif /* __ITEM_HPP__ */
