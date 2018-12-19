@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+# VSCODE Files
+*.code-workspace
+*.json
