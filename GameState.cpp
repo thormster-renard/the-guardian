@@ -29,13 +29,14 @@ void        GameState::update()
 void         GameState::PrintMenu() const
 {
     system("CLS");
-    std::cout << std::setw(8) << "----- The Black Guardian -----" << "\n" << std::endl;
-    std::cout << this->personnage->getMenuBar() << "\n" << "\n";
-    std::cout << "(1)  Menu du personnage\n";
-    std::cout << "(2)  Carte\n";
-    std::cout << "(3)  Artisan\n";
-    std::cout << "(4)  Se reposer" << std::endl;
-    std::cout << "(6)  Retour au menu precedent" << "\n" << std::endl;
+    std::cout
+        << msgMenuTitre("Menu principal")
+        << this->personnage->getMenuBar() << "\n" << "\n"
+        << msgMenuItem(1, "Menu du personnage")
+        << msgMenuItem(2, "Carte")
+        << msgMenuItem(3, "Artisan")
+        << msgMenuItem(4, "Se reposer")
+        << msgMenuItem(5, "Retour au menu precedent");
 }
 
 void        GameState::updateMenu()

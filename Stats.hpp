@@ -15,6 +15,7 @@
 
 #include            <iostream>
 #include            <iomanip>
+#include            "msgfonctions.hpp"
 
 class               Stats
 {

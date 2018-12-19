@@ -107,9 +107,7 @@ void        CombatState::debutCombat()
             std::cout << "Et vous avez gagne " << expGagne << " points d'experience." << std::endl;
             this->setQuit(true);
         }
-
         tour = tour ? false : true;
-
         system("PAUSE");
     }
 }
@@ -117,12 +115,13 @@ void        CombatState::debutCombat()
 void        CombatState::printMenu()
 {
     system("CLS");
-    std::cout << "--- Menu de Combat ---" << std::endl;
-    std::cout << this->personnage->getMenuBar() << "\n" << "\n";
-    std::cout << " (1) Engager le combat" << std::endl;
-    std::cout << " (2) Fuir le combat" << std::endl;
-    std::cout << " (3) Se soigner" << std::endl;
-    std::cout << " (4) Retour au menu precedent" << std::endl;
+    std::cout
+        << msgMenuTitre("Menu de combat")
+        << this->personnage->getMenuBar() << "\n" << "\n"
+        << msgMenuItem(1, "Engager le combat")
+        << msgMenuItem(2, "Fuir le combat")
+        << msgMenuItem(3, "Se soigner")
+        << msgMenuItem(4, "Retour au menu precedent");
 }
 
 void        CombatState::update()

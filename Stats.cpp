@@ -36,15 +36,14 @@ int             Stats::getChoice() const
     int     choice;
 
     choice = -1;
-    std::cout << "\n";
-    std::cout << "     Entrez votre choix : ";
+    std::cout << "    " << "| - [[ Entrez votre choix : ";
     std::cin >> std::setw(1) >> choice;
     while (!std::cin.good())
         {
-            std::cout << "Excusez-moi, mais..vous devez faire un choix qui.. et bien qui existe !" << std::endl;
+            std::cout << msgErreur("Excusez-moi, mais..vous devez faire un choix qui.. et bien qui existe !");
             std::cin.clear();
             std::cin.ignore(INT_MAX, '\n');
-            std::cout << "     Entrez votre choix : ";
+            std::cout << "    " << "| - [[ Entrez votre choix : ";
             std::cin >> std::setw(1) >> choice;
         }
     std::cin.clear();

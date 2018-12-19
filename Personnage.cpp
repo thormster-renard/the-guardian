@@ -32,9 +32,15 @@ Personnage::Personnage(std::string nom, std::string bio)
     this->x = 0;
     this->y = 0;
     this->updateStats();
+    //TEST AJOUT OBJET INVENTAIRE
+    this->inventaire.add(Item("Test", 0, 1, 200));
+    // fin test
 }
 
-Personnage::~Personnage() {}
+Personnage::~Personnage()
+{
+
+}
 
 void        Personnage::updateStats()
 {
@@ -89,13 +95,17 @@ std::string       Personnage::getNom()
 const std::string Personnage::getMenuBar()
 {
     std::stringstream ss;
+    int expFait;
+    int expRest;//Experience a acquerir pour +1 niveau
 
+    expFait = 10 * (static_cast<float>(this->experience) / this->experience_suivante);
+    expRest = 10 - expFait;
     ss << " Nom: " << this->nom << " | "
-    << " Niveau: " << this->niveau << " | "
-    << " Experience: " << this->experience << " / " << this->experience_suivante << " | "
-    << " Points de vie: " << this->pv << " / " << this->pvMax << " | "
-    << " Stamina : " << this->stamina << " / " << this->staminaMax;
-
+        << " Niveau: " << this->niveau << " "
+        << "[" << std::string(expFait, '=') << std::string(expRest, '-') << "]" << " | "
+        << " Points de vie: " << this->pv << " / " << this->pvMax << " | "
+        << " Stamina : " << this->stamina << " / " << this->staminaMax << "\n"
+        << " Points SPECIAL disponible: " << this->statpoints;
     return (ss.str());
 }
 

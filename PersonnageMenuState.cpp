@@ -31,13 +31,15 @@ void        PersonnageMenuState::update()
 void        PersonnageMenuState::printMenu()
 {
     system("CLS");
-    std::cout << "--- Menu du personnage ---" << std::endl;
-    std::cout << this->personnage->getMenuBar() << std::endl;
-    std::cout << " (1) Nom et Biographie" << std::endl;
-    std::cout << " (2) Statistiques" << std::endl;
-    std::cout << " (3) Assigner les points d'experience" << std::endl;
-    std::cout << " (4) Augmenter un niveau" << std::endl;
-    std::cout << " (5) Quitter le menu" << std::endl;
+    std::cout
+        << msgMenuTitre("Menu du personnage")
+        << this->personnage->getMenuBar()
+        << msgMenuItem(1, "Nom et Biographie")
+        << msgMenuItem(2, "Statistiques")
+        << msgMenuItem(3, "Assigner les points d'experience")
+        << msgMenuItem(4, "Augmenter un niveau")
+        << msgMenuItem(5, "Inventaire")
+        << msgMenuItem(6, "Quitter le menu");
 }
 
 
@@ -78,6 +80,11 @@ void        PersonnageMenuState::updateMenu()
                 system("PAUSE");
                 break;
             case 5:
+                system("CLS");
+                std::cout << this->personnage->getInventaire().toString() << std::endl;
+                system("PAUSE");
+                break;
+            case 6:
                 this->setQuit(true);
                 break;
             default:

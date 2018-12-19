@@ -50,9 +50,5 @@ void        Game::update()
 
 const bool&        Game::GetQuit() const
 {
-    //std::cout << std::endl;
-    //std::cout << "---------------------------------------" << std::endl;
-    //std::cout << "- Merci d'avoir joue au Black Guardian -" << std::endl;
-    //std::cout << "---------------------------------------" << std::endl;
     return (this->quit);    
 }

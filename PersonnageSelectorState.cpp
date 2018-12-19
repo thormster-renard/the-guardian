@@ -24,8 +24,9 @@ void    PersonnageSelectorState::printMenu()
 
     i = 1;
     system("CLS");
-    std::cout << std::setw(8) << "--- Choix du personnage ---" << std::endl;
-    std::cout << " (0) Menu precedent" << std::endl;
+    std::cout
+        << msgMenuTitre("Selection du personnage")
+        << msgMenuItem(1, "Menu precedent");
     if (!this->listePersonnage->empty())
     {
         while (i < this->listePersonnage->size())

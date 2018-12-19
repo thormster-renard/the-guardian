@@ -53,10 +53,13 @@ void            PersonnageCreatorState::creerPersonnage()
 void            PersonnageCreatorState::printMenu()
 {
     system("CLS");
-    std::cout << "--- Creation de votre nouveau personnage ---" << std::endl;
-    std::cout << "Personnages crees : " << std::to_string(this->listePersonnage->size()) << " / " << std::to_string(this->maxPersonnages) << std::endl;
-    std::cout << " (1) Creer votre personnage" << std::endl;
-    std::cout << " (2) Retour au menu precedent" << std::endl;
+    std::cout << msgMenuTitre("Creation de votre nouveau personnage")
+    << "Personnages crees : " << std::to_string(this->listePersonnage->size()) << " / " << std::to_string(this->maxPersonnages)
+    << "\n"
+    << msgMenuDiviseur(40, '-')
+    << msgMenuItem(1, "Creer votre personnage")
+    << msgMenuItem(2, "Retour au menu precedent")
+    << msgMenuDiviseur(40, '-');
 }
 
 void            PersonnageCreatorState::updateMenu()

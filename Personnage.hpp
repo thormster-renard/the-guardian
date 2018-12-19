@@ -76,7 +76,7 @@ public:
     inline const int getDegatsMax() const { return (this->degatsMax); };
     inline const int getDefense() const { return (this->defense); };
     inline const int getChanceToucher() const { return (this->chance_toucher); };
-    
+    inline Inventaire& getInventaire() { return (this->inventaire); }
     // Modifiers
     const std::string runAway();
                 void  reset();

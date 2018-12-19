@@ -35,20 +35,18 @@ void        TravelMenuState::update()
 void        TravelMenuState::printMenu()
 {
     system("CLS");
-    std::cout << "--- Menu de voyage ---" << "\n"
-    << "\n"
-    << this->personnage->getMenuBar() << "\n"
-    << "\n"
-    << "Lieu: " << this->locationString << "\n"
-    << this->personnage->toStringPosition() << "\n"
-    << "Mini carte:"<< "\n"
-    << this->miniMapString << "\n"
-    << " (8) HAUT" << "\n"
-    << " (2) BAS" << "\n"
-    << " (4) GAUCHE" << "\n"
-    << " (6) DROITE" << "\n"
-    << " (5) Quitter le menu" << "\n"
-    << "\n";
+    std::cout
+        << msgMenuTitre("Menu de voyage")
+        << this->personnage->getMenuBar() << "\n" << "\n"
+        << "Lieu: " << this->locationString << "\n"
+        << this->personnage->toStringPosition() << "\n"
+        << "Mini carte:"<< "\n"
+        << this->miniMapString << "\n"
+        << msgMenuItem(8, "HAUT") << "\n"
+        << msgMenuItem(2, "BAS") << "\n"
+        << msgMenuItem(4, "GAUCHE") << "\n"
+        << msgMenuItem(6, "DROITE") << "\n"
+        << msgMenuItem(5, "Quitter le menu") << "\n" << "\n";
 }
 
 void        TravelMenuState::updateMenu()

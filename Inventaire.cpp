@@ -158,7 +158,7 @@ std::string Inventaire::toString() const
     i = 0;
     while (i < this->nbrItems)
     {
-        ss << i << ": " << " " << "\n";
+        ss << "[" << i << "]" << this->items[i]->toString() << "\n";
         i += 1;
     }
     return (ss.str());
