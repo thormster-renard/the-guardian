@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include    "Item.hpp"
+#include    "../headers/Item.hpp"
 
 Item::Item(std::string nom,
             unsigned type,

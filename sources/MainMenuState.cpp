@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include    "MainMenuState.hpp"
+#include    "../headers/MainMenuState.hpp"
 
 MainMenuState::MainMenuState(std::vector<Personnage*>*listePersonnage, unsigned& personnageActif, std::stack<Stats*>*etat) : Stats(), personnageActif(personnageActif) 
 {

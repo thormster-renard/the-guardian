@@ -92,8 +92,7 @@ public:
     const std::string toStringNameBio();
     const std::string toStringStats();
     const std::string toStringPosition();
-                 bool canLevelUp();
-                 void addExp(const unsigned);
+                 bool addExp(const unsigned);
 };
 
 #endif

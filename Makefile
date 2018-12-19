@@ -12,7 +12,21 @@
 
 NAME	=	the_last_guardian
 
-SRC		=	$(wildcard *.cpp)
+SRC		=	sources/main.cpp					\
+			sources/CombatState.cpp				\
+			sources/Ennemi.cpp					\
+			sources/Game.cpp					\
+			sources/GameState.cpp				\
+			sources/Inventaire.cpp				\
+			sources/Item.cpp					\
+			sources/MainMenuState.cpp			\
+			sources/msgfonctions.cpp			\
+			sources/Personnage.cpp				\
+			sources/PersonnageCreatorState.cpp	\
+			sources/PersonnageMenuState.cpp		\
+			sources/PersonnageSelectorState.cpp	\
+			sources/Stats.cpp					\
+			sources/TravelMenuState.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
 

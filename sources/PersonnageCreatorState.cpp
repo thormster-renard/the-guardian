@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include        "PersonnageCreatorState.hpp"
+#include        "../headers/PersonnageCreatorState.hpp"
 
 PersonnageCreatorState::PersonnageCreatorState(std::vector<Personnage*>*listePersonnage, unsigned& personnageActif, std::stack<Stats*>*etat) : personnageActif(personnageActif), Stats(), maxPersonnages(5)
 {

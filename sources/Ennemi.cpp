@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include    "Ennemi.hpp"
+#include    "../headers/Ennemi.hpp"
 
 Ennemi::Ennemi(int niveau)
 {

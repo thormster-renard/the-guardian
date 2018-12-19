@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include    "TravelMenuState.hpp"
+#include    "../headers/TravelMenuState.hpp"
 
 TravelMenuState::TravelMenuState(Personnage*& personnage, std::stack<Stats*>*etat) : personnage(personnage), Stats()
 {
@@ -112,10 +112,10 @@ void        TravelMenuState::updateMiniMap()
                         ss << "Bourg  ";
                         break;
                     case SHOP:
-                        ss << "Shops  ";
+                        ss << " Shop  ";
                         break;
-                    case BANKS:
-                        ss << "Banks  ";
+                    case BANK:
+                        ss << " Bank  ";
                         break;
                 }
             }
@@ -136,7 +136,7 @@ void        TravelMenuState::updateEncounterMenu()
         location = rand() % this->nbLieux;
         switch (location)
         {
-            case EMPTY:
+            case VIDE:
                 this->locationString = "Il n'y a rien ici, continuons !";
                 random = rand() % 2;
                 if (random)
@@ -147,16 +147,16 @@ void        TravelMenuState::updateEncounterMenu()
                     this->etat->push(new CombatState(this->personnage, this->etat));
                 }
                 break;
-            case FARM:
+            case FERME:
                 this->locationString = "C'est une FERME, allons voir de plus pres";
                 break;
-            case CITY:
+            case BOURG:
                 this->locationString = "Bienvenue a CITY ! La plus grande ville de la region.";
                 break;
             case SHOP:
                 this->locationString = "Bienvenue au doux barbare ! Le meilleur MAGASIN de tout l'Entreterre !";
                 break;
-            case CHEST:
+            case BANK:
                 this->locationString = "Je n'aime pas beaucoup les BANQUES, mais elles protegeront vos richesses. Votre coffre est par ici.";
                 break;
             default:

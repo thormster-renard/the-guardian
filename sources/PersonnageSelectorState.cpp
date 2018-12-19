@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include    "PersonnageSelectorState.hpp"
+#include    "../headers/PersonnageSelectorState.hpp"
 
 PersonnageSelectorState::PersonnageSelectorState(std::vector<Personnage*>*listePersonnage, unsigned& personnageActif, std::stack<Stats*>*etat) : Stats(), listePersonnage(listePersonnage), personnageActif(personnageActif), etat(etat)
 {}

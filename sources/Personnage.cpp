@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include    "Personnage.hpp"
+#include    "../headers/Personnage.hpp"
 
 Personnage::Personnage(std::string nom, std::string bio)
 {
@@ -19,10 +19,10 @@ Personnage::Personnage(std::string nom, std::string bio)
     this->bio = bio;
     this->premierLache = true;
     this->niveau = 1;
-    this->experience = 99;
-    this->experience_suivante = 100;
-    this->gold = 20;
-    this->statpoints = 0;
+    this->experience = 0;
+    this->experience_suivante = 46;
+    this->gold = 100;
+    this->statpoints = 3;
 
     this->force = 1;
     this->vitalite = 1;
@@ -31,6 +31,11 @@ Personnage::Personnage(std::string nom, std::string bio)
     this->intelligence = 1;
     this->x = 0;
     this->y = 0;
+
+    //TEST EXPERIENCE
+    addExp(1000);
+    //
+
     this->updateStats();
     //TEST AJOUT OBJET INVENTAIRE
     this->inventaire.add(Item("Test", 0, 1, 200));
@@ -153,23 +158,22 @@ const std::string Personnage::toStringPosition()
     return (ss.str());
 }
 
-bool        Personnage::canLevelUp()
+bool        Personnage::addExp(const unsigned experience)
 {
-   if (this->experience >= this->experience_suivante)
-   {
+    bool    niveauSup;
+
+    niveauSup = false;
+    this->experience += experience;
+    while (this->experience >= this->experience_suivante)
+    {
         this->niveau += 1;
         this->experience -= this->experience_suivante;
         this->experience_suivante = (50 / 3) * (pow(this->niveau, 3)) - 6 * pow(this->niveau, 2) + (this->niveau * 17) - 12;
         this->statpoints += 1;
         this->pvMax += 1;
-        return (true);
-   }
-   return (false);
-}
-
-void        Personnage::addExp(const unsigned experience)
-{
-    this->experience += experience;
+        niveauSup = true;
+    }
+    return (niveauSup);
 }
 
 const std::string         Personnage::runAway()

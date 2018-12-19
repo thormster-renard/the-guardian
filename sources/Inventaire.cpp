@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include    "Inventaire.hpp"
+#include    "../headers/Inventaire.hpp"
 
 // Fonctions privées
 void        Inventaire::initialize(const unsigned from)

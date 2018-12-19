@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include    "msgfonctions.hpp"
+#include    "../headers/msgfonctions.hpp"
 
 const std::string gui::msgMenuTitre(const std::string titre)
 {

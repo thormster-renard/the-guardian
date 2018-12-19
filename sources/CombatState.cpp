@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include    "CombatState.hpp"
+#include    "../headers/CombatState.hpp"
 
 CombatState::CombatState(Personnage*& personnage, std::stack<Stats*>*etat) : personnage(personnage), Stats()
 {
