@@ -36,17 +36,19 @@ void        TravelMenuState::printMenu()
 {
     system("CLS");
     std::cout
-        << msgMenuTitre("Menu de voyage")
+        << gui::msgMenuTitre("Menu de voyage")
         << this->personnage->getMenuBar() << "\n" << "\n"
-        << "Lieu: " << this->locationString << "\n"
-        << this->personnage->toStringPosition() << "\n"
-        << "Mini carte:"<< "\n"
-        << this->miniMapString << "\n"
-        << msgMenuItem(8, "HAUT") << "\n"
-        << msgMenuItem(2, "BAS") << "\n"
-        << msgMenuItem(4, "GAUCHE") << "\n"
-        << msgMenuItem(6, "DROITE") << "\n"
-        << msgMenuItem(5, "Quitter le menu") << "\n" << "\n";
+        << std::string(4, ' ') << "Lieu: " << this->locationString << "\n"
+        << std::string(4, ' ') << this->personnage->toStringPosition() << "\n"
+        << std::string(35, ' ') << "Mini carte:"<< "\n"
+        << std::string(30, ' ') << this->miniMapString << "\n"
+        << gui::msgMenuDiviseur(40, '-')
+        << gui::msgMenuItem(8, "HAUT")
+        << gui::msgMenuItem(2, "BAS")
+        << gui::msgMenuItem(4, "GAUCHE")
+        << gui::msgMenuItem(6, "DROITE")
+        << gui::msgMenuItem(5, "Quitter le menu")
+        << gui::msgMenuDiviseur(40, '-');
 }
 
 void        TravelMenuState::updateMenu()
@@ -70,7 +72,7 @@ void        TravelMenuState::updateMenu()
                 break;
             default:
                 system("CLS");
-                std::cout << "Cette direction est invalide" << std::endl;
+                std::cout << gui::msgErreur("Cette direction est invalide.");
                 system("PAUSE");
                 break;
         }
@@ -95,25 +97,25 @@ void        TravelMenuState::updateMiniMap()
             srand(x + y);
             int location = rand() % this->nbLieux;
             if (x == this->personnage->getX() && y == this->personnage->getY())
-                ss << "  Joueur  ";
+                ss << "Joueur  ";
             else
             {
                 switch (location)
                 {
-                    case EMPTY:
-                        ss << "Foret ";
+                    case FORET:
+                        ss << "Foret  ";
                         break;
-                    case FARM:
-                        ss << "Ferme ";
+                    case FERME:
+                        ss << "Ferme  ";
                         break;
-                    case CITY:
-                        ss << "Bourg ";
+                    case BOURG:
+                        ss << "Bourg  ";
                         break;
                     case SHOP:
-                        ss << "Shops ";
+                        ss << "Shops  ";
                         break;
-                    case CHEST:
-                        ss << "Banks ";
+                    case BANKS:
+                        ss << "Banks  ";
                         break;
                 }
             }
@@ -140,7 +142,7 @@ void        TravelMenuState::updateEncounterMenu()
                 if (random)
                 {
                     system("CLS");
-                    std::cout << "Ennemi en vue ! A l'attaque !!" << std::endl;
+                    std::cout << "Ennemi en vue ! A l'attaque !!" << "\n" << "\n";
                     system("PAUSE");
                     this->etat->push(new CombatState(this->personnage, this->etat));
                 }

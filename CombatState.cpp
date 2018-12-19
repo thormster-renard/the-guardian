@@ -103,8 +103,8 @@ void        CombatState::debutCombat()
             endCombat = true;
             int expGagne = rand() % (ennemi.getLevel() * 10) + 1;
             this->personnage->addExp(expGagne);
-            std::cout << "Vous avez battu " << defStr << " !" << std::endl;
-            std::cout << "Et vous avez gagne " << expGagne << " points d'experience." << std::endl;
+            std::cout << "Vous avez battu " << defStr << " !" << "\n" << "\n";
+            std::cout << "Et vous avez gagne " << expGagne << " points d'experience." << "\n" << "\n";
             this->setQuit(true);
         }
         tour = tour ? false : true;
@@ -116,12 +116,14 @@ void        CombatState::printMenu()
 {
     system("CLS");
     std::cout
-        << msgMenuTitre("Menu de combat")
+        << gui::msgMenuTitre("Menu de combat")
         << this->personnage->getMenuBar() << "\n" << "\n"
-        << msgMenuItem(1, "Engager le combat")
-        << msgMenuItem(2, "Fuir le combat")
-        << msgMenuItem(3, "Se soigner")
-        << msgMenuItem(4, "Retour au menu precedent");
+        << gui::msgMenuDiviseur(40, '-')
+        << gui::msgMenuItem(1, "Engager le combat")
+        << gui::msgMenuItem(2, "Fuir le combat")
+        << gui::msgMenuItem(3, "Se soigner")
+        << gui::msgMenuItem(4, "Retour au menu precedent")
+        << gui::msgMenuDiviseur(40, '-');
 }
 
 void        CombatState::update()
@@ -142,7 +144,6 @@ void        CombatState::updateMenu()
             case 2:
                 system("CLS");
                 std::cout << this->personnage->runAway() << std::endl;
-                system("PAUSE");
                 this->setQuit(true);
                 break;
             case 3:

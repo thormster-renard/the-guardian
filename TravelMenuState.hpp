@@ -21,7 +21,7 @@
 #include    "Personnage.hpp"
 #include    "Stats.hpp"
 
-enum        encounters { EMPTY = 0, FARM, CITY, SHOP, CHEST };
+enum        encounters { VIDE = 0, FERME, BOURG, SHOP, BANKS };
 
 class       TravelMenuState : public Stats
 {

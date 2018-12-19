@@ -22,11 +22,13 @@ void    PersonnageSelectorState::printMenu()
 {
     int i;
 
-    i = 1;
+    i = 0;
     system("CLS");
     std::cout
-        << msgMenuTitre("Selection du personnage")
-        << msgMenuItem(1, "Menu precedent");
+        << gui::msgMenuTitre("Selection du personnage")
+        << gui::msgMenuDiviseur(40, '-')
+        << gui::msgMenuItem(1, "Menu precedent")
+        << gui::msgMenuDiviseur(40, '-');
     if (!this->listePersonnage->empty())
     {
         while (i < this->listePersonnage->size())
@@ -58,7 +60,7 @@ void    PersonnageSelectorState::updateMenu()
         }
         else
         {
-            std::cout << "Hum, ce personnage n'existe pas." << std::endl;
+            std::cout << gui::msgErreur("Hum, ce personnage n'existe pas.");
             system("PAUSE");
         }
     }

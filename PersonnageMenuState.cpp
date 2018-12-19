@@ -32,14 +32,16 @@ void        PersonnageMenuState::printMenu()
 {
     system("CLS");
     std::cout
-        << msgMenuTitre("Menu du personnage")
-        << this->personnage->getMenuBar()
-        << msgMenuItem(1, "Nom et Biographie")
-        << msgMenuItem(2, "Statistiques")
-        << msgMenuItem(3, "Assigner les points d'experience")
-        << msgMenuItem(4, "Augmenter un niveau")
-        << msgMenuItem(5, "Inventaire")
-        << msgMenuItem(6, "Quitter le menu");
+        << gui::msgMenuTitre("Menu du personnage")
+        << this->personnage->getMenuBar() << "\n" << "\n" 
+        << gui::msgMenuDiviseur(40, '-')
+        << gui::msgMenuItem(1, "Nom et Biographie")
+        << gui::msgMenuItem(2, "Statistiques")
+        << gui::msgMenuItem(3, "Assigner les points d'experience")
+        << gui::msgMenuItem(4, "Augmenter un niveau")
+        << gui::msgMenuItem(5, "Inventaire")
+        << gui::msgMenuItem(6, "Quitter le menu")
+        << gui::msgMenuDiviseur(40, '-');
 }
 
 
@@ -68,14 +70,13 @@ void        PersonnageMenuState::updateMenu()
                 if (this->personnage->canLevelUp())
                 {
                     system("CLS");
-                    std::cout << "Vous avez gagne un niveau !! Felicitation" << std::endl;
+                    std::cout << "Vous avez gagne un niveau !! Felicitation !" << std::endl;
                     system("PAUSE");                    
                 }
                 else
                 {   
                     system("CLS");
                     std::cout << "Faites-vous plus d'experience et revenez nous voir." << std::endl;
-                    system("PAUSE");
                 }
                 system("PAUSE");
                 break;
@@ -89,7 +90,7 @@ void        PersonnageMenuState::updateMenu()
                 break;
             default:
                 system("CLS");
-                std::cout << "Vous devez faire un choix qui.. et bien qui existe !" << std::endl;
+                std::cout << gui::msgErreur("Vous devez faire un choix qui.. et bien qui existe !");
                 system("PAUSE");
                 break;
         }

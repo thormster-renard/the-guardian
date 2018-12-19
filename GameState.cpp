@@ -30,13 +30,15 @@ void         GameState::PrintMenu() const
 {
     system("CLS");
     std::cout
-        << msgMenuTitre("Menu principal")
+        << gui::msgMenuTitre("Menu principal")
         << this->personnage->getMenuBar() << "\n" << "\n"
-        << msgMenuItem(1, "Menu du personnage")
-        << msgMenuItem(2, "Carte")
-        << msgMenuItem(3, "Artisan")
-        << msgMenuItem(4, "Se reposer")
-        << msgMenuItem(5, "Retour au menu precedent");
+        << gui::msgMenuDiviseur(40, '-')
+        << gui::msgMenuItem(1, "Menu du personnage")
+        << gui::msgMenuItem(2, "Carte")
+        << gui::msgMenuItem(3, "Artisan")
+        << gui::msgMenuItem(4, "Se reposer")
+        << gui::msgMenuItem(5, "Retour au menu precedent")
+        << gui::msgMenuDiviseur(40, '-');
 }
 
 void        GameState::updateMenu()
@@ -58,8 +60,6 @@ void        GameState::updateMenu()
             system("PAUSE");
             break;
         case 5:
-            break;
-        case 6:
             this->setQuit(true);
             break;
         default:

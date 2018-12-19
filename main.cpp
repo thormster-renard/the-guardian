@@ -15,12 +15,11 @@
 void        welcome()
 {
     system("CLS");
-    std::cout << "--------------------------------------------------" << std::endl;
-    std::cout << "                 THE BLACK GUARDIAN               " << std::endl;
-    std::cout << "--------------------------------------------------" << std::endl;
-    std::cout << "" << std::endl;
-    std::cout << "" << std::endl;
-    std::cout << "" << std::endl;
+    std::cout << "\n" << "\n";
+    std::cout << std::string(4, ' ') << "--------------------------------------------------" << std::endl;
+    std::cout << std::string(4, ' ') << "                 THE BLACK GUARDIAN               " << std::endl;
+    std::cout << std::string(4, ' ') << "--------------------------------------------------" << std::endl;
+    std::cout << "\n" << "\n";
     system("PAUSE");
 }
 

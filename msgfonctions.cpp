@@ -12,15 +12,15 @@
 
 #include    "msgfonctions.hpp"
 
-const std::string msgMenuTitre(const std::string titre)
+const std::string gui::msgMenuTitre(const std::string titre)
 {
     std::stringstream ss;
 
-    ss << "\n" << "         ---- [[ " << titre << " ]] ----" << "\n" << "\n";
+    ss << "\n" << "     ----------- [[ " << titre << " ]] -----------" << "\n" << "\n";
     return (ss.str());
 }
 
-const std::string msgMenuDiviseur(const unsigned nombre, const char symbole)
+const std::string gui::msgMenuDiviseur(const unsigned nombre, const char symbole)
 {
     std::stringstream ss;
 
@@ -28,18 +28,18 @@ const std::string msgMenuDiviseur(const unsigned nombre, const char symbole)
     return (ss.str());
 }
 
-const std::string msgMenuItem(const int nombre, const std::string item)
+const std::string gui::msgMenuItem(const int nombre, const std::string item)
 {
     std::stringstream ss;
 
-    ss << "      | [ " << nombre << " ] " << item << "\n" << "\n";
+    ss << "          |  [ " << nombre << " ] " << item << "\n" << "\n";
     return (ss.str());
 }
 
-const std::string msgErreur(const std::string erreur)
+const std::string gui::msgErreur(const std::string erreur)
 {
     std::stringstream ss;
 
-    ss << "  [[ (!) " << erreur << " ]]" << "\n" << "\n";
+    ss << " (!)  [[ " << erreur << " ]]" << "\n" << "\n";
     return (ss.str());
 }

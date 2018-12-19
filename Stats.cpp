@@ -40,7 +40,7 @@ int             Stats::getChoice() const
     std::cin >> std::setw(1) >> choice;
     while (!std::cin.good())
         {
-            std::cout << msgErreur("Excusez-moi, mais..vous devez faire un choix qui.. et bien qui existe !");
+            std::cout << gui::msgErreur("Excusez-moi, mais..vous devez faire un choix qui.. et bien qui existe !");
             std::cin.clear();
             std::cin.ignore(INT_MAX, '\n');
             std::cout << "    " << "| - [[ Entrez votre choix : ";

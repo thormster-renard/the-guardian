@@ -38,28 +38,34 @@ void            PersonnageCreatorState::creerPersonnage()
     {
         nom = "";
         bio = "";
-        std::cout << "Quel est le nom de votre personnage ?" << std::endl;
+        std::cout << "Quel est le nom de votre personnage ?" << "\n" << "\n";
         getline(std::cin, nom);
-        std::cout << "Quel est le titre de votre personnage ?" << std::endl;
-        std::cout << nom << " le lepreux, le benet ?" << std::endl;
+        if (nom.empty())
+        {
+            std::cout << "Il me faut un nom, pour le registre. Je vais vous en donner un... Aller Billy ca sera tres bien" << "\n" << "\n" << "\n" << "\n";
+            nom = "Billy";
+        }
+        std::cout << "\n" << "\n";
+        std::cout << "Quel est le titre de votre personnage ?" << "\n" << "\n";
+        std::cout << nom << " le lepreux, le benet ?" << "\n" << "\n";
         getline(std::cin, bio);
         this->listePersonnage->push_back(new Personnage(nom, bio));
-        std::cout << "Bienvenue dans The Black Guardian " << nom << " " << bio << "\n" << std::endl;
+        std::cout << "Bienvenue dans The Black Guardian !" << std::endl;
     }
     else
-        std::cout << "Veuillez nous excuser, mais nous ne pouvons accueillir plus de 5 personnes." << std::endl;
+        std::cout << gui::msgErreur("Veuillez nous excuser, mais nous ne pouvons accueillir plus de 5 personnes.");
 }
 
 void            PersonnageCreatorState::printMenu()
 {
     system("CLS");
-    std::cout << msgMenuTitre("Creation de votre nouveau personnage")
-    << "Personnages crees : " << std::to_string(this->listePersonnage->size()) << " / " << std::to_string(this->maxPersonnages)
+    std::cout << gui::msgMenuTitre("Creation de votre nouveau personnage")
+    << "      Personnages crees : " << std::to_string(this->listePersonnage->size()) << " / " << std::to_string(this->maxPersonnages)
     << "\n"
-    << msgMenuDiviseur(40, '-')
-    << msgMenuItem(1, "Creer votre personnage")
-    << msgMenuItem(2, "Retour au menu precedent")
-    << msgMenuDiviseur(40, '-');
+    << gui::msgMenuDiviseur(40, '-')
+    << gui::msgMenuItem(1, "Creer votre personnage")
+    << gui::msgMenuItem(2, "Retour au menu precedent")
+    << gui::msgMenuDiviseur(40, '-');
 }
 
 void            PersonnageCreatorState::updateMenu()
@@ -76,7 +82,7 @@ void            PersonnageCreatorState::updateMenu()
                 break;
             default:
                 system("CLS");
-                std::cout << "Excusez-moi, mais..vous devez faire un choix qui.. et bien qui existe !" << std::endl;
+                std::cout << gui::msgErreur("Excusez-moi, mais..vous devez faire un choix qui.. et bien qui existe !");
                 system("PAUSE");
                 break;
         }

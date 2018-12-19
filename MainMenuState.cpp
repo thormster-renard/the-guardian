@@ -29,18 +29,18 @@ MainMenuState::~MainMenuState()
 void    MainMenuState::printMenu()
 {
     system("CLS");
-    std::cout << msgMenuTitre("Menu principal");
+    std::cout << gui::msgMenuTitre("Menu principal");
     if (!this->listePersonnage->empty())
         std::cout << this->listePersonnage->at(this->personnageActif)->getMenuBar() << std::endl;
     else
-        std::cout << msgErreur("Pour debuter le jeu, creez un personnage");
+        std::cout << gui::msgErreur("Pour debuter le jeu, creez un personnage");
     std::cout
-    << msgMenuDiviseur(40, '-')
-    << msgMenuItem(1, "Demarrer un nouveau jeu")
-    << msgMenuItem(2, "Creer votre personnage")
-    << msgMenuItem(3, "Choisir votre personnage")
-    << msgMenuItem(4, "Quitter le jeu")
-    << msgMenuDiviseur(40, '-');
+    << gui::msgMenuDiviseur(40, '-')
+    << gui::msgMenuItem(1, "Demarrer un nouveau jeu")
+    << gui::msgMenuItem(2, "Creer votre personnage")
+    << gui::msgMenuItem(3, "Choisir votre personnage")
+    << gui::msgMenuItem(4, "Quitter le jeu")
+    << gui::msgMenuDiviseur(40, '-');
 }
 
 void    MainMenuState::updateMenu()
@@ -53,7 +53,7 @@ void    MainMenuState::updateMenu()
             else
             {
                 system("CLS");
-                std::cout << "(!) [[ Pour jouer, vous devez d'abord creer, un nouveau personnage ]] "<< std::endl;
+                std::cout << gui::msgErreur("Pour jouer, vous devez d'abord creer, un nouveau personnage.");
                 system("PAUSE");
             }
             break;
@@ -68,7 +68,7 @@ void    MainMenuState::updateMenu()
             break;
         default:
             system("CLS");
-            std::cout << "(!) [[ Vous devez faire un choix qui.. et bien qui existe ! ]]" << std::endl;
+            std::cout << gui::msgErreur("Vous devez faire un choix qui.. et bien qui existe !");
             system("PAUSE");
             break;
     }
