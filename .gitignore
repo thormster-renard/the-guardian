@@ -31,6 +31,7 @@
 *.out
 *.app
 
-# VSCODE Files
+# vscode files & folder
 *.code-workspace
 *.json
+.vscode/
