@@ -27,7 +27,8 @@ SRC		=	sources/main.cpp					\
 			sources/PersonnageSelectorState.cpp	\
 			sources/PersonnageStatMenuState.cpp	\
 			sources/Stats.cpp					\
-			sources/TravelMenuState.cpp
+			sources/TravelMenuState.cpp			\
+			sources/Weapon.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
 
