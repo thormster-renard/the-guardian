@@ -1,36 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PersonnageMenuState.hpp                            :+:      :+:    :+:   */
+/*   PersonnageStatMenuState.hpp                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thormster <thormster.renard@outlook.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/23 19:00:53 by thormster         #+#    #+#             */
-/*   Updated: 2018/11/23 19:00:53 by thormster        ###   ########.fr       */
+/*   Created: 2018/12/19 21:58:10 by thormster         #+#    #+#             */
+/*   Updated: 2018/12/19 21:58:10 by thormster        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef     __PERSONNAGEMENUSTATE_HPP__
-#define     __PERSONNAGEMENUSTATE_HPP__
+#ifndef     __PERSONNAGESTATMENUSTATE_HPP__
+#define     __PERSONNAGESTATMENUSTATE_HPP__
 
 #include        <iomanip>
 #include        <iostream>
 #include        <stack>
 #include        "Personnage.hpp"
-#include        "PersonnageStatMenuState.hpp"
+#include        "Stats.hpp"
 
-class           PersonnageMenuState : public Stats
+class           PersonnageStatMenuState : public Stats
 {
 private:
-    Personnage*& personnage;
+    Personnage*&    personnage;
     std::stack<Stats*>*etat;
 public:
-    PersonnageMenuState(Personnage*& personnage, std::stack<Stats*>*etat);
-    virtual ~PersonnageMenuState();
+                PersonnageStatMenuState(Personnage*& personnage, std::stack<Stats*>*etat);
+    virtual     ~PersonnageStatMenuState();
 
-    void        update();
+    //Fonctions
     void        printMenu();
     void        updateMenu();
+    void        update();
 };
 
 #endif

@@ -33,11 +33,11 @@ void         GameState::PrintMenu() const
         << gui::msgMenuTitre("Menu principal")
         << this->personnage->getMenuBar() << "\n" << "\n"
         << gui::msgMenuDiviseur(40, '-')
-        << gui::msgMenuItem(1, "Menu du personnage")
-        << gui::msgMenuItem(2, "Carte")
-        << gui::msgMenuItem(3, "Artisan")
-        << gui::msgMenuItem(4, "Se reposer")
-        << gui::msgMenuItem(5, "Retour au menu precedent")
+        << gui::msgMenuItem(10, 1, "Menu du personnage")
+        << gui::msgMenuItem(10, 2, "Carte")
+        << gui::msgMenuItem(10, 3, "Artisan")
+        << gui::msgMenuItem(10, 4, "Se reposer")
+        << gui::msgMenuItem(10, 5, "Retour au menu precedent")
         << gui::msgMenuDiviseur(40, '-');
 }
 

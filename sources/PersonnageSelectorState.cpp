@@ -27,7 +27,7 @@ void    PersonnageSelectorState::printMenu()
     std::cout
         << gui::msgMenuTitre("Selection du personnage")
         << gui::msgMenuDiviseur(40, '-')
-        << gui::msgMenuItem(1, "Menu precedent")
+        << gui::msgMenuItem(10, 1, "Menu precedent")
         << gui::msgMenuDiviseur(40, '-');
     if (!this->listePersonnage->empty())
     {

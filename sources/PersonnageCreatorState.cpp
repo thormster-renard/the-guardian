@@ -63,8 +63,8 @@ void            PersonnageCreatorState::printMenu()
     << "      Personnages crees : " << std::to_string(this->listePersonnage->size()) << " / " << std::to_string(this->maxPersonnages)
     << "\n"
     << gui::msgMenuDiviseur(40, '-')
-    << gui::msgMenuItem(1, "Creer votre personnage")
-    << gui::msgMenuItem(2, "Retour au menu precedent")
+    << gui::msgMenuItem(10, 1, "Creer votre personnage")
+    << gui::msgMenuItem(10, 2, "Retour au menu precedent")
     << gui::msgMenuDiviseur(40, '-');
 }
 

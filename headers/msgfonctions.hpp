@@ -21,7 +21,7 @@ namespace   gui
 {
     const   std::string msgMenuTitre(const std::string);
     const   std::string msgMenuDiviseur(const unsigned, const char);
-    const   std::string msgMenuItem(const int, const std::string);
+    const   std::string msgMenuItem(const int, const int, const std::string);
     const   std::string msgErreur(const std::string);
 }
 #endif /* __MSGFONTIONS_HPP__ */

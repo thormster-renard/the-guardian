@@ -20,6 +20,8 @@
 #include    <vector>
 #include    "Inventaire.hpp"
 
+enum stats { FORCE = 0, VITALITE, AGILITE, DEXTERITE, INTELLIGENCE };
+
 class       Personnage
 {
 private:
@@ -77,7 +79,9 @@ public:
     inline const int getDefense() const { return (this->defense); };
     inline const int getChanceToucher() const { return (this->chance_toucher); };
     inline Inventaire& getInventaire() { return (this->inventaire); }
-    // Modifiers
+    const        int getAttribut(const unsigned);
+
+    // Modifieurs
     const std::string runAway();
                 void  reset();
                 void  takeDegats(const int);
@@ -87,12 +91,13 @@ public:
     
     // Fonctions
     std::string       getNom();
+    bool              addStatsPoints(const unsigned);
+    bool              addExp(const unsigned);
     const std::string getMenuBar();
     const std::string toString();
     const std::string toStringNameBio();
     const std::string toStringStats();
     const std::string toStringPosition();
-                 bool addExp(const unsigned);
 };
 
 #endif

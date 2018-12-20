@@ -28,11 +28,11 @@ const std::string gui::msgMenuDiviseur(const unsigned nombre, const char symbole
     return (ss.str());
 }
 
-const std::string gui::msgMenuItem(const int nombre, const std::string item)
+const std::string gui::msgMenuItem(const int nbrSpace, const int nombre, const std::string item)
 {
     std::stringstream ss;
 
-    ss << "          |  [ " << nombre << " ] " << item << "\n" << "\n";
+    ss << std::string(nbrSpace, ' ') << "|  [ " << nombre << " ] " << item << "\n" << "\n";
     return (ss.str());
 }
 

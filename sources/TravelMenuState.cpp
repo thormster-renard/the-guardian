@@ -43,11 +43,11 @@ void        TravelMenuState::printMenu()
         << std::string(35, ' ') << "Mini carte:"<< "\n"
         << std::string(30, ' ') << this->miniMapString << "\n"
         << gui::msgMenuDiviseur(40, '-')
-        << gui::msgMenuItem(8, "HAUT")
-        << gui::msgMenuItem(2, "BAS")
-        << gui::msgMenuItem(4, "GAUCHE")
-        << gui::msgMenuItem(6, "DROITE")
-        << gui::msgMenuItem(5, "Quitter le menu")
+        << gui::msgMenuItem(10, 8, "HAUT")
+        << gui::msgMenuItem(10, 2, "BAS")
+        << gui::msgMenuItem(10, 4, "GAUCHE")
+        << gui::msgMenuItem(10, 6, "DROITE")
+        << gui::msgMenuItem(10, 5, "Quitter le menu")
         << gui::msgMenuDiviseur(40, '-');
 }
 

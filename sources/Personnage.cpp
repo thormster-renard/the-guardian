@@ -47,6 +47,32 @@ Personnage::~Personnage()
 
 }
 
+const int   Personnage::getAttribut(const unsigned attribut)
+{
+    switch (attribut)
+    {
+        case FORCE:
+            return (this->force);
+            break;
+        case VITALITE:
+            return (this->vitalite);
+            break;
+        case AGILITE:
+            return (this->agilite);
+            break;
+        case DEXTERITE:
+            return (this->dexterite);
+            break;
+        case INTELLIGENCE:
+            return (this->intelligence);
+            break;
+        default:
+            return (-1);
+            break;
+    }
+    return (0);
+}
+
 void        Personnage::updateStats()
 {
     this->pvMax = this->vitalite * 10 + this->vitalite;
@@ -63,118 +89,8 @@ void        Personnage::updateStats()
     this->trouvailles_magiques = static_cast<float>(this->intelligence / 70);
 }
 
-const std::string Personnage::toString()
-{
-    std::stringstream sg;
 
-    sg  << " Nom : " << this->nom << "\n" << "\n"
-        << " Bio : " << this->bio << "\n" << "\n"
-        << " Argent : " << this->gold << "\n"
-        << " Niveau : " << this->niveau << "\n"
-        << " Experience : " << this->experience << " / " << this->experience_suivante << "\n"
-        << "\n"
-        << " Points de vie : " << this->pv << " / " << this->pvMax << "\n"
-        << " Stamina : " << this->stamina << " / " << this->staminaMax << "\n"
-        << " Mana : " << this->mana << " / " << this->manaMax << "\n"
-        << "\n"
-        << " Force :" << this->force << "\n"
-        << " Vitalite :" << this->vitalite << "\n"
-        << " Agilite :" << this->agilite << "\n"
-        << " Dexterite :" << this->dexterite << "\n"
-        << " Intelligence :" << this->intelligence << "\n"
-        << "\n"
-        << " Degats infliges : " << this->degatsMin << " - " << this->degatsMax << " (Min-Max)" << "\n"
-        << " Defense : " << this->defense << "\n"
-        << " Attaque : " << this->chance_toucher << "\n"
-        << " Critique : " << this->chance_critique << "\n"
-        << " Chance de trouver des Objets Magiques : " << this->trouvailles_magiques << "\n"
-        << "\n";
-    return (sg.str());
-}
-
-std::string       Personnage::getNom()
-{
-    return (this->nom);
-}
-
-const std::string Personnage::getMenuBar()
-{
-    std::stringstream ss;
-    int expFait;
-    int expRest;//Experience a acquerir pour +1 niveau
-
-    expFait = 10 * (static_cast<float>(this->experience) / this->experience_suivante);
-    expRest = 10 - expFait;
-    ss << " Nom: " << this->nom << " | "
-        << " Niveau: " << this->niveau << " "
-        << "[" << std::string(expFait, '=') << std::string(expRest, '-') << "]" << " | "
-        << " Points de vie: " << this->pv << " / " << this->pvMax << " | "
-        << " Stamina : " << this->stamina << " / " << this->staminaMax << "\n"
-        << " Points SPECIAL disponible: " << this->statpoints;
-    return (ss.str());
-}
-
-const std::string Personnage::toStringNameBio()
-{
-    std::stringstream ss;
-
-    ss  << " Nom : " << this->nom << "\n"
-        << " Bio : " << this->bio << "\n" << "\n"
-        << " Niveau : " << this->niveau << "\n"
-        << " Argent : " << this->gold << "\n";
-    return (ss.str());
-}
-
-const std::string Personnage::toStringStats()
-{
-    std::stringstream ss;
-
-    ss  << " Niveau : " << this->niveau << "\n"
-        << " Experience : " << this->experience << " / " << this->experience_suivante << "\n"
-        << " Points de vie : " << this->pv << " / " << this->pvMax << "\n"
-        << " Argent : " << this->gold << "\n"
-        << " Stamina : " << this->stamina << " / " << this->staminaMax << "\n"
-        << " Mana : " << this->mana << " / " << this->manaMax << "\n"
-        << "\n"
-        << " Force : " << this->force << "\n"
-        << " Vitalite : " << this->vitalite << "\n"
-        << " Agilite : " << this->agilite << "\n"
-        << " Dexterite : " << this->dexterite << "\n"
-        << " Intelligence : " << this->intelligence << "\n"
-        << "\n"
-        << " Degats infliges : " << this->degatsMin << " - " << this->degatsMax << " (Min-Max)" << "\n"
-        << " Defense : " << this->defense << "\n"
-        << " Attaque : " << this->chance_toucher << "\n"
-        << " Critique : " << this->chance_critique << "\n"
-        << " Chance de trouver des Objets Magiques : " << this->trouvailles_magiques << "\n";
-    return (ss.str());
-}
-
-const std::string Personnage::toStringPosition()
-{
-    std::stringstream ss;
-
-    ss << "X(" << this->x << ") | Y(" << this->y << ")" << std::endl;
-    return (ss.str());
-}
-
-bool        Personnage::addExp(const unsigned experience)
-{
-    bool    niveauSup;
-
-    niveauSup = false;
-    this->experience += experience;
-    while (this->experience >= this->experience_suivante)
-    {
-        this->niveau += 1;
-        this->experience -= this->experience_suivante;
-        this->experience_suivante = (50 / 3) * (pow(this->niveau, 3)) - 6 * pow(this->niveau, 2) + (this->niveau * 17) - 12;
-        this->statpoints += 1;
-        this->pvMax += 1;
-        niveauSup = true;
-    }
-    return (niveauSup);
-}
+// Modifieurs
 
 const std::string         Personnage::runAway()
 {
@@ -250,4 +166,153 @@ void        Personnage::move(const int x, const int y)
         this->y = 0;
     else
         this->y += y;
+}
+
+
+// Fonctions
+
+std::string       Personnage::getNom()
+{
+    return (this->nom);
+}
+
+bool        Personnage::addStatsPoints(const unsigned stat)
+{
+    if (this->statpoints > 0)
+    {
+        this->statpoints -= 1;
+        switch (stat)
+        {
+            case FORCE:
+                this->force += 1;
+                break;
+            case VITALITE:
+                this->vitalite += 1;
+                break;
+            case AGILITE:
+                this->agilite += 1;
+                break;
+            case DEXTERITE:
+                this->dexterite += 1;
+                break;
+            case INTELLIGENCE:
+                this->intelligence += 1;
+                break;
+            default:
+                this->statpoints++;
+                return (false);
+                break;
+        }
+        this->updateStats();
+        return (true);
+    }
+    return (false);
+}
+
+bool        Personnage::addExp(const unsigned experience)
+{
+    bool    niveauSup;
+
+    niveauSup = false;
+    this->experience += experience;
+    while (this->experience >= this->experience_suivante)
+    {
+        this->niveau += 1;
+        this->experience -= this->experience_suivante;
+        this->experience_suivante = (50 / 3) * (pow(this->niveau, 3)) - 6 * pow(this->niveau, 2) + (this->niveau * 17) - 12;
+        this->statpoints += 1;
+        this->pvMax += 1;
+        niveauSup = true;
+    }
+    return (niveauSup);
+}
+
+const std::string Personnage::getMenuBar()
+{
+    std::stringstream ss;
+    int expFait;
+    int expRest;//Experience a acquerir pour +1 niveau
+
+    expFait = 10 * (static_cast<float>(this->experience) / this->experience_suivante);
+    expRest = 10 - expFait;
+    ss << " Nom: " << this->nom << " | "
+        << " Niveau: " << this->niveau << " "
+        << "[" << std::string(expFait, '=') << std::string(expRest, '-') << "]" << " | "
+        << " Points de vie: " << this->pv << " / " << this->pvMax << " | "
+        << " Stamina : " << this->stamina << " / " << this->staminaMax << "\n"
+        << " Points SPECIAL disponible: " << this->statpoints;
+    return (ss.str());
+}
+
+const std::string Personnage::toString()
+{
+    std::stringstream sg;
+
+    sg  << " Nom : " << this->nom << "\n" << "\n"
+        << " Bio : " << this->bio << "\n" << "\n"
+        << " Argent : " << this->gold << "\n"
+        << " Niveau : " << this->niveau << "\n"
+        << " Experience : " << this->experience << " / " << this->experience_suivante << "\n"
+        << "\n"
+        << " Points de vie : " << this->pv << " / " << this->pvMax << "\n"
+        << " Stamina : " << this->stamina << " / " << this->staminaMax << "\n"
+        << " Mana : " << this->mana << " / " << this->manaMax << "\n"
+        << "\n"
+        << " Force :" << this->force << "\n"
+        << " Vitalite :" << this->vitalite << "\n"
+        << " Agilite :" << this->agilite << "\n"
+        << " Dexterite :" << this->dexterite << "\n"
+        << " Intelligence :" << this->intelligence << "\n"
+        << "\n"
+        << " Degats infliges : " << this->degatsMin << " - " << this->degatsMax << " (Min-Max)" << "\n"
+        << " Defense : " << this->defense << "\n"
+        << " Attaque : " << this->chance_toucher << "\n"
+        << " Critique : " << this->chance_critique << "\n"
+        << " Chance de trouver des Objets Magiques : " << this->trouvailles_magiques << "\n"
+        << "\n";
+    return (sg.str());
+}
+
+const std::string Personnage::toStringNameBio()
+{
+    std::stringstream ss;
+
+    ss  << " Nom : " << this->nom << "\n"
+        << " Bio : " << this->bio << "\n" << "\n"
+        << " Niveau : " << this->niveau << "\n"
+        << " Argent : " << this->gold << "\n";
+    return (ss.str());
+}
+
+const std::string Personnage::toStringStats()
+{
+    std::stringstream ss;
+
+    ss  << " Niveau : " << this->niveau << "\n"
+        << " Experience : " << this->experience << " / " << this->experience_suivante << "\n"
+        << " Points de vie : " << this->pv << " / " << this->pvMax << "\n"
+        << " Argent : " << this->gold << "\n"
+        << " Stamina : " << this->stamina << " / " << this->staminaMax << "\n"
+        << " Mana : " << this->mana << " / " << this->manaMax << "\n"
+        << "\n"
+        << " Force : " << this->force << "\n"
+        << " Vitalite : " << this->vitalite << "\n"
+        << " Agilite : " << this->agilite << "\n"
+        << " Dexterite : " << this->dexterite << "\n"
+        << " Intelligence : " << this->intelligence << "\n"
+        << "\n"
+        << " Degats infliges : " << this->degatsMin << " - " << this->degatsMax << " (Min-Max)" << "\n"
+        << " Defense : " << this->defense << "\n"
+        << " Attaque : " << this->chance_toucher << "\n"
+        << " Critique : " << this->chance_critique << "\n"
+        << " Chance de trouver des Objets Magiques : " << this->trouvailles_magiques << "\n";
+    return (ss.str());
+}
+
+const std::string Personnage::toStringPosition()
+{
+    std::stringstream ss;
+
+    ss << "X(" << this->x << ") | Y(" << this->y << ")" << std::endl;
+    return (ss.str());
 }

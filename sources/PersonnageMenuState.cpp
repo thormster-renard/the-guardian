@@ -35,11 +35,11 @@ void        PersonnageMenuState::printMenu()
         << gui::msgMenuTitre("Menu du personnage")
         << this->personnage->getMenuBar() << "\n" << "\n" 
         << gui::msgMenuDiviseur(40, '-')
-        << gui::msgMenuItem(1, "Nom et Biographie")
-        << gui::msgMenuItem(2, "Statistiques")
-        << gui::msgMenuItem(3, "Assigner les points d'experience")
-        << gui::msgMenuItem(4, "Inventaire")
-        << gui::msgMenuItem(5, "Quitter le menu")
+        << gui::msgMenuItem(10, 1, "Nom et Biographie")
+        << gui::msgMenuItem(10, 2, "Statistiques")
+        << gui::msgMenuItem(10, 3, "Assigner les points de competences")
+        << gui::msgMenuItem(10, 4, "Inventaire")
+        << gui::msgMenuItem(10, 5, "Quitter le menu")
         << gui::msgMenuDiviseur(40, '-');
 }
 
@@ -61,8 +61,7 @@ void        PersonnageMenuState::updateMenu()
                 break;
             case 3:
                 system("CLS");
-
-                system("PAUSE");
+                this->etat->push(new PersonnageStatMenuState(this->personnage, this->etat));
                 break;
             case 4:
                 system("CLS");

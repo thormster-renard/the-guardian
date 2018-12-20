@@ -36,10 +36,10 @@ void    MainMenuState::printMenu()
         std::cout << gui::msgErreur("Pour debuter le jeu, creez un personnage");
     std::cout
     << gui::msgMenuDiviseur(40, '-')
-    << gui::msgMenuItem(1, "Demarrer un nouveau jeu")
-    << gui::msgMenuItem(2, "Creer votre personnage")
-    << gui::msgMenuItem(3, "Choisir votre personnage")
-    << gui::msgMenuItem(4, "Quitter le jeu")
+    << gui::msgMenuItem(10, 1, "Demarrer un nouveau jeu")
+    << gui::msgMenuItem(10, 2, "Creer votre personnage")
+    << gui::msgMenuItem(10, 3, "Choisir votre personnage")
+    << gui::msgMenuItem(10, 4, "Quitter le jeu")
     << gui::msgMenuDiviseur(40, '-');
 }
 

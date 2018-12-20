@@ -119,10 +119,10 @@ void        CombatState::printMenu()
         << gui::msgMenuTitre("Menu de combat")
         << this->personnage->getMenuBar() << "\n" << "\n"
         << gui::msgMenuDiviseur(40, '-')
-        << gui::msgMenuItem(1, "Engager le combat")
-        << gui::msgMenuItem(2, "Fuir le combat")
-        << gui::msgMenuItem(3, "Se soigner")
-        << gui::msgMenuItem(4, "Retour au menu precedent")
+        << gui::msgMenuItem(10, 1, "Engager le combat")
+        << gui::msgMenuItem(10, 2, "Fuir le combat")
+        << gui::msgMenuItem(10, 3, "Se soigner")
+        << gui::msgMenuItem(10, 4, "Retour au menu precedent")
         << gui::msgMenuDiviseur(40, '-');
 }
 
