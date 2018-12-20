@@ -37,7 +37,7 @@ void        TravelMenuState::printMenu()
     system("CLS");
     std::cout
         << gui::msgMenuTitre("Menu de voyage")
-        << this->personnage->getMenuBar() << "\n" << "\n"
+        << this->personnage->getMenuBar(false) << "\n" << "\n"
         << std::string(4, ' ') << "Lieu: " << this->locationString << "\n"
         << std::string(4, ' ') << this->personnage->toStringPosition() << "\n"
         << std::string(35, ' ') << "Mini carte:"<< "\n"

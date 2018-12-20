@@ -33,7 +33,7 @@ void        PersonnageMenuState::printMenu()
     system("CLS");
     std::cout
         << gui::msgMenuTitre("Menu du personnage")
-        << this->personnage->getMenuBar() << "\n" << "\n" 
+        << this->personnage->getMenuBar(false) 
         << gui::msgMenuDiviseur(40, '-')
         << gui::msgMenuItem(10, 1, "Nom et Biographie")
         << gui::msgMenuItem(10, 2, "Statistiques")

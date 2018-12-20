@@ -65,12 +65,12 @@ void        CombatState::debutCombat()
             degats = 0;
             if (tour)
             {
-                degats = rand() % (this->personnage->getDegatsMax() + this->personnage->getDegatsMin());
+                degats = rand() % (this->personnage->getDegatsMax() - this->personnage->getDegatsMin()) + this->personnage->getDegatsMin());
                 ennemi.takeDegats(degats);
             }
             else
             {
-                degats = rand() % (ennemi.getDegatsMax() + ennemi.getDegatsMin());
+                degats = rand() % (ennemi.getDegatsMax() - ennemi.getDegatsMin()) + ennemi.getDegatsMin());
                 this->personnage->takeDegats(degats);
             }
             std::cout << attStr << " a inflige "
@@ -101,9 +101,9 @@ void        CombatState::debutCombat()
         else if (ennemi.isDead())
         {
             endCombat = true;
-            int expGagne = rand() % (ennemi.getLevel() * 10) + 1;
+            int expGagne = rand() % (ennemi.getLevel() * 20) + (ennemi.getLevel() * 10);
             this->personnage->addExp(expGagne);
-            std::cout << "Vous avez battu " << defStr << " !" << "\n" << "\n";
+            std::cout << "\n" << "\n" << "Vous avez battu " << defStr << " !" << "\n" << "\n";
             std::cout << "Et vous avez gagne " << expGagne << " points d'experience." << "\n" << "\n";
             this->setQuit(true);
         }
@@ -117,7 +117,7 @@ void        CombatState::printMenu()
     system("CLS");
     std::cout
         << gui::msgMenuTitre("Menu de combat")
-        << this->personnage->getMenuBar() << "\n" << "\n"
+        << this->personnage->getMenuBar(false)
         << gui::msgMenuDiviseur(40, '-')
         << gui::msgMenuItem(10, 1, "Engager le combat")
         << gui::msgMenuItem(10, 2, "Fuir le combat")

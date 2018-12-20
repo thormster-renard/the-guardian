@@ -22,7 +22,7 @@ Personnage::Personnage(std::string nom, std::string bio)
     this->experience = 0;
     this->experience_suivante = 46;
     this->gold = 100;
-    this->statpoints = 3;
+    this->statpoints = 5;
 
     this->force = 1;
     this->vitalite = 1;
@@ -221,13 +221,20 @@ bool        Personnage::addExp(const unsigned experience)
         this->experience -= this->experience_suivante;
         this->experience_suivante = (50 / 3) * (pow(this->niveau, 3)) - 6 * pow(this->niveau, 2) + (this->niveau * 17) - 12;
         this->statpoints += 1;
+
+        this->force += this->niveau % 2;
+        this->vitalite += this->niveau % 2;
+        this->agilite += this->niveau % 2;
+        this->dexterite += this->niveau % 2;
+        this->intelligence += this->niveau % 2;
         this->pvMax += 1;
         niveauSup = true;
     }
+    this->updateStats();
     return (niveauSup);
 }
 
-const std::string Personnage::getMenuBar()
+const std::string Personnage::getMenuBar(const bool voirAttributs)
 {
     std::stringstream ss;
     int expFait;
@@ -235,12 +242,23 @@ const std::string Personnage::getMenuBar()
 
     expFait = 10 * (static_cast<float>(this->experience) / this->experience_suivante);
     expRest = 10 - expFait;
-    ss << " Nom: " << this->nom << " | "
-        << " Niveau: " << this->niveau << " "
-        << "[" << std::string(expFait, '=') << std::string(expRest, '-') << "]" << " | "
-        << " Points de vie: " << this->pv << " / " << this->pvMax << " | "
-        << " Stamina : " << this->stamina << " / " << this->staminaMax << "\n"
-        << " Points SPECIAL disponible: " << this->statpoints;
+    ss
+        << std::string(4, ' ') << " | Nom: " << this->nom << "\n"
+        << std::string(4, ' ') << " | Niveau: " << this->niveau << " [" << std::string(expFait, '=') << std::string(expRest, '-') << "]" << "\n"
+        << std::string(4, ' ') << " | Points de vie: " << this->pv << " / " << this->pvMax << "\n"
+        << std::string(4, ' ') << " | Stamina : " << this->stamina << " / " << this->staminaMax << "\n"
+        << std::string(4, ' ') << " | Points de competence disponibles: " << this->statpoints;
+    if (voirAttributs)
+    {
+        ss  << "\n"
+            << std::string(4, ' ') << " | Force:        " << this->force << "\n"
+            << std::string(4, ' ') << " | Vitalite:     " << this->vitalite << "\n"
+            << std::string(4, ' ') << " | Agilite:      " << this->agilite << "\n"
+            << std::string(4, ' ') << " | Dexterite:    " << this->dexterite << "\n"
+            << std::string(4, ' ') << " | Intelligence: " << this->intelligence << "\n";
+    }
+    ss
+        << "\n" << "\n";
     return (ss.str());
 }
 

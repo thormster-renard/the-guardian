@@ -30,8 +30,8 @@ void         GameState::PrintMenu() const
 {
     system("CLS");
     std::cout
-        << gui::msgMenuTitre("Menu principal")
-        << this->personnage->getMenuBar() << "\n" << "\n"
+        << gui::msgMenuTitre("Menu du jeu")
+        << this->personnage->getMenuBar(false)
         << gui::msgMenuDiviseur(40, '-')
         << gui::msgMenuItem(10, 1, "Menu du personnage")
         << gui::msgMenuItem(10, 2, "Carte")

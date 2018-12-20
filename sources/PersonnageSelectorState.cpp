@@ -33,7 +33,7 @@ void    PersonnageSelectorState::printMenu()
     {
         while (i < this->listePersonnage->size())
         {
-            std::cout << " (" << i << ") " << this->listePersonnage->at(i)->getMenuBar() << std::endl;
+            std::cout << " (" << i << ") " << this->listePersonnage->at(i)->getMenuBar(false) << std::endl;
             i += 1;
         }
         std::cout << "\n";

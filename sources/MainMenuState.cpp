@@ -31,7 +31,7 @@ void    MainMenuState::printMenu()
     system("CLS");
     std::cout << gui::msgMenuTitre("Menu principal");
     if (!this->listePersonnage->empty())
-        std::cout << this->listePersonnage->at(this->personnageActif)->getMenuBar() << std::endl;
+        std::cout << this->listePersonnage->at(this->personnageActif)->getMenuBar(false);
     else
         std::cout << gui::msgErreur("Pour debuter le jeu, creez un personnage");
     std::cout

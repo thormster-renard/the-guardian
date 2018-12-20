@@ -26,7 +26,7 @@ void        PersonnageStatMenuState::printMenu()
     system("CLS");
     std::cout
         << gui::msgMenuTitre("Assigner vos points de competences")
-        << this->personnage->getMenuBar()
+        << this->personnage->getMenuBar(true)
         << gui::msgMenuDiviseur(40, '-')
         << " (" << this->personnage->getAttribut(FORCE) << ") " << gui::msgMenuItem(10, 1, "Force")
         << " (" << this->personnage->getAttribut(VITALITE) << ") " << gui::msgMenuItem(10, 2, "Vitalite")
@@ -39,47 +39,24 @@ void        PersonnageStatMenuState::printMenu()
 
 void        PersonnageStatMenuState::updateMenu()
 {
-    switch (this->getChoice())
-        {
-            case 1:
-                if (!this->personnage->addStatsPoints(FORCE))
-                {
-                    std::cout << gui::msgErreur("Vous avec deja assigner tout vos points de competences.");
-                    system("PAUSE");
-                }
-                break;
-            case 2:
-                if (!this->personnage->addStatsPoints(VITALITE))
-                {
-                    std::cout << gui::msgErreur("Vous avec deja assigner tout vos points de competences.");
-                    system("PAUSE");
-                }
-                break;
-            case 3:
-                if (!this->personnage->addStatsPoints(AGILITE))
-                {
-                    std::cout << gui::msgErreur("Vous avec deja assigner tout vos points de competences.");
-                    system("PAUSE");
-                }
-                break;
-            case 4:
-                if (!this->personnage->addStatsPoints(DEXTERITE))
-                {
-                    std::cout << gui::msgErreur("Vous avec deja assigner tout vos points de competences.");
-                    system("PAUSE");
-                }
-                break;
-            case 5:
-                if(!this->personnage->addStatsPoints(INTELLIGENCE))
-                    std::cout << gui::msgErreur("Vous avec deja assigner tout vos points de competences.");
-                break;
-            case 6:
-                this->setQuit(true);
-                break;
-            default:
-                std::cout << gui::msgErreur("Ce choix n'est pas possible. Desole.");
-                break;
-        }
+    int     choice;
+
+    choice = this->getChoice();
+    if (choice == 6)
+    {
+        this->setQuit(true);
+    }
+    else if (choice > 0 && choice < 6)
+    {
+        if (!this->personnage->addStatsPoints(choice - 1))
+            std::cout << gui::msgErreur("Vous avec deja assigner tout vos points de competences.");
+    }
+    else
+    {
+        system("PAUSE");
+        std::cout << gui::msgErreur("Vous avec deja assigner tout vos points de competences.");
+        system("PAUSE");
+    }
 }
 
 void        PersonnageStatMenuState::update()

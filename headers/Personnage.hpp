@@ -93,7 +93,7 @@ public:
     std::string       getNom();
     bool              addStatsPoints(const unsigned);
     bool              addExp(const unsigned);
-    const std::string getMenuBar();
+    const std::string getMenuBar(const bool voirAttributs = false);
     const std::string toString();
     const std::string toStringNameBio();
     const std::string toStringStats();
