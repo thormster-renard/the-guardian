@@ -57,6 +57,9 @@ private:
     unsigned x;
     unsigned y;
     
+    // Armes
+    Weapon      *weapon;
+
     // Inventaire
     Inventaire  inventaire;
 
@@ -65,7 +68,7 @@ public:
     Personnage(std::string nom, std::string bio);
     virtual ~Personnage();
     
-    // Accessors
+    // Accesseurs
     inline const unsigned getSeed() const { return (this->x + this->y); };
     inline const unsigned getX() const { return (this->x); };
     inline const unsigned getY() const { return (this->y); };
@@ -100,4 +103,4 @@ public:
     const std::string toStringPosition();
 };
 
-#endif
+#endif /* __PERSONNAGE_HPP__ */

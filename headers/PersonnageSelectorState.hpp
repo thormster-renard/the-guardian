@@ -36,4 +36,4 @@ public:
     void        update();
 };
 
-#endif
+#endif /* __PERSONNAGESELECTORSTATE_HPP__ */

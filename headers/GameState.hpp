@@ -40,4 +40,4 @@ public:
     void    update();
 };
 
-#endif
+#endif /* __GAMESTATE_HPP__ */

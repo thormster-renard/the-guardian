@@ -35,4 +35,4 @@ public:
     void        update();
 };
 
-#endif
+#endif /* __MAINMENUSTATE_HPP__ */

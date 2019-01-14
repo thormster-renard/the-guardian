@@ -36,4 +36,4 @@ public:
     void        creerPersonnage();
 };
 
-#endif
+#endif /* __PERSONNAGECREATORSTATE_HPP__ */

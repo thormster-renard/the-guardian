@@ -33,4 +33,4 @@ public:
     void        updateMenu();
 };
 
-#endif
+#endif /* __PERSONNAGEMENUSTATE_HPP__ */

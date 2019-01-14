@@ -33,7 +33,7 @@ void        Item::generate()
 
 }
 
-// Accessors
+// Accesseurs
 const std::string& Item::getNom()
 {
     return (this->nom);

@@ -15,7 +15,7 @@
 
 #include    <sstream>
 #include    <string>
-#include    "Item.hpp"
+#include    "Weapon.hpp"
 
 class       Inventaire
 {
@@ -49,4 +49,4 @@ public:
     std::string toString() const;
 };
 
-#endif
+#endif /* __INVENTAIRE_HPP__ */

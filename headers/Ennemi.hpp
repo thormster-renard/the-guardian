@@ -32,7 +32,7 @@ public:
                         Ennemi(int);
         virtual         ~Ennemi();
 
-    // Accessors
+    // Accesseurs
     inline const bool   isDead() const { return (this->pv <= 0); }; //si PV <= 0 alors bool = true
     inline const int    getPV() const { return (this->pv); };
     inline const int    getPVMax() const { return (this->pvMax); };

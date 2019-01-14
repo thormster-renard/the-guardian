@@ -32,9 +32,7 @@ Personnage::Personnage(std::string nom, std::string bio)
     this->x = 0;
     this->y = 0;
 
-    //TEST EXPERIENCE
-    addExp(1000);
-    //
+    this->weapon = nullptr;
 
     this->updateStats();
     //TEST AJOUT OBJET INVENTAIRE
@@ -76,13 +74,19 @@ const int   Personnage::getAttribut(const unsigned attribut)
 void        Personnage::updateStats()
 {
     this->pvMax = this->vitalite * 10 + this->vitalite;
-    this->pv = this->pvMax;
+    //this->pv = this->pvMax;
     this->staminaMax = this->vitalite * 2;
     this->stamina = this->staminaMax;
     this->manaMax = this->vitalite * 10 + this->vitalite;
     this->mana = this->manaMax;
     this->degatsMin = this->force * 2;
     this->degatsMax = this->force + this->force * 2;
+
+    if (this->weapon)
+    {
+        this->degatsMin += this->weapon->getDegatsMin();
+        this->degatsMax += this->weapon->getDegatsMax();
+    }
     this->defense = this->agilite * 2;
     this->chance_toucher = this->dexterite * 2 + this->dexterite;
     this->chance_critique = static_cast<float>(this->dexterite / 60);
@@ -100,9 +104,11 @@ const std::string         Personnage::runAway()
 
     if (this->premierLache)
     {
-        std::cout << "Comme c'est la premiere fois que vous fuiez un combat "
+        std::cout
+        << "Comme c'est la premiere fois que vous fuiez un combat "
         << "nous n'avons rien perdu, mais rappelez vous que la prochaine fois "
-        << "vous y laisserez de l'or et de l'experience." << std::endl;
+        << "vous y laisserez de l'or et de l'experience."
+        << std::endl;
         system("PAUSE");
     }
     else
@@ -229,8 +235,8 @@ bool        Personnage::addExp(const unsigned experience)
         this->intelligence += this->niveau % 2;
         this->pvMax += 1;
         niveauSup = true;
+        this->updateStats();
     }
-    this->updateStats();
     return (niveauSup);
 }
 

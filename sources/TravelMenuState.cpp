@@ -138,6 +138,7 @@ void        TravelMenuState::updateEncounterMenu()
         {
             case VIDE:
                 this->locationString = "Il n'y a rien ici, continuons !";
+                srand(time(NULL));
                 random = rand() % 2;
                 if (random)
                 {

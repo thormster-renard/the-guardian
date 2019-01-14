@@ -32,7 +32,7 @@ public:
                 Item(std::string, unsigned, unsigned, unsigned);
         virtual ~Item();
 
-    // Accessors
+    // Accesseurs
     const std::string& getNom();
     const unsigned& getType();
     const unsigned& getRarete();

@@ -21,6 +21,13 @@ private:
 public:
             Weapon(int, int, std::string, unsigned, unsigned, unsigned);
     virtual ~Weapon;
+
+    // Accesseurrs
+    inline const int& getDegatsMax() const { return (this->degatsMax); }
+    inline const int& getDegatsMax() const { return (this->degatsMax); }
+    inline const int& getDegatsMin() const { return (this->degatsMin); }
+
+    // Fonctions
 };
 
 #endif /* __WEAPON_HPP__ */
