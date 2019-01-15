@@ -77,16 +77,16 @@ public:
     inline const int getPVMax() const { return (this->pvMax); };
     inline const int getLevel() const { return (this->niveau); };
     inline const int getStamina() const { return (this->stamina); };
-    inline const int getDegatsMin() const { return (this->degatsMin); };
-    inline const int getDegatsMax() const { return (this->degatsMax); };
     inline const int getDefense() const { return (this->defense); };
     inline const int getChanceToucher() const { return (this->chance_toucher); };
     inline Inventaire& getInventaire() { return (this->inventaire); }
     const        int getAttribut(const unsigned);
+    const        int getDegatsTotal() const;
 
     // Modifieurs
     const std::string runAway();
                 void  reset();
+                void  resetPV();
                 void  takeDegats(const int);
                 void  setDead();
                 void  setPosition(const unsigned, const unsigned);
@@ -94,6 +94,8 @@ public:
     
     // Fonctions
     std::string       getNom();
+    const int         getDegatsMin() const;
+    const int         getDegatsMax() const;
     bool              addStatsPoints(const unsigned);
     bool              addExp(const unsigned);
     const std::string getMenuBar(const bool voirAttributs = false);

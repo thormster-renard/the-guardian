@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include    "Weapon.hpp"
+#include    "../headers/Weapon.hpp"
 
 Weapon::Weapon(int degatsMin, int degatsMax, std::string nom, unsigned type, unsigned rarete, unsigned valeur) : Item(nom, type, rarete, valeur)
 {
@@ -20,3 +20,11 @@ Weapon::Weapon(int degatsMin, int degatsMax, std::string nom, unsigned type, uns
 
 Weapon::~Weapon()
 {}
+
+const std::string Weapon::toString()
+{
+    std::stringstream ss;
+
+    ss << this->getNom() << " | Rarete: " << this->getRarete() << " | Degats: " << this->degatsMin << " - " << this->degatsMax;
+    return (ss.str());
+}

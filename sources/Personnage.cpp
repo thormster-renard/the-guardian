@@ -32,9 +32,10 @@ Personnage::Personnage(std::string nom, std::string bio)
     this->x = 0;
     this->y = 0;
 
-    this->weapon = nullptr;
+    this->weapon = new Weapon(2, 4, "Epee", 0, 1, 200);
 
     this->updateStats();
+    this->resetPV();
     //TEST AJOUT OBJET INVENTAIRE
     this->inventaire.add(Item("Test", 0, 1, 200));
     // fin test
@@ -42,7 +43,21 @@ Personnage::Personnage(std::string nom, std::string bio)
 
 Personnage::~Personnage()
 {
+    delete this->weapon; 
+}
 
+const int   Personnage::getDegatsMin() const
+{
+    if (this->weapon)
+        return (this->degatsMin + this->weapon->getDegatsMin());
+    return (this->degatsMin);
+}
+
+const int   Personnage::getDegatsMax() const
+{
+    if (this->weapon)
+        return (this->degatsMax + this->weapon->getDegatsMax());
+    return (this->degatsMax);
 }
 
 const int   Personnage::getAttribut(const unsigned attribut)
@@ -70,6 +85,14 @@ const int   Personnage::getAttribut(const unsigned attribut)
     }
     return (0);
 }
+
+const int Personnage::getDegatsTotal() const
+{
+    if (this->weapon)
+        return (rand() % ((this->degatsMax + this->weapon->getDegatsMax()) - (this->degatsMin + this->weapon->getDegatsMin())) + (this->degatsMin + this->weapon->getDegatsMin()));
+    return (rand() % (this->degatsMax - this->degatsMin) + this->degatsMin);
+}
+
 
 void        Personnage::updateStats()
 {
@@ -133,6 +156,11 @@ void        Personnage::reset()
     this->pv = this->pvMax;
     this->stamina = this->staminaMax;
     this->mana = this->manaMax;
+}
+
+void        Personnage::resetPV()
+{
+    this->pv = this->pvMax;
 }
 
 void        Personnage::takeDegats(const int degats)
@@ -277,6 +305,7 @@ const std::string Personnage::toString()
         << " Argent : " << this->gold << "\n"
         << " Niveau : " << this->niveau << "\n"
         << " Experience : " << this->experience << " / " << this->experience_suivante << "\n"
+        << " Arme : " << this->weapon->toString() << "\n"
         << "\n"
         << " Points de vie : " << this->pv << " / " << this->pvMax << "\n"
         << " Stamina : " << this->stamina << " / " << this->staminaMax << "\n"
@@ -288,7 +317,7 @@ const std::string Personnage::toString()
         << " Dexterite :" << this->dexterite << "\n"
         << " Intelligence :" << this->intelligence << "\n"
         << "\n"
-        << " Degats infliges : " << this->degatsMin << " - " << this->degatsMax << " (Min-Max)" << "\n"
+        << " Degats infliges : " << this->degatsMin + this->weapon->getDegatsMin() << " - " << this->degatsMax + this->weapon->getDegatsMax() << " (Min-Max)" << "\n"
         << " Defense : " << this->defense << "\n"
         << " Attaque : " << this->chance_toucher << "\n"
         << " Critique : " << this->chance_critique << "\n"

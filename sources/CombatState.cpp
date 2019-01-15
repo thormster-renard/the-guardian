@@ -65,12 +65,12 @@ void        CombatState::debutCombat()
             degats = 0;
             if (tour)
             {
-                degats = rand() % (this->personnage->getDegatsMax() - this->personnage->getDegatsMin()) + this->personnage->getDegatsMin());
+                degats = personnage->getDegatsTotal();
                 ennemi.takeDegats(degats);
             }
             else
             {
-                degats = rand() % (ennemi.getDegatsMax() - ennemi.getDegatsMin()) + ennemi.getDegatsMin());
+                degats = rand() % (ennemi.getDegatsMax() - ennemi.getDegatsMin()) + ennemi.getDegatsMin();
                 this->personnage->takeDegats(degats);
             }
             std::cout << attStr << " a inflige "
