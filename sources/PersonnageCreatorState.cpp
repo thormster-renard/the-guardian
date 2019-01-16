@@ -58,7 +58,11 @@ void            PersonnageCreatorState::creerPersonnage()
 
 void            PersonnageCreatorState::printMenu()
 {
-    system("CLS");
+    #ifdef _WIN32
+        system("CLS");
+    #elif __linux__
+        system("clear");
+    #endif
     std::cout << gui::msgMenuTitre("Creation de votre nouveau personnage")
     << "      Personnages crees : " << std::to_string(this->listePersonnage->size()) << " / " << std::to_string(this->maxPersonnages)
     << "\n"
@@ -73,17 +77,33 @@ void            PersonnageCreatorState::updateMenu()
     switch (this->getChoice() | system("CLS"))
         {
             case 1:
+            #ifdef _WIN32
                 system("CLS");
+            #elif __linux__
+                system("clear");
+            #endif
                 this->creerPersonnage();
+            #ifdef _WIN32
                 system("PAUSE");
+            #elif __linux__
+                std::cin.get();
+            #endif
                 break;
             case 2:
                 this->setQuit(true);
                 break;
             default:
+            #ifdef _WIN32
                 system("CLS");
+            #elif __linux__
+                system("clear");
+            #endif
                 std::cout << gui::msgErreur("Excusez-moi, mais..vous devez faire un choix qui.. et bien qui existe !");
+            #ifdef _WIN32
                 system("PAUSE");
+            #elif __linux__
+                std::cin.get();
+            #endif
                 break;
         }
 }

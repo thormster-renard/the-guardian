@@ -23,7 +23,11 @@ void    PersonnageSelectorState::printMenu()
     int i;
 
     i = 0;
-    system("CLS");
+        #ifdef _WIN32
+            system("CLS");
+        #elif __linux__
+            system("clear");
+        #endif
     std::cout
         << gui::msgMenuTitre("Selection du personnage")
         << gui::msgMenuDiviseur(40, '-')
@@ -56,19 +60,31 @@ void    PersonnageSelectorState::updateMenu()
             this->personnageActif = choice;
             this->setQuit(true);
             std::cout << "Personnage " << choice << " selectionne." << std::endl;
+             #ifdef _WIN32
             system("PAUSE");
+        #elif __linux__
+            std::cin.get();
+        #endif
         }
         else
         {
             std::cout << gui::msgErreur("Hum, ce personnage n'existe pas.");
+           #ifdef _WIN32
             system("PAUSE");
+        #elif __linux__
+            std::cin.get();
+        #endif
         }
     }
     else
     {
         this->setQuit(true);
         std::cout << "Aucun personnage n'a encore ete cree." << std::endl;
-        system("PAUSE");
+          #ifdef _WIN32
+            system("PAUSE");
+        #elif __linux__
+            std::cin.get();
+        #endif
     }  
 }
 

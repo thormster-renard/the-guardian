@@ -28,7 +28,11 @@ void        GameState::update()
 
 void         GameState::PrintMenu() const
 {
-    system("CLS");
+               #ifdef _WIN32
+                system("CLS");
+            #elif __linux__
+                system("clear");
+            #endif
     std::cout
         << gui::msgMenuTitre("Menu du jeu")
         << this->personnage->getMenuBar(false)
@@ -54,18 +58,34 @@ void        GameState::updateMenu()
         case 3:
             break;
         case 4:
-            system("CLS");
+            #ifdef _WIN32
+                system("CLS");
+            #elif __linux__
+            system("clear");
+            #endif
             this->personnage->reset();
             std::cout << "Vous vous reposez..." << std::endl;
-            system("PAUSE");
+            #ifdef _WIN32
+                system("PAUSE");
+            #elif __linux__
+                std::cin.get();
+            #endif
             break;
         case 5:
             this->setQuit(true);
             break;
         default:
-            system("CLS");
+            #ifdef _WIN32
+                system("CLS");
+            #elif __linux__
+                system("clear");
+            #endif
             std::cout << "Vous devez faire un choix qui.. et bien qui existe !" << std::endl;
-            system("PAUSE");
+            #ifdef _WIN32
+                system("PAUSE");
+            #elif __linux__
+                std::cin.get();
+            #endif
             break;
     }
 }

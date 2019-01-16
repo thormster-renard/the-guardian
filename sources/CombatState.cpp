@@ -51,7 +51,11 @@ void        CombatState::debutCombat()
 
         int random = rand() % 100 + 1;
 
-        system("CLS");
+        #ifdef _WIN32
+            system("CLS");
+        #elif __linux__
+            system("clear");
+        #endif
         std::cout << "--------------------------------------------------------------------" << std::endl;
         std::cout << "  Attaquant : " << attStr << std::endl;
         std::cout << "  Defenseur : " << defStr << std::endl;
@@ -108,13 +112,21 @@ void        CombatState::debutCombat()
             this->setQuit(true);
         }
         tour = tour ? false : true;
-        system("PAUSE");
+        #ifdef _WIN32
+            system("PAUSE");
+        #elif __linux__
+            std::cin.get();
+        #endif
     }
 }
 
 void        CombatState::printMenu()
 {
-    system("CLS");
+        #ifdef _WIN32
+            system("CLS");
+        #elif __linux__
+            system("clear");
+        #endif
     std::cout
         << gui::msgMenuTitre("Menu de combat")
         << this->personnage->getMenuBar(false)
@@ -139,25 +151,46 @@ void        CombatState::updateMenu()
             case 1:
                 this->debutCombat();
                 std::cout << "Fin du combat" << std::endl;
-                system("PAUSE");
+                #ifdef _WIN32
+                    system("PAUSE");
+                #elif __linux__
+                    std::cin.get();
+                #endif
                 break;
             case 2:
-                system("CLS");
+                #ifdef _WIN32
+                    system("CLS");
+                #elif __linux__
+                    system("clear");
+                #endif
                 std::cout << this->personnage->runAway() << std::endl;
                 this->setQuit(true);
                 break;
             case 3:
-                system("CLS");
+                #ifdef _WIN32
+                    system("CLS");
+                #elif __linux__
+                    system("clear");
+                #endif
                 this->personnage->reset();
                 std::cout << "Vous avez ete soigne, vous avez recupere toute votre sante." << std::endl;
-                system("PAUSE");
+                #ifdef _WIN32
+                    system("PAUSE");
+                #elif __linux__
+                    std::cin.get();
+                #endif
                 break;
             case 4:
                 this->setQuit(true);
                 break;
             default:
+            #ifdef _WIN32
                 system("CLS");
                 system("PAUSE");
+            #elif __linux__
+                system("clear");
+                std::cin.get();
+            #endif
                 break;
         }
 }

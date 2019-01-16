@@ -23,7 +23,11 @@ PersonnageStatMenuState::~PersonnageStatMenuState()
 
 void        PersonnageStatMenuState::printMenu()
 {
-    system("CLS");
+         #ifdef _WIN32
+            system("CLS");
+        #elif __linux__
+            system("clear");
+        #endif
     std::cout
         << gui::msgMenuTitre("Assigner vos points de competences")
         << this->personnage->getMenuBar(true)
@@ -53,9 +57,17 @@ void        PersonnageStatMenuState::updateMenu()
     }
     else
     {
-        system("PAUSE");
+        #ifdef _WIN32
+            system("PAUSE");
+        #elif __linux__
+            std::cin.get();
+        #endif
         std::cout << gui::msgErreur("Vous avec deja assigner tout vos points de competences.");
-        system("PAUSE");
+          #ifdef _WIN32
+            system("PAUSE");
+        #elif __linux__
+            std::cin.get();
+        #endif
     }
 }
 

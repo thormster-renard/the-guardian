@@ -34,14 +34,18 @@ void        TravelMenuState::update()
 
 void        TravelMenuState::printMenu()
 {
-    system("CLS");
+            #ifdef _WIN32
+            system("CLS");
+        #elif __linux__
+            system("clear");
+        #endif
     std::cout
         << gui::msgMenuTitre("Menu de voyage")
         << this->personnage->getMenuBar(false) << "\n" << "\n"
         << std::string(4, ' ') << "Lieu: " << this->locationString << "\n"
         << std::string(4, ' ') << this->personnage->toStringPosition() << "\n"
-        << std::string(35, ' ') << "Mini carte:"<< "\n"
-        << std::string(30, ' ') << this->miniMapString << "\n"
+        << std::string(0, ' ') << "Mini carte:"<< "\n"
+        << std::string(0, ' ') << this->miniMapString << "\n"
         << gui::msgMenuDiviseur(40, '-')
         << gui::msgMenuItem(10, 8, "HAUT")
         << gui::msgMenuItem(10, 2, "BAS")
@@ -71,9 +75,17 @@ void        TravelMenuState::updateMenu()
                 this->setQuit(true);
                 break;
             default:
-                system("CLS");
+                #ifdef _WIN32
+            system("CLS");
+        #elif __linux__
+            system("clear");
+        #endif
                 std::cout << gui::msgErreur("Cette direction est invalide.");
-                system("PAUSE");
+                 #ifdef _WIN32
+            system("PAUSE");
+        #elif __linux__
+            std::cin.get();
+        #endif
                 break;
         }
 }
@@ -142,9 +154,17 @@ void        TravelMenuState::updateEncounterMenu()
                 random = rand() % 2;
                 if (random)
                 {
-                    system("CLS");
+                   #ifdef _WIN32
+            system("CLS");
+        #elif __linux__
+            system("clear");
+        #endif
                     std::cout << "Ennemi en vue ! A l'attaque !!" << "\n" << "\n";
-                    system("PAUSE");
+                      #ifdef _WIN32
+            system("PAUSE");
+        #elif __linux__
+            std::cin.get();
+        #endif
                     this->etat->push(new CombatState(this->personnage, this->etat));
                 }
                 break;

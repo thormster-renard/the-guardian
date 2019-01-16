@@ -14,13 +14,21 @@
 
 void        welcome()
 {
-    system("CLS");
+    #ifdef _WIN32
+        system("CLS");
+    #elif __linux__
+        system("clear");
+    #endif
     std::cout << "\n" << "\n";
     std::cout << std::string(4, ' ') << "--------------------------------------------------" << std::endl;
     std::cout << std::string(4, ' ') << "                 THE BLACK GUARDIAN               " << std::endl;
     std::cout << std::string(4, ' ') << "--------------------------------------------------" << std::endl;
     std::cout << "\n" << "\n";
-    system("PAUSE");
+    #ifdef _WIN32
+        system("PAUSE");
+    #elif __linux__
+        std::cin.get();
+    #endif
 }
 
 int         main(void)

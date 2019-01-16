@@ -28,7 +28,11 @@ MainMenuState::~MainMenuState()
 
 void    MainMenuState::printMenu()
 {
-    system("CLS");
+    #ifdef _WIN32
+        system("CLS");
+    #elif __linux__
+        system("clear");
+    #endif
     std::cout << gui::msgMenuTitre("Menu principal");
     if (!this->listePersonnage->empty())
         std::cout << this->listePersonnage->at(this->personnageActif)->getMenuBar(false);
@@ -52,9 +56,17 @@ void    MainMenuState::updateMenu()
                 this->etat->push(new GameState(this->listePersonnage->at(this->personnageActif), this->etat));
             else
             {
+            #ifdef _WIN32
                 system("CLS");
+            #elif __linux__
+                system("clear");
+            #endif
                 std::cout << gui::msgErreur("Pour jouer, vous devez d'abord creer, un nouveau personnage.");
+            #ifdef _WIN32
                 system("PAUSE");
+            #elif __linux__
+                std::cin.get();
+            #endif
             }
             break;
         case 2:
@@ -67,9 +79,17 @@ void    MainMenuState::updateMenu()
             this->setQuit(true);
             break;
         default:
-            system("CLS");
+            #ifdef _WIN32
+                system("CLS");
+            #elif __linux__
+                system("clear");
+            #endif
             std::cout << gui::msgErreur("Vous devez faire un choix qui.. et bien qui existe !");
-            system("PAUSE");
+            #ifdef _WIN32
+                system("PAUSE");
+            #elif __linux__
+                std::cin.get();
+            #endif
             break;
     }
 }

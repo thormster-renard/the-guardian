@@ -132,7 +132,11 @@ const std::string         Personnage::runAway()
         << "nous n'avons rien perdu, mais rappelez vous que la prochaine fois "
         << "vous y laisserez de l'or et de l'experience."
         << std::endl;
-        system("PAUSE");
+        #ifdef _WIN32
+            system("PAUSE");
+        #elif __linux__
+            std::cin.get();
+        #endif
     }
     else
     {
@@ -238,6 +242,7 @@ bool        Personnage::addStatsPoints(const unsigned stat)
                 break;
         }
         this->updateStats();
+        this->resetPV();
         return (true);
     }
     return (false);
@@ -264,6 +269,7 @@ bool        Personnage::addExp(const unsigned experience)
         this->pvMax += 1;
         niveauSup = true;
         this->updateStats();
+        this->resetPV();
     }
     return (niveauSup);
 }
@@ -298,16 +304,24 @@ const std::string Personnage::getMenuBar(const bool voirAttributs)
 
 const std::string Personnage::toString()
 {
-    std::stringstream sg;
+    std::stringstream ss;
 
-    sg  << " Nom : " << this->nom << "\n" << "\n"
+    ss  << " Nom : " << this->nom << "\n" << "\n"
         << " Bio : " << this->bio << "\n" << "\n"
         << " Argent : " << this->gold << "\n"
         << " Niveau : " << this->niveau << "\n"
-        << " Experience : " << this->experience << " / " << this->experience_suivante << "\n"
-        << " Arme : " << this->weapon->toString() << "\n"
-        << "\n"
-        << " Points de vie : " << this->pv << " / " << this->pvMax << "\n"
+        << " Experience : " << this->experience << " / " << this->experience_suivante << "\n";
+        if (this->weapon)
+        {
+            ss << " Arme : " << this->weapon->toString() << "\n"
+            << "\n";
+        }
+        else
+        {
+            ss << " Arme : " << "aucune arme equipee" << "\n"
+            << "\n";
+        }
+        ss << " Points de vie : " << this->pv << " / " << this->pvMax << "\n"
         << " Stamina : " << this->stamina << " / " << this->staminaMax << "\n"
         << " Mana : " << this->mana << " / " << this->manaMax << "\n"
         << "\n"
@@ -323,7 +337,7 @@ const std::string Personnage::toString()
         << " Critique : " << this->chance_critique << "\n"
         << " Chance de trouver des Objets Magiques : " << this->trouvailles_magiques << "\n"
         << "\n";
-    return (sg.str());
+    return (ss.str());
 }
 
 const std::string Personnage::toStringNameBio()
@@ -354,7 +368,7 @@ const std::string Personnage::toStringStats()
         << " Dexterite : " << this->dexterite << "\n"
         << " Intelligence : " << this->intelligence << "\n"
         << "\n"
-        << " Degats infliges : " << this->degatsMin << " - " << this->degatsMax << " (Min-Max)" << "\n"
+        << " Degats infliges : " << this->degatsMin + this->weapon->getDegatsMin() << " - " << this->degatsMax + this->weapon->getDegatsMax() << " (Min-Max)" << "\n"
         << " Defense : " << this->defense << "\n"
         << " Attaque : " << this->chance_toucher << "\n"
         << " Critique : " << this->chance_critique << "\n"

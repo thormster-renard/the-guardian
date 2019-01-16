@@ -30,7 +30,11 @@ void        PersonnageMenuState::update()
 
 void        PersonnageMenuState::printMenu()
 {
-    system("CLS");
+    #ifdef _WIN32
+        system("CLS");
+    #elif __linux__
+        system("clear");
+    #endif
     std::cout
         << gui::msgMenuTitre("Menu du personnage")
         << this->personnage->getMenuBar(false) 
@@ -50,31 +54,67 @@ void        PersonnageMenuState::updateMenu()
     switch (this->getChoice())
         {
             case 1:
-                system("CLS");
+        #ifdef _WIN32
+            system("CLS");
+        #elif __linux__
+            system("clear");
+        #endif
                 std::cout << this->personnage->toStringNameBio() << std::endl;
-                system("PAUSE");
+        #ifdef _WIN32
+            system("PAUSE");
+        #elif __linux__
+            std::cin.get();
+        #endif
                 break;
             case 2:
-                system("CLS");
+                #ifdef _WIN32
+            system("CLS");
+        #elif __linux__
+            system("clear");
+        #endif
                 std::cout << this->personnage->toStringStats() << std::endl;
-                system("PAUSE");
+            #ifdef _WIN32
+            system("PAUSE");
+        #elif __linux__
+            std::cin.get();
+        #endif
                 break;
             case 3:
-                system("CLS");
+                #ifdef _WIN32
+            system("CLS");
+        #elif __linux__
+            system("clear");
+        #endif
                 this->etat->push(new PersonnageStatMenuState(this->personnage, this->etat));
                 break;
             case 4:
-                system("CLS");
+                #ifdef _WIN32
+            system("CLS");
+        #elif __linux__
+            system("clear");
+        #endif
                 std::cout << this->personnage->getInventaire().toString() << std::endl;
-                system("PAUSE");
+                   #ifdef _WIN32
+            system("PAUSE");
+        #elif __linux__
+            std::cin.get();
+        #endif
                 break;
             case 5:
                 this->setQuit(true);
                 break;
             default:
-                system("CLS");
+                 #ifdef _WIN32
+            system("CLS");
+        #elif __linux__
+            system("clear");
+        #endif
                 std::cout << gui::msgErreur("Vous devez faire un choix qui.. et bien qui existe !");
-                system("PAUSE");
+                  #ifdef _WIN32
+            system("PAUSE");
+        #elif __linux__
+            std::cin.get();
+        #endif
                 break;
         }
 }
