@@ -12,6 +12,7 @@
 
 NAME	=	the_last_guardian
 
+ifeq ($(OS), Windows_NT)
 SRC		=	sources\main.cpp			\
 			sources\CombatState.cpp			\
 			sources\Ennemi.cpp			\
@@ -29,6 +30,26 @@ SRC		=	sources\main.cpp			\
 			sources\Stats.cpp			\
 			sources\TravelMenuState.cpp		\
 			sources\Weapon.cpp
+
+else
+SRC		=	sources/main.cpp			\
+			sources/CombatState.cpp			\
+			sources/Ennemi.cpp			\
+			sources/Game.cpp			\
+			sources/GameState.cpp			\
+			sources/Inventaire.cpp			\
+			sources/Item.cpp			\
+			sources/MainMenuState.cpp		\
+			sources/msgfonctions.cpp		\
+			sources/Personnage.cpp			\
+			sources/PersonnageCreatorState.cpp	\
+			sources/PersonnageMenuState.cpp		\
+			sources/PersonnageSelectorState.cpp	\
+			sources/PersonnageStatMenuState.cpp	\
+			sources/Stats.cpp			\
+			sources/TravelMenuState.cpp		\
+			sources/Weapon.cpp
+endif
 
 OBJ		=	$(SRC:.cpp=.o)
 
