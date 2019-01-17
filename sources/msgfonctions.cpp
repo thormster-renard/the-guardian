@@ -14,32 +14,32 @@
 
 const std::string gui::msgMenuTitre(const std::string titre)
 {
-    std::stringstream ss;
+  std::stringstream ss;
 
-    ss << "\n" << "     ----------- [[ " << titre << " ]] -----------" << "\n" << "\n";
-    return (ss.str());
+  ss << "\n" << "     ----------- [[ " << titre << " ]] -----------" << "\n" << "\n";
+  return (ss.str());
 }
 
 const std::string gui::msgMenuDiviseur(const unsigned nombre, const char symbole)
 {
-    std::stringstream ss;
+  std::stringstream ss;
 
-    ss << "      " << std::string(nombre, symbole) << "\n" << "\n";
-    return (ss.str());
+  ss << "      " << std::string(nombre, symbole) << "\n" << "\n";
+  return (ss.str());
 }
 
 const std::string gui::msgMenuItem(const int nbrSpace, const int nombre, const std::string item)
 {
-    std::stringstream ss;
+  std::stringstream ss;
 
-    ss << std::string(nbrSpace, ' ') << "|  [ " << nombre << " ] " << item << "\n" << "\n";
-    return (ss.str());
+  ss << std::string(nbrSpace, ' ') << "|  [ " << nombre << " ] " << item << "\n" << "\n";
+  return (ss.str());
 }
 
 const std::string gui::msgErreur(const std::string erreur)
 {
-    std::stringstream ss;
+  std::stringstream ss;
 
-    ss << " (!)  [[ " << erreur << " ]]" << "\n" << "\n";
-    return (ss.str());
+  ss << " (!)  [[ " << erreur << " ]]" << "\n" << "\n";
+  return (ss.str());
 }

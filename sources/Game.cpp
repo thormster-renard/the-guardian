@@ -14,41 +14,41 @@
 
 Game::Game()
 {
-    quit = false;
-    this->personnageActif = 0;
-    this->etat.push(new MainMenuState(&this->listePersonnage, this->personnageActif, &this->etat));
+  quit = false;
+  this->personnageActif = 0;
+  this->etat.push(new MainMenuState(&this->listePersonnage, this->personnageActif, &this->etat));
 }
 
 Game::~Game()
 {
-    int i;
+  int i;
 
-    while (!this->etat.empty())
+  i = 0;
+  while (!this->etat.empty())
     {
-        delete this->etat.top();
-        this->etat.pop();
+      delete this->etat.top();
+      this->etat.pop();
     }
-    i = 0;
-    while (i < this->listePersonnage.size())
+  while (i < this->listePersonnage.size())
     {
-        delete this->listePersonnage[i];
-        i += 1;
+      delete this->listePersonnage[i];
+      i += 1;
     }
 }
 
 void        Game::update()
 {
-    this->etat.top()->update();
-    if (this->etat.top()->getQuit())
+  this->etat.top()->update();
+  if (this->etat.top()->getQuit())
     {
-        delete this->etat.top();
-        this->etat.pop();
+      delete this->etat.top();
+      this->etat.pop();
     }
-    if (this->etat.empty())
-        this->quit = true;
+  if (this->etat.empty())
+    this->quit = true;
 }
 
 const bool&        Game::GetQuit() const
 {
-    return (this->quit);    
+  return (this->quit);
 }

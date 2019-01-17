@@ -14,39 +14,37 @@
 
 Stats::Stats()
 {
-    this->quit = false;
+  this->quit = false;
 }
 
-Stats::~Stats()
-{
-}
+Stats::~Stats() {}
 
 const bool&     Stats::getQuit() const
 {
-    return (this->quit);
+  return (this->quit);
 }
 
 void            Stats::setQuit(const bool quit)
 {
-    this->quit = quit;
+  this->quit = quit;
 }
 
 int             Stats::getChoice() const
 {
-    int     choice;
+  int     choice;
 
-    choice = -1;
-    std::cout << "    " << "| - [[ Entrez votre choix : ";
-    std::cin >> std::setw(1) >> choice;
-    while (!std::cin.good())
-        {
-            std::cout << gui::msgErreur("Excusez-moi, mais..vous devez faire un choix qui.. et bien qui existe !");
-            std::cin.clear();
-            std::cin.ignore(INT_MAX, '\n');
-            std::cout << "    " << "| - [[ Entrez votre choix : ";
-            std::cin >> std::setw(1) >> choice;
-        }
-    std::cin.clear();
-    std::cin.ignore(INT_MAX, '\n');
-    return (choice);
+  choice = -1;
+  std::cout << "    " << "| - [[ Entrez votre choix : ";
+  std::cin >> std::setw(1) >> choice;
+  while (!std::cin.good())
+    {
+      std::cout << gui::msgErreur("Excusez-moi, mais..vous devez faire un choix qui.. et bien qui existe !");
+      std::cin.clear();
+      std::cin.ignore(INT_MAX, '\n');
+      std::cout << "    " << "| - [[ Entrez votre choix : ";
+      std::cin >> std::setw(1) >> choice;
+    }
+  std::cin.clear();
+  std::cin.ignore(INT_MAX, '\n');
+  return (choice);
 }

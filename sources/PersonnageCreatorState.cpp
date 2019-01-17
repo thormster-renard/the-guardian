@@ -14,96 +14,93 @@
 
 PersonnageCreatorState::PersonnageCreatorState(std::vector<Personnage*>*listePersonnage, unsigned& personnageActif, std::stack<Stats*>*etat) : personnageActif(personnageActif), Stats(), maxPersonnages(5)
 {
-    this->listePersonnage = listePersonnage;
-    this->etat = etat;
+  this->listePersonnage = listePersonnage;
+  this->etat = etat;
 }
 
-PersonnageCreatorState::~PersonnageCreatorState()
-{
-
-}
+PersonnageCreatorState::~PersonnageCreatorState() {}
 
 void            PersonnageCreatorState::update()
 {
-    this->printMenu();
-    this->updateMenu();
+  this->printMenu();
+  this->updateMenu();
 }
 
 void            PersonnageCreatorState::creerPersonnage()
 {
-    std::string nom;
-    std::string bio;
+  std::string nom;
+  std::string bio;
 
-    if (this->listePersonnage->size() < this->maxPersonnages)
+  if (this->listePersonnage->size() < this->maxPersonnages)
     {
-        nom = "";
-        bio = "";
-        std::cout << "Quel est le nom de votre personnage ?" << "\n" << "\n";
-        getline(std::cin, nom);
-        if (nom.empty())
+      nom = "";
+      bio = "";
+      std::cout << "Quel est le nom de votre personnage ?" << "\n" << "\n";
+      getline(std::cin, nom);
+      if (nom.empty())
         {
-            std::cout << "Il me faut un nom, pour le registre. Je vais vous en donner un... Aller Billy ca sera tres bien" << "\n" << "\n" << "\n" << "\n";
-            nom = "Billy";
+	  std::cout << "Il me faut un nom, pour le registre. Je vais vous en donner un... Aller Billy ca sera tres bien" << "\n" << "\n" << "\n" << "\n";
+	  nom = "Billy";
         }
-        std::cout << "\n" << "\n";
-        std::cout << "Quel est le titre de votre personnage ?" << "\n" << "\n";
-        std::cout << nom << " le lepreux, le benet ?" << "\n" << "\n";
-        getline(std::cin, bio);
-        this->listePersonnage->push_back(new Personnage(nom, bio));
-        std::cout << "Bienvenue dans The Black Guardian !" << std::endl;
+      std::cout << "\n" << "\n";
+      std::cout << "Quel est le titre de votre personnage ?" << "\n" << "\n";
+      std::cout << nom << " le lepreux, le benet ?" << "\n" << "\n";
+      getline(std::cin, bio);
+      this->listePersonnage->push_back(new Personnage(nom, bio));
+      std::cout << "Bienvenue dans The Black Guardian !" << std::endl;
     }
-    else
-        std::cout << gui::msgErreur("Veuillez nous excuser, mais nous ne pouvons accueillir plus de 5 personnes.");
+  else
+    std::cout << gui::msgErreur("Veuillez nous excuser, mais nous ne pouvons accueillir plus de 5 personnes.");
 }
 
 void            PersonnageCreatorState::printMenu()
 {
-    #ifdef _WIN32
-        system("CLS");
-    #elif __linux__
-        system("clear");
-    #endif
-    std::cout << gui::msgMenuTitre("Creation de votre nouveau personnage")
-    << "      Personnages crees : " << std::to_string(this->listePersonnage->size()) << " / " << std::to_string(this->maxPersonnages)
-    << "\n"
-    << gui::msgMenuDiviseur(40, '-')
-    << gui::msgMenuItem(10, 1, "Creer votre personnage")
-    << gui::msgMenuItem(10, 2, "Retour au menu precedent")
-    << gui::msgMenuDiviseur(40, '-');
+#ifdef _WIN32
+  system("CLS");
+#elif __linux__
+  system("clear");
+#endif
+  std::cout << gui::msgMenuTitre("Creation de votre nouveau personnage")
+	    << "      Personnages crees : " << std::to_string(this->listePersonnage->size()) << " / " << std::to_string(this->maxPersonnages)
+	    << "\n"
+	    << gui::msgMenuDiviseur(40, '-')
+	    << gui::msgMenuItem(10, 1, "Creer votre personnage")
+	    << gui::msgMenuItem(10, 2, "Retour au menu precedent")
+	    << gui::msgMenuDiviseur(40, '-');
 }
 
 void            PersonnageCreatorState::updateMenu()
 {
-    switch (this->getChoice() | system("CLS"))
-        {
-            case 1:
-            #ifdef _WIN32
-                system("CLS");
-            #elif __linux__
-                system("clear");
-            #endif
-                this->creerPersonnage();
-            #ifdef _WIN32
-                system("PAUSE");
-            #elif __linux__
-                std::cin.get();
-            #endif
-                break;
-            case 2:
-                this->setQuit(true);
-                break;
-            default:
-            #ifdef _WIN32
-                system("CLS");
-            #elif __linux__
-                system("clear");
-            #endif
-                std::cout << gui::msgErreur("Excusez-moi, mais..vous devez faire un choix qui.. et bien qui existe !");
-            #ifdef _WIN32
-                system("PAUSE");
-            #elif __linux__
-                std::cin.get();
-            #endif
-                break;
-        }
+  switch (this->getChoice()/* | system("CLS")*/)
+    {
+    case 1:
+#ifdef _WIN32
+      system("CLS");
+#elif __linux__
+      system("clear");
+#endif
+      this->creerPersonnage();
+#ifdef _WIN32
+      system("PAUSE");
+#elif __linux__
+      std::cin.get();
+#endif
+      break;
+    case 2:
+      this->setQuit(true);
+      break;
+    default:
+#ifdef _WIN32
+      system("CLS");
+#elif __linux__
+      system("clear");
+#endif
+      std::cout << gui::msgErreur("Excusez-moi, mais..vous devez faire un choix qui.. et bien qui existe !");
+#ifdef _WIN32
+      system("PAUSE");
+#elif __linux__
+      std::cin.get();
+#endif
+      break;
+    }
 }

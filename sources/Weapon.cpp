@@ -14,17 +14,16 @@
 
 Weapon::Weapon(int degatsMin, int degatsMax, std::string nom, unsigned type, unsigned rarete, unsigned valeur) : Item(nom, type, rarete, valeur)
 {
-    this->degatsMin = degatsMin;
-    this->degatsMax = degatsMax;
+  this->degatsMin = degatsMin;
+  this->degatsMax = degatsMax;
 }
 
-Weapon::~Weapon()
-{}
+Weapon::~Weapon() {}
 
 const std::string Weapon::toString()
 {
-    std::stringstream ss;
+  std::stringstream ss;
 
-    ss << this->getNom() << " | Rarete: " << this->getRarete() << " | Degats: " << this->degatsMin << " - " << this->degatsMax;
-    return (ss.str());
+  ss << this->getNom() << " | Rarete: " << this->getRarete() << " | Degats: " << this->degatsMin << " - " << this->degatsMax;
+  return (ss.str());
 }

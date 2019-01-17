@@ -14,31 +14,31 @@
 
 void        welcome()
 {
-    #ifdef _WIN32
-        system("CLS");
-    #elif __linux__
-        system("clear");
-    #endif
-    std::cout << "\n" << "\n";
-    std::cout << std::string(4, ' ') << "--------------------------------------------------" << std::endl;
-    std::cout << std::string(4, ' ') << "                 THE BLACK GUARDIAN               " << std::endl;
-    std::cout << std::string(4, ' ') << "--------------------------------------------------" << std::endl;
-    std::cout << "\n" << "\n";
-    #ifdef _WIN32
-        system("PAUSE");
-    #elif __linux__
-        std::cin.get();
-    #endif
+#ifdef _WIN32
+  system("CLS");
+#elif __linux__
+  system("clear");
+#endif
+  std::cout << "\n" << "\n";
+  std::cout << std::string(4, ' ') << "--------------------------------------------------" << std::endl;
+  std::cout << std::string(4, ' ') << "                 THE BLACK GUARDIAN               " << std::endl;
+  std::cout << std::string(4, ' ') << "--------------------------------------------------" << std::endl;
+  std::cout << "\n" << "\n";
+#ifdef _WIN32
+  system("PAUSE");
+#elif __linux__
+  std::cin.get();
+#endif
 }
 
 int         main(void)
 {
-    Game    game;
+  Game    game;
 
-    welcome();
-    while (!game.GetQuit())
+  welcome();
+  while (!game.GetQuit())
     {
-        game.update();
+      game.update();
     }
-    return (0);
+  return (0);
 }

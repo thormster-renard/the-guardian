@@ -14,65 +14,61 @@
 
 PersonnageStatMenuState::PersonnageStatMenuState(Personnage*& personnage, std::stack<Stats*>*etat) : personnage(personnage), Stats()
 {
-    this->etat = etat;
+  this->etat = etat;
 }
 
-PersonnageStatMenuState::~PersonnageStatMenuState()
-{
-}
+PersonnageStatMenuState::~PersonnageStatMenuState() {}
 
 void        PersonnageStatMenuState::printMenu()
 {
-         #ifdef _WIN32
-            system("CLS");
-        #elif __linux__
-            system("clear");
-        #endif
-    std::cout
-        << gui::msgMenuTitre("Assigner vos points de competences")
-        << this->personnage->getMenuBar(true)
-        << gui::msgMenuDiviseur(40, '-')
-        << " (" << this->personnage->getAttribut(FORCE) << ") " << gui::msgMenuItem(10, 1, "Force")
-        << " (" << this->personnage->getAttribut(VITALITE) << ") " << gui::msgMenuItem(10, 2, "Vitalite")
-        << " (" << this->personnage->getAttribut(AGILITE) << ") " << gui::msgMenuItem(10, 3, "Agilite")
-        << " (" << this->personnage->getAttribut(DEXTERITE) << ") " << gui::msgMenuItem(10, 4, "Dexterite")
-        << " (" << this->personnage->getAttribut(INTELLIGENCE) << ") " << gui::msgMenuItem(10, 5, "Intelligence")
-        << gui::msgMenuItem(15, 6, "Retour au menu precedent")
-        << gui::msgMenuDiviseur(40, '-');
+#ifdef _WIN32
+  system("CLS");
+#elif __linux__
+  system("clear");
+#endif
+  std::cout
+    << gui::msgMenuTitre("Assigner vos points de competences")
+    << this->personnage->getMenuBar(true)
+    << gui::msgMenuDiviseur(40, '-')
+    << " (" << this->personnage->getAttribut(FORCE) << ") " << gui::msgMenuItem(10, 1, "Force")
+    << " (" << this->personnage->getAttribut(VITALITE) << ") " << gui::msgMenuItem(10, 2, "Vitalite")
+    << " (" << this->personnage->getAttribut(AGILITE) << ") " << gui::msgMenuItem(10, 3, "Agilite")
+    << " (" << this->personnage->getAttribut(DEXTERITE) << ") " << gui::msgMenuItem(10, 4, "Dexterite")
+    << " (" << this->personnage->getAttribut(INTELLIGENCE) << ") " << gui::msgMenuItem(10, 5, "Intelligence")
+    << gui::msgMenuItem(15, 6, "Retour au menu precedent")
+    << gui::msgMenuDiviseur(40, '-');
 }
 
 void        PersonnageStatMenuState::updateMenu()
 {
-    int     choice;
+  int     choice;
 
-    choice = this->getChoice();
-    if (choice == 6)
+  choice = this->getChoice();
+  if (choice == 6)
+    this->setQuit(true);
+  else if (choice > 0 && choice < 6)
     {
-        this->setQuit(true);
+      if (!this->personnage->addStatsPoints(choice - 1))
+	std::cout << gui::msgErreur("Vous avec deja assigner tout vos points de competences.");
     }
-    else if (choice > 0 && choice < 6)
+  else
     {
-        if (!this->personnage->addStatsPoints(choice - 1))
-            std::cout << gui::msgErreur("Vous avec deja assigner tout vos points de competences.");
-    }
-    else
-    {
-        #ifdef _WIN32
-            system("PAUSE");
-        #elif __linux__
-            std::cin.get();
-        #endif
-        std::cout << gui::msgErreur("Vous avec deja assigner tout vos points de competences.");
-          #ifdef _WIN32
-            system("PAUSE");
-        #elif __linux__
-            std::cin.get();
-        #endif
+#ifdef _WIN32
+      system("PAUSE");
+#elif __linux__
+      std::cin.get();
+#endif
+      std::cout << gui::msgErreur("Vous avec deja assigner tout vos points de competences.");
+#ifdef _WIN32
+      system("PAUSE");
+#elif __linux__
+      std::cin.get();
+#endif
     }
 }
 
 void        PersonnageStatMenuState::update()
 {
-    this->printMenu();
-    this->updateMenu();
+  this->printMenu();
+  this->updateMenu();
 }

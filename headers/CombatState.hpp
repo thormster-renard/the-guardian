@@ -22,19 +22,19 @@
 class       CombatState : public Stats
 {
 private:
-    Personnage*&    personnage;
-    std::stack<Stats*>*etat;
+  Personnage*&    personnage;
+  std::stack<Stats*>*etat;
 public:
-            CombatState(Personnage*& personnage, std::stack<Stats*>*etat);
-    virtual ~CombatState();
+  CombatState(Personnage*& personnage, std::stack<Stats*>*etat);
+  virtual ~CombatState();
 
-    // Fonctions
-    void    debutCombat();
-    void    printMenu();
-    void    update();
-    void    updateMenu();
-    void    updateMiniMap();
-    void    updateEncounterMenu();
+  // Fonctions
+  void    debutCombat();
+  void    printMenu();
+  void    update();
+  void    updateMenu();
+  void    updateMiniMap();
+  void    updateEncounterMenu();
 };
 
 #endif /* __COMBATSTATE_HPP__ */

@@ -17,6 +17,10 @@
 #include            <iomanip>
 #include            "msgfonctions.hpp"
 
+#ifdef __linux__
+#include	    <climits>
+#endif
+
 class               Stats
 {
 private:
