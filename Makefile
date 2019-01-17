@@ -12,7 +12,7 @@
 
 NAME	=	the_last_guardian
 
-SRC	=		sources\main.cpp			\
+SRC		=	sources\main.cpp			\
 			sources\CombatState.cpp			\
 			sources\Ennemi.cpp			\
 			sources\Game.cpp			\
@@ -30,25 +30,25 @@ SRC	=		sources\main.cpp			\
 			sources\TravelMenuState.cpp		\
 			sources\Weapon.cpp
 
-OBJ	=		$(SRC:.cpp=.o)
+OBJ		=	$(SRC:.cpp=.o)
 
-all	:		$(OBJ)
+all		:	$(OBJ)
 			g++ -o $(NAME) $(OBJ)
 
 ifeq ($(OS), Windows_NT)
-clean:
-		del $(OBJ)
+clean	:
+			del $(OBJ)
 else
-clean:
-		rm -rf $(OBJ)
+clean	:
+			rm -rf $(OBJ)
 endif
 
 ifeq ($(OS), Windows_NT)
-fclean:	clean
-		del $(NAME)
+fclean	:	clean
+			del $(NAME).exe
 else
-fclean:	clean
-		rm -rf $(NAME)
+fclean	:	clean
+			rm -rf $(NAME)
 endif
 
-re	:		fclean all
+re		:	fclean all

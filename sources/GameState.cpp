@@ -62,8 +62,15 @@ void        GameState::updateMenu()
 #elif __linux__
       system("clear");
 #endif
-      this->personnage->reset();
-      std::cout << "Vous vous reposez..." << std::endl;
+      if (this->personnage->getLocation() == CITY)
+      {
+        this->personnage->reset();
+        std::cout << "Vous vous reposez..." << std::endl;
+      }
+      else
+      {
+        std::cout << "Vous ne pouvez pas vous reposer ici !\n" << std::endl;
+      }
 #ifdef _WIN32
       system("PAUSE");
 #elif __linux__

@@ -33,6 +33,8 @@ private:
     int experience;
     int experience_suivante;
     int statpoints;
+    int location;
+
     int pv;
     int pvMax;
     int gold;
@@ -56,7 +58,7 @@ private:
     // Location
     unsigned x;
     unsigned y;
-    
+
     // Armes
     Weapon      *weapon;
 
@@ -67,7 +69,7 @@ private:
 public:
     Personnage(std::string nom, std::string bio);
     virtual ~Personnage();
-    
+
     // Accesseurs
     inline const unsigned getSeed() const { return (this->x + this->y); };
     inline const unsigned getX() const { return (this->x); };
@@ -82,6 +84,7 @@ public:
     inline Inventaire& getInventaire() { return (this->inventaire); }
     const        int getAttribut(const unsigned);
     const        int getDegatsTotal() const;
+    inline const int getLocation() const { return (this->location); }
 
     // Modifieurs
     const std::string runAway();
@@ -89,9 +92,10 @@ public:
                 void  resetPV();
                 void  takeDegats(const int);
                 void  setDead();
+                void  setLocation(const int);
                 void  setPosition(const unsigned, const unsigned);
                 void  move(const int, const int);
-    
+
     // Fonctions
     std::string       getNom();
     const int         getDegatsMin() const;

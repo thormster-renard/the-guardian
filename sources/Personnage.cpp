@@ -23,6 +23,7 @@ Personnage::Personnage(std::string nom, std::string bio)
   this->experience_suivante = 46;
   this->gold = 100;
   this->statpoints = 5;
+  this->location = -1;
 
   this->force = 1;
   this->vitalite = 1;
@@ -32,7 +33,7 @@ Personnage::Personnage(std::string nom, std::string bio)
   this->x = 0;
   this->y = 0;
 
-  this->weapon = new Weapon(2, 4, "Epee", 0, 1, 200);
+  this->weapon = new Weapon(2, 4, "Epee", ARME, COMMUN, 200);
 
   this->updateStats();
   this->resetPV();
@@ -182,6 +183,11 @@ void        Personnage::setDead()
     this->gold = 0;
 }
 
+void        Personnage::setLocation(const int location)
+{
+  this->location = location;
+}
+
 void        Personnage::setPosition(const unsigned x, const unsigned y)
 {
   this->x = x;
@@ -306,12 +312,16 @@ const std::string Personnage::toString()
   if (this->weapon)
     {
       ss << " Arme : " << this->weapon->toString() << "\n"
-	 << "\n";
+	    << "\n"
+      << " Degats infliges : " << this->degatsMin + this->weapon->getDegatsMin() << " (" << this->degatsMin << ") "
+      << " - " << this->degatsMax + this->weapon->getDegatsMax() << " (" << this->degatsMax << ") "
+      << "\n";
     }
   else
     {
       ss << " Arme : " << "aucune arme equipee" << "\n"
-	 << "\n";
+	    << "\n"
+      << " Degats infliges : " << this->degatsMin << " - " << this->degatsMax << " (Min-Max)" << "\n";
     }
   ss << " Points de vie : " << this->pv << " / " << this->pvMax << "\n"
      << " Stamina : " << this->stamina << " / " << this->staminaMax << "\n"
@@ -323,7 +333,6 @@ const std::string Personnage::toString()
      << " Dexterite :" << this->dexterite << "\n"
      << " Intelligence :" << this->intelligence << "\n"
      << "\n"
-     << " Degats infliges : " << this->degatsMin + this->weapon->getDegatsMin() << " - " << this->degatsMax + this->weapon->getDegatsMax() << " (Min-Max)" << "\n"
      << " Defense : " << this->defense << "\n"
      << " Attaque : " << this->chance_toucher << "\n"
      << " Critique : " << this->chance_critique << "\n"
@@ -359,12 +368,25 @@ const std::string Personnage::toStringStats()
       << " Agilite : " << this->agilite << "\n"
       << " Dexterite : " << this->dexterite << "\n"
       << " Intelligence : " << this->intelligence << "\n"
-      << "\n"
-      << " Degats infliges : " << this->degatsMin + this->weapon->getDegatsMin() << " - " << this->degatsMax + this->weapon->getDegatsMax() << " (Min-Max)" << "\n"
-      << " Defense : " << this->defense << "\n"
-      << " Attaque : " << this->chance_toucher << "\n"
-      << " Critique : " << this->chance_critique << "\n"
-      << " Chance de trouver des Objets Magiques : " << this->trouvailles_magiques << "\n";
+      << "\n";
+  if (this->weapon)
+    {
+      ss << " Arme : " << this->weapon->toString() << "\n"
+	    << "\n"
+      << " Degats infliges : " << this->degatsMin + this->weapon->getDegatsMin() << " (" << this->degatsMin << ") "
+      << " - " << this->degatsMax + this->weapon->getDegatsMax() << " (" << this->degatsMax << ") "
+      << "\n";
+    }
+  else
+    {
+  ss << " Arme : " << "aucune arme equipee" << "\n"
+	   << "\n"
+     << " Degats infliges : " << this->degatsMin << " - " << this->degatsMax << " (Min-Max)" << "\n";
+    }
+  ss << " Defense : " << this->defense << "\n"
+     << " Attaque : " << this->chance_toucher << "\n"
+     << " Critique : " << this->chance_critique << "\n"
+     << " Chance de trouver des Objets Magiques : " << this->trouvailles_magiques << "\n";
   return (ss.str());
 }
 
