@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: thormster <thormster@student.42.fr>        +#+  +:+       +#+         #
+#    By: thormster <thormster.renard@outlook.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/28 22:58:01 by thormster         #+#    #+#              #
 #    Updated: 2018/09/28 22:58:01 by thormster        ###   ########.fr        #
