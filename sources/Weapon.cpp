@@ -12,7 +12,6 @@
 
 #include    "../headers/Weapon.hpp"
 
-
 // Constructeur et Destructeur
 
 Weapon::Weapon(int degatsMin, int degatsMax, std::string nom, unsigned type, unsigned rarete, unsigned valeur) : Item(nom, type, rarete, valeur)
