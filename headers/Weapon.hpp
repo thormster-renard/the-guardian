@@ -24,13 +24,14 @@ public:
             Weapon(int, int, std::string, unsigned, unsigned, unsigned);
     virtual ~Weapon();
 
-    // Accesseurrs
+    // Accesseurs
     //inline const int& getDegatsMax() const { return (this->degatsMax); }
     inline const int& getDegatsMax() const { return (this->degatsMax); }
     inline const int& getDegatsMin() const { return (this->degatsMin); }
 
     // Fonctions
-    const std::string toString();
+    Weapon* clone() const;
+    const std::string toString() const;
 };
 
 #endif /* __WEAPON_HPP__ */

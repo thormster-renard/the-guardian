@@ -15,6 +15,7 @@
 
 #include    <sstream>
 #include    <string>
+#include    "msgfonctions.hpp"
 #include    "Weapon.hpp"
 
 class       Inventaire
@@ -22,7 +23,7 @@ class       Inventaire
 private:
     unsigned    capacite;
     unsigned    nbrItems;
-    Item    **items;
+    Item        **items;
 
     // Fonctions privées
     void    initialize(const unsigned);
@@ -36,7 +37,7 @@ public:
     // Operateurs
     void    operator=(const Inventaire&);
     Item    &operator[](const unsigned);
- 
+
     // Accesseurs
     const unsigned &size() const;
     const unsigned &capaciteTot() const;

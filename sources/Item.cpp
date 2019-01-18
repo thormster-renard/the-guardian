@@ -27,36 +27,75 @@ Item::~Item() {}
 
 void        Item::generate() {}
 
-// Accesseurs
-const std::string& Item::getNom()
+
+//Accesseurs
+
+const std::string Item::getTypeAsString() const
+{
+  std::string type = "Aucun";
+
+  switch (this->type)
+  {
+    case WEAPON:
+      type = "Arme";
+      break;
+    case ARMOR:
+      type = "Armure";
+      break;
+    default:
+      type = "Erreur";
+      break;
+  }
+  return (type);
+}
+
+const std::string  Item::getRareteAsString() const
+{
+  std::string rarete = "Aucun";
+
+  switch (this->type)
+  {
+    case COMMON:
+      rarete = "commun";
+      break;
+    case UNCOMMON:
+      rarete = "non-commun";
+      break;
+    case RARE:
+      rarete = "rare";
+      break;
+    case EPIC:
+      rarete = "epique";
+      break;
+    case LEGENDARY:
+      rarete = "legendaire";
+      break;
+    case MYTHIC:
+      rarete = "mythique";
+      break;
+    default:
+      rarete = "Erreur";
+      break;
+  }
+  return (rarete);
+}
+
+const std::string& Item::getNom() const
 {
   return (this->nom);
 }
 
-const unsigned& Item::getType()
+const unsigned& Item::getType() const
 {
   return (this->type);
 }
 
-const unsigned& Item::getRarete()
+const unsigned& Item::getRarete() const
 {
   return (this->rarete);
 }
 
-const unsigned& Item::getValeur()
+const unsigned& Item::getValeur() const
 {
   return (this->valeur);
-}
-
-// Fonctions
-const std::string Item::toString() const
-{
-  std::stringstream ss;
-
-  ss << " Nom: " << this->nom
-     << " | Type: " << this->type
-     << " | Rarete: " << this->rarete
-     << " | Valeur: " << this->valeur
-     << "\n";
-  return (ss.str());
 }

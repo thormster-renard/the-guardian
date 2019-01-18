@@ -56,15 +56,13 @@ Inventaire::Inventaire(const Inventaire &other)
   this->capacite = other.capacite;
   this->nbrItems = other.nbrItems;
   this->items = new Item *[this->capacite];
-  this->initialize(capacite);
-  std::size_t i;
-
-  i = 0;
+  std::size_t i = 0;
   while (i < this->nbrItems)
     {
-      this->items[i] = new Item(*other.items[i]);
+      this->items[i] = other.items[i]->clone();
       i += 1;
     }
+  this->initialize(capacite);
 }
 
 Inventaire::~Inventaire()
@@ -99,11 +97,11 @@ void        Inventaire::operator=(const Inventaire &other)
       this->items = new Item *[this->capacite];
       this->initialize(capacite);
       std::size_t i;
-      
+
       i = 0;
       while (i < this->nbrItems)
         {
-	  this->items[i] = new Item(*other.items[i]);
+	  this->items[i] = other.items[i]->clone();
 	  i += 1;
         }
     }
@@ -113,7 +111,7 @@ Item&   Inventaire::operator[](const unsigned index)
 {
   if (index < 0 || index >= this->nbrItems)
     {
-      throw("HORS LIMITE");
+      throw("Vous n'avez plus assez de places dans votre inventaire.");
     }
   return (*this->items[index]);
 }
@@ -140,12 +138,12 @@ void        Inventaire::add(const Item &item)
 {
   if (this->nbrItems >= this->capacite)
     this->expand();
-  this->items[this->nbrItems++] = new Item(item);
+  this->items[this->nbrItems++] = item.clone();
 }
 
 void        Inventaire::del(const unsigned index)
 {
-    
+
 }
 
 std::string Inventaire::toString() const
@@ -154,10 +152,9 @@ std::string Inventaire::toString() const
   size_t  i;
 
   i = 0;
+  ss << gui::msgMenuTitre("Menu de l'Inventaire");
+  ss << gui::msgMenuDiviseur(40, '-');
   while (i < this->nbrItems)
-    {
-      ss << "[" << i << "]" << this->items[i]->toString() << "\n";
-      i += 1;
-    }
+    ss << gui::msgMenuItem(10, i, this->items[i]->toString());
   return (ss.str());
 }

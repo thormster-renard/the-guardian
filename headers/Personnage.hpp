@@ -62,7 +62,6 @@ private:
     // Armes
     Weapon      *weapon;
 
-    // Inventaire
     Inventaire  inventaire;
 
     void updateStats();

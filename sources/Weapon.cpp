@@ -12,6 +12,9 @@
 
 #include    "../headers/Weapon.hpp"
 
+
+// Constructeur et Destructeur
+
 Weapon::Weapon(int degatsMin, int degatsMax, std::string nom, unsigned type, unsigned rarete, unsigned valeur) : Item(nom, type, rarete, valeur)
 {
   this->degatsMin = degatsMin;
@@ -20,10 +23,23 @@ Weapon::Weapon(int degatsMin, int degatsMax, std::string nom, unsigned type, uns
 
 Weapon::~Weapon() {}
 
-const std::string Weapon::toString()
+
+// Fonctions
+
+Weapon* Weapon::clone() const
+{
+  return (new Weapon(*this));
+}
+
+const std::string Weapon::toString() const
 {
   std::stringstream ss;
 
-  ss << this->getNom() << " | Rarete: " << this->getRarete() << " | Degats: " << this->degatsMin << " - " << this->degatsMax;
+  ss << "| Nom: " << this->getNom()
+    << " | Type: " << this->getTypeAsString()
+    << " | Degats: " << this->degatsMin << " - " << this->degatsMax
+    << " | Rarete: " << this->getRareteAsString()
+    << " | Valeur: " << this->getValeur();
   return (ss.str());
 }
+

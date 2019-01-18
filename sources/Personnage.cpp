@@ -33,12 +33,13 @@ Personnage::Personnage(std::string nom, std::string bio)
   this->x = 0;
   this->y = 0;
 
-  this->weapon = new Weapon(2, 4, "Epee", ARME, COMMUN, 200);
+  this->weapon = new Weapon(2, 4, "Epee", 0, 1, 200);
 
   this->updateStats();
   this->resetPV();
+
   //TEST AJOUT OBJET INVENTAIRE
-  this->inventaire.add(Item("Test", 0, 1, 200));
+  this->inventaire.add(Weapon(5, 10, "Test", WEAPON, COMMON, 200));
   // fin test
 }
 
@@ -311,7 +312,7 @@ const std::string Personnage::toString()
       << " Experience : " << this->experience << " / " << this->experience_suivante << "\n";
   if (this->weapon)
     {
-      ss << " Arme : " << this->weapon->toString() << "\n"
+      ss << " Arme  " << this->weapon->toString() << "\n"
 	    << "\n"
       << " Degats infliges : " << this->degatsMin + this->weapon->getDegatsMin() << " (" << this->degatsMin << ") "
       << " - " << this->degatsMax + this->weapon->getDegatsMax() << " (" << this->degatsMax << ") "
@@ -319,7 +320,7 @@ const std::string Personnage::toString()
     }
   else
     {
-      ss << " Arme : " << "aucune arme equipee" << "\n"
+      ss << " Arme  " << "aucune arme equipee" << "\n"
 	    << "\n"
       << " Degats infliges : " << this->degatsMin << " - " << this->degatsMax << " (Min-Max)" << "\n";
     }
@@ -371,7 +372,7 @@ const std::string Personnage::toStringStats()
       << "\n";
   if (this->weapon)
     {
-      ss << " Arme : " << this->weapon->toString() << "\n"
+      ss << " Arme  " << this->weapon->toString() << "\n"
 	    << "\n"
       << " Degats infliges : " << this->degatsMin + this->weapon->getDegatsMin() << " (" << this->degatsMin << ") "
       << " - " << this->degatsMax + this->weapon->getDegatsMax() << " (" << this->degatsMax << ") "
@@ -379,7 +380,7 @@ const std::string Personnage::toStringStats()
     }
   else
     {
-  ss << " Arme : " << "aucune arme equipee" << "\n"
+  ss << " Arme  " << "aucune arme equipee" << "\n"
 	   << "\n"
      << " Degats infliges : " << this->degatsMin << " - " << this->degatsMax << " (Min-Max)" << "\n";
     }
