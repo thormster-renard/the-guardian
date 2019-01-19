@@ -314,15 +314,15 @@ const std::string Personnage::toString()
     {
       ss << " Arme  " << this->weapon->toString() << "\n"
 	    << "\n"
-      << " Degats infliges : " << this->degatsMin + this->weapon->getDegatsMin() << " (" << this->degatsMin << ") "
-      << " - " << this->degatsMax + this->weapon->getDegatsMax() << " (" << this->degatsMax << ") "
+      << " Degats infliges : " << this->degatsMin + this->weapon->getDegatsMin() 
+      << " - " << this->degatsMax + this->weapon->getDegatsMax()
       << "\n";
     }
   else
     {
       ss << " Arme  " << "aucune arme equipee" << "\n"
-	    << "\n"
-      << " Degats infliges : " << this->degatsMin << " - " << this->degatsMax << " (Min-Max)" << "\n";
+	 << "\n"
+	 << " Degats infliges : " << this->degatsMin << " - " << this->degatsMax << " (Min-Max)" << "\n";
     }
   ss << " Points de vie : " << this->pv << " / " << this->pvMax << "\n"
      << " Stamina : " << this->stamina << " / " << this->staminaMax << "\n"
