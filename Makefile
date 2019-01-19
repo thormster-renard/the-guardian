@@ -10,6 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
+CXXFLAGS=	-g
+
 NAME	=	the_last_guardian
 
 ifeq ($(OS), Windows_NT)
@@ -24,6 +26,7 @@ SRC		=	sources\main.cpp			\
 			sources\msgfonctions.cpp		\
 			sources\Personnage.cpp			\
 			sources\PersonnageCreatorState.cpp	\
+			sources\PersonnageInventaireState.cpp \
 			sources\PersonnageMenuState.cpp		\
 			sources\PersonnageSelectorState.cpp	\
 			sources\PersonnageStatMenuState.cpp	\
@@ -42,6 +45,7 @@ SRC		=	sources/main.cpp			\
 			sources/msgfonctions.cpp		\
 			sources/Personnage.cpp			\
 			sources/PersonnageCreatorState.cpp	\
+			sources/PersonnageInventaireState.cpp \
 			sources/PersonnageMenuState.cpp		\
 			sources/PersonnageSelectorState.cpp	\
 			sources/PersonnageStatMenuState.cpp	\

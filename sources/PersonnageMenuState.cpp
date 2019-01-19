@@ -34,7 +34,7 @@ void        PersonnageMenuState::printMenu()
 #endif
   std::cout
     << gui::msgMenuTitre("Menu du personnage")
-    << this->personnage->getMenuBar(false) 
+    << this->personnage->getMenuBar(false)
     << gui::msgMenuDiviseur(40, '-')
     << gui::msgMenuItem(10, 1, "Nom et Biographie")
     << gui::msgMenuItem(10, 2, "Statistiques")
@@ -83,17 +83,7 @@ void        PersonnageMenuState::updateMenu()
       this->etat->push(new PersonnageStatMenuState(this->personnage, this->etat));
       break;
     case 4:
-#ifdef _WIN32
-      system("CLS");
-#elif __linux__
-      system("clear");
-#endif
-      std::cout << this->personnage->getInventaire().toString() << std::endl;
-#ifdef _WIN32
-      system("PAUSE");
-#elif __linux__
-      std::cin.get();
-#endif
+      this->etat->push(new PersonnageInventaireState(this->personnage, this->etat));
       break;
     case 5:
       this->setQuit(true);

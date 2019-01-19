@@ -18,6 +18,7 @@
 #include        <stack>
 #include        "Personnage.hpp"
 #include        "PersonnageStatMenuState.hpp"
+#include        "PersonnageInventaireState.hpp"
 
 class           PersonnageMenuState : public Stats
 {
