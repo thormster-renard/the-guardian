@@ -374,8 +374,8 @@ const std::string Personnage::toStringStats()
     {
       ss << " Arme  " << this->weapon->toString() << "\n"
 	    << "\n"
-      << " Degats infliges : " << this->degatsMin + this->weapon->getDegatsMin() << " (" << this->degatsMin << ") "
-      << " - " << this->degatsMax + this->weapon->getDegatsMax() << " (" << this->degatsMax << ") "
+      << " Degats infliges : " << this->degatsMin + this->weapon->getDegatsMin()
+      << " - " << this->degatsMax + this->weapon->getDegatsMax()
       << "\n";
     }
   else
