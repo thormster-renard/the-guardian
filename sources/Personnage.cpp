@@ -34,12 +34,19 @@ Personnage::Personnage(std::string nom, std::string bio)
   this->y = 0;
 
   this->weapon = new Weapon(2, 4, "Epee", 0, 1, 200);
+  this->armorHead = nullptr;
+  this->armorChest = nullptr;
+  this->armorShoulders = nullptr;
+  this->armorArms = nullptr;
+  this->armorLegs = nullptr;
 
   this->updateStats();
   this->resetPV();
 
   //TEST AJOUT OBJET INVENTAIRE
-  this->inventaire.add(Weapon(5, 10, "Test", WEAPON, COMMON, 200));
+  this->inventaire.add(Weapon(5, 10, "Super-Sword", WEAPON, RARE, 500));
+  this->inventaire.add(Armure(10, HEAD, "HEAUME", ARMOR, COMMON, 200));
+  this->inventaire.add(Armure(15, CHEST, "PLASTRON", ARMOR, COMMON, 300));
   // fin test
 }
 
@@ -95,6 +102,8 @@ const int Personnage::getDegatsTotal() const
   return (rand() % (this->degatsMax - this->degatsMin) + this->degatsMin);
 }
 
+Weapon*     Personnage::getWeapon() { return (this->weapon); };
+
 void        Personnage::updateStats()
 {
   this->pvMax = this->vitalite * 10 + this->vitalite;
@@ -105,11 +114,7 @@ void        Personnage::updateStats()
   this->mana = this->manaMax;
   this->degatsMin = this->force * 2;
   this->degatsMax = this->force + this->force * 2;
-  if (this->weapon)
-    {
-      this->degatsMin += this->weapon->getDegatsMin();
-      this->degatsMax += this->weapon->getDegatsMax();
-    }
+
   this->defense = this->agilite * 2;
   this->chance_toucher = this->dexterite * 2 + this->dexterite;
   this->chance_critique = static_cast<float>(this->dexterite / 60);
@@ -314,7 +319,7 @@ const std::string Personnage::toString()
     {
       ss << " Arme  " << this->weapon->toString() << "\n"
 	    << "\n"
-      << " Degats infliges : " << this->degatsMin + this->weapon->getDegatsMin() 
+      << " Degats infliges : " << this->degatsMin + this->weapon->getDegatsMin()
       << " - " << this->degatsMax + this->weapon->getDegatsMax()
       << "\n";
     }
@@ -397,4 +402,20 @@ const std::string Personnage::toStringPosition()
 
   ss << "X(" << this->x << ") | Y(" << this->y << ")" << std::endl;
   return (ss.str());
+}
+
+const std::string Personnage::toStringEquipe() const
+{
+  std::stringstream ss;
+
+  if (this->weapon)
+    ss << " Arme  " << this->weapon->toString() << "\n" << "\n";
+  else
+    ss << " Arme  " << "aucune arme equipee" << "\n" << "\n";
+  return (ss.str());
+}
+
+void              Personnage::setWeapon(Weapon*)
+{
+  this->weapon = weapon;
 }

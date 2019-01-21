@@ -41,4 +41,3 @@ const std::string Weapon::toString() const
     << " | Valeur: " << this->getValeur();
   return (ss.str());
 }
-

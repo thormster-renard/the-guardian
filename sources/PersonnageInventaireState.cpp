@@ -42,31 +42,65 @@ void        PersonnageInventaireState::updateMenu()
 {
   switch (this->getChoice())
     {
-        case 0:
-            std::cout << this->personnage->getInventaire().toString() << std::endl;
-            break;
         case 1:
+#ifdef _WIN32
+            system("CLS");
+            //std::cout << this->personnage->toStringEquipe() << std::endl;
+            std::cout << this->personnage->getInventaire().toString() << std::endl;
+            system("PAUSE");
             break;
+#elif __linux__
+            system("clear");
+            //std::cout << this->personnage->toStringEquipe() << std::endl;
+            std::cout << this->personnage->getInventaire().toString() << std::endl;
+            std::cin.get();
+            break;
+#endif
         case 2:
-            break;
-        case 3:
-            break;
-        case 4:
-            this->setQuit(true);
-            break;
-        default:
+        {
 #ifdef _WIN32
             system("CLS");
 #elif __linux__
             system("clear");
 #endif
-            std::cout << gui::msgErreur("Vous devez faire un choix qui.. et bien qui existe !");
+            //std::cout << this->personnage->toStringEquipe() << std::endl;
+            std::cout << this->personnage->getInventaire().toString() << std::endl;
+            int choice = this->getChoice();
+            if (choice < 0 || choice >= this->personnage->getInventaire().size( ))
+                std::cout << gui::msgErreur("Aucun objet de ce genre dans l'item");
+            else
+            {
+                Weapon *wep = dynamic_cast<Weapon*>(this->personnage->getInventaire().replace(choice, this->personnage->getWeapon()));
+                if (wep)
+                    this->personnage->setWeapon(wep);
+            }
 #ifdef _WIN32
             system("PAUSE");
 #elif __linux__
             std::cin.get();
 #endif
-      break;
+
+            break;
+        }
+        case 3:
+            break;
+        case 4:
+            break;
+        case 5:
+            this->setQuit(true);
+            break;
+        default:
+#ifdef _WIN32
+            system("CLS");
+            std::cout << gui::msgErreur("Vous devez faire un choix qui.. et bien qui existe !");
+            system("PAUSE");
+            break;
+#elif __linux__
+            system("clear");
+            std::cout << gui::msgErreur("Vous devez faire un choix qui.. et bien qui existe !");
+            std::cin.get();
+            break;
+#endif
     }
 }
 

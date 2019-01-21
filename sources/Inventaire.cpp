@@ -146,6 +146,16 @@ void        Inventaire::del(const unsigned index)
 
 }
 
+Item*       Inventaire::replace(const unsigned index, Item* item)
+{
+  if (index < 0 || index >= this->nbrItems)
+    throw("INVENTAIRE::OUT OF BOUNDS!");
+  Item* temp = this->items[index]->clone();
+  delete this->items[index];
+  this->items[index] = item->clone();
+  return (temp);
+}
+
 std::string Inventaire::toString() const
 {
   std::stringstream ss;

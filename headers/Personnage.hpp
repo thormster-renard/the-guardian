@@ -61,7 +61,11 @@ private:
 
     // Armes
     Weapon      *weapon;
-
+    Armure      *armorHead;
+    Armure      *armorChest;
+    Armure      *armorShoulders;
+    Armure      *armorArms;
+    Armure      *armorLegs;
     Inventaire  inventaire;
 
     void updateStats();
@@ -84,6 +88,7 @@ public:
     const        int getAttribut(const unsigned);
     const        int getDegatsTotal() const;
     inline const int getLocation() const { return (this->location); }
+    Weapon*          getWeapon();
 
     // Modifieurs
     const std::string runAway();
@@ -94,6 +99,7 @@ public:
                 void  setLocation(const int);
                 void  setPosition(const unsigned, const unsigned);
                 void  move(const int, const int);
+                void  setWeapon(Weapon*);
 
     // Fonctions
     std::string       getNom();
@@ -106,6 +112,7 @@ public:
     const std::string toStringNameBio();
     const std::string toStringStats();
     const std::string toStringPosition();
+    const std::string toStringEquipe() const;
 };
 
 #endif /* __PERSONNAGE_HPP__ */

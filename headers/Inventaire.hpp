@@ -16,6 +16,7 @@
 #include    <sstream>
 #include    <string>
 #include    "msgfonctions.hpp"
+#include    "Armure.hpp"
 #include    "Weapon.hpp"
 
 class       Inventaire
@@ -47,6 +48,7 @@ public:
     // Fonctions
     void    add(const Item&);
     void    del(const unsigned);
+    Item*   replace(const unsigned, Item*);
     std::string toString() const;
 };
 

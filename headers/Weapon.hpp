@@ -25,7 +25,6 @@ public:
     virtual ~Weapon();
 
     // Accesseurs
-    //inline const int& getDegatsMax() const { return (this->degatsMax); }
     inline const int& getDegatsMax() const { return (this->degatsMax); }
     inline const int& getDegatsMin() const { return (this->degatsMin); }
 

@@ -51,35 +51,28 @@ void        PersonnageMenuState::updateMenu()
     case 1:
 #ifdef _WIN32
       system("CLS");
+      std::cout << this->personnage->toStringNameBio() << std::endl;
+      system("PAUSE");
+      break;
 #elif __linux__
       system("clear");
-#endif
       std::cout << this->personnage->toStringNameBio() << std::endl;
-#ifdef _WIN32
-      system("PAUSE");
-#elif __linux__
       std::cin.get();
-#endif
       break;
+#endif
     case 2:
 #ifdef _WIN32
       system("CLS");
-#elif __linux__
-      system("clear");
-#endif
       std::cout << this->personnage->toStringStats() << std::endl;
-#ifdef _WIN32
       system("PAUSE");
-#elif __linux__
-      std::cin.get();
-#endif
       break;
-    case 3:
-#ifdef _WIN32
-      system("CLS");
 #elif __linux__
       system("clear");
+      std::cout << this->personnage->toStringStats() << std::endl;
+      std::cin.get();
+      break;
 #endif
+    case 3:
       this->etat->push(new PersonnageStatMenuState(this->personnage, this->etat));
       break;
     case 4:
@@ -91,13 +84,11 @@ void        PersonnageMenuState::updateMenu()
     default:
 #ifdef _WIN32
       system("CLS");
-#elif __linux__
-      system("clear");
-#endif
       std::cout << gui::msgErreur("Vous devez faire un choix qui.. et bien qui existe !");
-#ifdef _WIN32
       system("PAUSE");
 #elif __linux__
+      system("clear");
+      std::cout << gui::msgErreur("Vous devez faire un choix qui.. et bien qui existe !");
       std::cin.get();
 #endif
       break;

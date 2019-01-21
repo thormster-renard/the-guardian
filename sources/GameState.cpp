@@ -68,9 +68,7 @@ void        GameState::updateMenu()
         std::cout << "Vous vous reposez..." << std::endl;
       }
       else
-      {
         std::cout << "Vous ne pouvez pas vous reposer ici !\n" << std::endl;
-      }
 #ifdef _WIN32
       system("PAUSE");
 #elif __linux__

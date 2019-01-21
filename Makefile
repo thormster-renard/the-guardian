@@ -16,6 +16,7 @@ NAME	=	the_last_guardian
 
 ifeq ($(OS), Windows_NT)
 SRC		=	sources\main.cpp			\
+			sources\Armure.cpp			\
 			sources\CombatState.cpp			\
 			sources\Ennemi.cpp			\
 			sources\Game.cpp			\
@@ -35,6 +36,7 @@ SRC		=	sources\main.cpp			\
 			sources\Weapon.cpp
 else
 SRC		=	sources/main.cpp			\
+			sources/Armure.cpp			\
 			sources/CombatState.cpp			\
 			sources/Ennemi.cpp			\
 			sources/Game.cpp			\
