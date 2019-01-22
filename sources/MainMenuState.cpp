@@ -12,13 +12,10 @@
 
 #include    "../headers/MainMenuState.hpp"
 
-MainMenuState::MainMenuState(std::vector<Personnage*>*listePersonnage, unsigned& personnageActif, std::stack<Stats*>*etat) : Stats(), personnageActif(personnageActif) 
+MainMenuState::MainMenuState(std::vector<Personnage*>*listePersonnage, unsigned& personnageActif, std::stack<Stats*>*etat) : Stats(), personnageActif(personnageActif)
 {
   this->listePersonnage = listePersonnage;
   this->etat = etat;
-  //test
-  //this->listePersonnage->push_back(new Personnage("TEST", "DEBUGGING"));
-  //end test
 }
 
 MainMenuState::~MainMenuState() {}
