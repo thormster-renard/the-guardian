@@ -165,6 +165,9 @@ std::string Inventaire::toString() const
   ss << gui::msgMenuTitre("Menu de l'Inventaire");
   ss << gui::msgMenuDiviseur(40, '-');
   while (i < this->nbrItems)
+  {
     ss << gui::msgMenuItem(1, i, this->items[i]->toString());
+    i += 1;
+  }
   return (ss.str());
 }

@@ -85,8 +85,6 @@ void        PersonnageInventaireState::updateMenu()
         case 3:
             break;
         case 4:
-            break;
-        case 5:
             this->setQuit(true);
             break;
         default:
