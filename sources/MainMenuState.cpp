@@ -43,7 +43,7 @@ void    MainMenuState::printMenu()
 
 void    MainMenuState::updateMenu()
 {
-  switch (this->getChoice() /*| system("CLS")*/)
+  switch (this->getChoice())
     {
     case 1:
       if (!this->listePersonnage->empty())
