@@ -18,7 +18,7 @@
 #include    <string>
 #include    "Item.hpp"
 
-enum armureTypes { HEAD = 0, CHEST, SHOULDERS, ARMS, HAND, LEGS, FEET };
+enum armureTypes { ARMOR_HEAD = 0, ARMOR_CHEST, ARMOR_SHOULDERS, ARMOR_ARMS, ARMOR_HAND, ARMOR_LEGS, ARMOR_FEET };
 
 class       Armure : public Item
 {

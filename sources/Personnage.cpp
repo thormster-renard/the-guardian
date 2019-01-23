@@ -45,8 +45,8 @@ Personnage::Personnage(std::string nom, std::string bio)
 
   //TEST AJOUT OBJET INVENTAIRE
   this->inventaire.add(Weapon(5, 10, "Super-Sword", WEAPON, RARE, 500));
-  this->inventaire.add(Armure(10, HEAD, "HEAUME", ARMOR, COMMON, 200));
-  this->inventaire.add(Armure(15, CHEST, "PLASTRON", ARMOR, COMMON, 300));
+  this->inventaire.add(Armure(10, ARMOR_HEAD, "HEAUME", ARMOR, COMMON, 200));
+  this->inventaire.add(Armure(15, ARMOR_CHEST, "PLASTRON", ARMOR, COMMON, 300));
   // fin test
 }
 
@@ -102,7 +102,38 @@ const int Personnage::getDegatsTotal() const
   return (rand() % (this->degatsMax - this->degatsMin) + this->degatsMin);
 }
 
-Weapon*     Personnage::getWeapon() { return (this->weapon); };
+Weapon*     Personnage::getWeapon() { return (this->weapon); }
+
+Armure*     Personnage::getArmure(int armureType)
+{
+  switch (armureType)
+  {
+    case ARMOR_HEAD:
+      return (this->armorHead);
+      break;
+    case ARMOR_CHEST:
+      return (this->armorChest);
+      break;
+    case ARMOR_SHOULDERS:
+      return (this->armorShoulders);
+      break;
+    case ARMOR_ARMS:
+      return (this->armorArms);
+      break;
+    case ARMOR_HAND:
+      return (this->armorHand);
+      break;
+    case ARMOR_LEGS:
+      return (this->armorLegs);
+      break;
+    case ARMOR_FEET:
+      return (this->armorFeet);
+      break;
+    default:
+      return (NULL);
+      break;
+  }
+}
 
 void        Personnage::updateStats()
 {
@@ -418,4 +449,34 @@ const std::string Personnage::toStringEquipe() const
 void              Personnage::setWeapon(Weapon*)
 {
   this->weapon = weapon;
+}
+
+void              Personnage::setArmure(Armure *armor, const int armorType)
+{
+    switch (armorType)
+  {
+    case ARMOR_HEAD:
+      this->armorHead = armor;
+      break;
+    case ARMOR_CHEST:
+      this->armorChest = armor;
+      break;
+    case ARMOR_SHOULDERS:
+      this->armorShoulders = armor;
+      break;
+    case ARMOR_ARMS:
+      this->armorArms = armor;
+      break;
+    case ARMOR_HAND:
+      this->armorHand = armor;
+      break;
+    case ARMOR_LEGS:
+      this->armorLegs = armor;
+      break;
+    case ARMOR_FEET:
+      this->armorFeet = armor;
+      break;
+    default:
+      break;
+  }
 }

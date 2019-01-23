@@ -61,11 +61,17 @@ private:
 
     // Armes
     Weapon      *weapon;
+
+    // Armures
     Armure      *armorHead;
     Armure      *armorChest;
     Armure      *armorShoulders;
     Armure      *armorArms;
+    Armure      *armorHand;
     Armure      *armorLegs;
+    Armure      *armorFeet;
+
+    // Inventaire
     Inventaire  inventaire;
 
     void updateStats();
@@ -89,6 +95,7 @@ public:
     const        int getDegatsTotal() const;
     inline const int getLocation() const { return (this->location); }
     Weapon*          getWeapon();
+    Armure*          getArmure(int);
 
     // Modifieurs
     const std::string runAway();
@@ -100,6 +107,7 @@ public:
                 void  setPosition(const unsigned, const unsigned);
                 void  move(const int, const int);
                 void  setWeapon(Weapon*);
+                void  setArmure(Armure*, const int);
 
     // Fonctions
     std::string       getNom();

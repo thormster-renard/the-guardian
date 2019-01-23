@@ -17,8 +17,7 @@ PersonnageInventaireState::PersonnageInventaireState(Personnage*& personnage, st
     this->etat = etat;
 }
 
-PersonnageInventaireState::~PersonnageInventaireState()
-{}
+PersonnageInventaireState::~PersonnageInventaireState() {}
 
 void         PersonnageInventaireState::PrintMenu() const
 {
@@ -58,11 +57,11 @@ void        PersonnageInventaireState::updateMenu()
 #endif
         case 2:
         {
-#ifdef _WIN32
-            system("CLS");
-#elif __linux__
-            system("clear");
-#endif
+            #ifdef _WIN32
+                system("CLS");
+            #elif __linux__
+                system("clear");
+            #endif
             //std::cout << this->personnage->toStringEquipe() << std::endl;
             std::cout << this->personnage->getInventaire().toString() << std::endl;
             int choice = this->getChoice();
@@ -70,15 +69,24 @@ void        PersonnageInventaireState::updateMenu()
                 std::cout << gui::msgErreur("Aucun objet de ce genre dans l'item");
             else
             {
-                Weapon *wep = dynamic_cast<Weapon*>(this->personnage->getInventaire().replace(choice, this->personnage->getWeapon()));
-                if (wep)
-                    this->personnage->setWeapon(wep);
+                Weapon *weapon = dynamic_cast<Weapon*>(&this->personnage->getInventaire().at(choice));
+                Armure *armor = dynamic_cast<Armure*>(&this->personnage->getInventaire().at(choice));
+                if (weapon)
+                {
+                    weapon = static_cast<Weapon*>(this->personnage->getInventaire().replace(choice, this->personnage->getWeapon()));
+                    this->personnage->setWeapon(weapon);
+                }
+                else if (armor)
+                {
+                    armor = static_cast<Armure*>(this->personnage->getInventaire().replace(choice, this->personnage->getArmure(armor->getArmorType())));
+                    this->personnage->setArmure(armor, armor->getArmorType());
+                }
             }
-#ifdef _WIN32
-            system("PAUSE");
-#elif __linux__
-            std::cin.get();
-#endif
+            #ifdef _WIN32
+                system("PAUSE");
+            #elif __linux__
+                std::cin.get();
+            #endif
 
             break;
         }

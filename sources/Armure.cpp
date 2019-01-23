@@ -47,28 +47,27 @@ const std::string Armure::getArmorTypeAsString() const
 
     switch (this->armorType)
     {
-        case HEAD:
+        case ARMOR_HEAD:
             type = "HEAUME";
             break;
-        case CHEST:
+        case ARMOR_CHEST:
             type = "PLASTRON";
             break;
-        case SHOULDERS:
+        case ARMOR_SHOULDERS:
             type = "SPALIERE";
             break;
-        case ARMS:
+        case ARMOR_ARMS:
             type = "CANON DE BRAS";
             break;
-        case HAND:
+        case ARMOR_HAND:
             type = "GANTELET";
             break;
-        case LEGS:
+        case ARMOR_LEGS:
             type = "JAMBIERE";
             break;
-        case FEET:
+        case ARMOR_FEET:
             type = "SOLERET";
             break;
-
         default:
             type = "Erreur";
             break;
