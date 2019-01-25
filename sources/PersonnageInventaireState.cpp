@@ -41,71 +41,73 @@ void        PersonnageInventaireState::updateMenu()
 {
   switch (this->getChoice())
     {
-        case 1:
+    case 1:
 #ifdef _WIN32
-            system("CLS");
-            //std::cout << this->personnage->toStringEquipe() << std::endl;
-            std::cout << this->personnage->getInventaire().toString() << std::endl;
-            system("PAUSE");
-            break;
+      system("CLS");
+      //std::cout << this->personnage->toStringEquipe() << std::endl;
+      std::cout << this->personnage->getInventaire().toString() << std::endl;
+      system("PAUSE");
+      break;
 #elif __linux__
-            system("clear");
-            //std::cout << this->personnage->toStringEquipe() << std::endl;
-            std::cout << this->personnage->getInventaire().toString() << std::endl;
-            std::cin.get();
-            break;
+      system("clear");
+      //std::cout << this->personnage->toStringEquipe() << std::endl;
+      std::cout << this->personnage->getInventaire().toString() << std::endl;
+      std::cin.get();
+      break;
 #endif
-        case 2:
-        {
-            #ifdef _WIN32
-                system("CLS");
-            #elif __linux__
-                system("clear");
-            #endif
-            //std::cout << this->personnage->toStringEquipe() << std::endl;
-            std::cout << this->personnage->getInventaire().toString() << std::endl;
-            int choice = this->getChoice();
-            if (choice < 0 || choice >= this->personnage->getInventaire().size( ))
-                std::cout << gui::msgErreur("Aucun objet de ce genre dans l'item");
-            else
-            {
-                Weapon *weapon = dynamic_cast<Weapon*>(&this->personnage->getInventaire().at(choice));
-                Armure *armor = dynamic_cast<Armure*>(&this->personnage->getInventaire().at(choice));
-                if (weapon)
-                {
-                    weapon = static_cast<Weapon*>(this->personnage->getInventaire().replace(choice, this->personnage->getWeapon()));
-                    this->personnage->setWeapon(weapon);
-                }
-                else if (armor)
-                {
-                    armor = static_cast<Armure*>(this->personnage->getInventaire().replace(choice, this->personnage->getArmure(armor->getArmorType())));
-                    this->personnage->setArmure(armor, armor->getArmorType());
-                }
-            }
-            #ifdef _WIN32
-                system("PAUSE");
-            #elif __linux__
-                std::cin.get();
-            #endif
-
-            break;
-        }
-        case 3:
-            break;
-        case 4:
-            this->setQuit(true);
-            break;
-        default:
+    case 2:
+      {
 #ifdef _WIN32
-            system("CLS");
-            std::cout << gui::msgErreur("Vous devez faire un choix qui.. et bien qui existe !");
-            system("PAUSE");
-            break;
+	system("CLS");
 #elif __linux__
-            system("clear");
-            std::cout << gui::msgErreur("Vous devez faire un choix qui.. et bien qui existe !");
-            std::cin.get();
-            break;
+	system("clear");
+#endif
+
+	std::cout << this->personnage->toStringEquipe() << std::endl;
+	std::cout << this->personnage->getInventaire().toString() << std::endl;
+	int choice = this->getChoice();
+	if (choice < 0 || choice >= this->personnage->getInventaire().size( ))
+	  std::cout << gui::msgErreur("Aucun objet de ce genre dans l'item");
+	else
+	  {
+	    Weapon *weapon_p = dynamic_cast<Weapon*>(&this->personnage->getInventaire().at(choice));
+	    Armure *armor_p = dynamic_cast<Armure*>(&this->personnage->getInventaire().at(choice));
+	    
+	    if (armor_p)
+	      {
+		armor_p = static_cast<Armure*>(this->personnage->getInventaire().replace(choice, this->personnage->getArmure(armor_p->getArmorType())));
+		this->personnage->setArmure(armor_p, armor_p->getArmorType());
+	      }
+	    else if (weapon_p)
+	      {
+		weapon_p = static_cast<Weapon*>(this->personnage->getInventaire().replace(choice, this->personnage->getWeapon()));
+		this->personnage->setWeapon(weapon_p);
+	      }
+	  }
+#ifdef _WIN32
+	system("PAUSE");
+#elif __linux__
+	std::cin.get();
+#endif
+	
+	break;
+      }
+    case 3:
+      break;
+    case 4:
+      this->setQuit(true);
+      break;
+    default:
+#ifdef _WIN32
+      system("CLS");
+      std::cout << gui::msgErreur("Vous devez faire un choix qui.. et bien qui existe !");
+      system("PAUSE");
+      break;
+#elif __linux__
+      system("clear");
+      std::cout << gui::msgErreur("Vous devez faire un choix qui.. et bien qui existe !");
+      std::cin.get();
+      break;
 #endif
     }
 }
