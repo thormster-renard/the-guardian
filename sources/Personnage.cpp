@@ -34,11 +34,24 @@ Personnage::Personnage(std::string nom, std::string bio)
   this->y = 0;
 
   this->weapon = new Weapon(2, 4, "Epee", 0, 1, 200);
+
+#ifdef _WIN32
   this->armorHead = nullptr;
   this->armorChest = nullptr;
   this->armorShoulders = nullptr;
   this->armorArms = nullptr;
   this->armorLegs = nullptr;
+  this->armorFeet = nullptr;
+#elif __linux__
+  this->armorHead = NULL;
+  this->armorChest = NULL;
+  this->armorShoulders = NULL;
+  this->armorArms = NULL;
+  this->armorLegs = NULL;
+  this->armorFeet = NULL;
+#endif
+
+
 
   this->updateStats();
   this->resetPV();
@@ -349,16 +362,35 @@ const std::string Personnage::toString()
   if (this->weapon)
     {
       ss << " Arme  " << this->weapon->toString() << "\n"
-	    << "\n"
-      << " Degats infliges : " << this->degatsMin + this->weapon->getDegatsMin()
-      << " - " << this->degatsMax + this->weapon->getDegatsMax()
-      << "\n";
+	 << "\n";
+
+      ss << " Degats infliges : " << this->degatsMin + this->weapon->getDegatsMin()
+	 << " - " << this->degatsMax + this->weapon->getDegatsMax()
+	 << "\n";
     }
   else
     {
-      ss << " Arme  " << "aucune arme equipee" << "\n"
-	 << "\n"
-	 << " Degats infliges : " << this->degatsMin << " - " << this->degatsMax << " (Min-Max)" << "\n";
+      ss << " Arme  " << "aucune arme equipee." << "\n"
+	 << "\n";
+      
+      ss << " Degats infliges : " << this->degatsMin << " - " << this->degatsMax << " (Min-Max)" << "\n"
+	 << "\n";
+    }
+  if (this->armorHead)
+    {
+      ss << " Heaume: " << this->degatsMin << " - " << this->degatsMax << "\n"
+	 << "\n";
+
+      ss << " Defense: " << this->defense + this->armorHead->getDefense() << "\n"
+	 << "\n";
+    }
+  else
+    {
+      ss << " Heaume: " << " Non equipe." << "\n"
+	 << "\n";
+
+      ss << " Defense: " << this->defense << "\n"
+	 << "\n";
     }
   ss << " Points de vie : " << this->pv << " / " << this->pvMax << "\n"
      << " Stamina : " << this->stamina << " / " << this->staminaMax << "\n"
@@ -442,7 +474,35 @@ const std::string Personnage::toStringEquipe() const
   if (this->weapon)
     ss << " Arme  " << this->weapon->toString() << "\n" << "\n";
   else
-    ss << " Arme  " << "aucune arme equipee" << "\n" << "\n";
+    ss << " Arme  " << "aucune arme equipee." << "\n" << "\n";
+  if (this->armorHead)
+    ss << " Heaume:  " << this->armorHead->toString() << "\n" << "\n";
+  else
+    ss << " Heaume:  " << "aucun heaume equipe." << "\n" << "\n";
+  if (this->armorChest)
+    ss << " Plastron:  " << this->armorChest->toString() << "\n" << "\n";
+  else
+    ss << " Plastron:  " << "aucun plastron equipe." << "\n" << "\n";
+  if (this->armorShoulders)
+    ss << " Spaliere:  " << this->armorShoulders->toString() << "\n" << "\n";
+  else
+    ss << " Spaliere:  " << "aucunes spalieres equipees." << "\n" << "\n";
+  if (this->armorArms)
+    ss << " Canon de bras:  " << this->armorArms->toString() << "\n" << "\n";
+  else
+    ss << " Canon de bras:  " << "aucuns canons de bras equipes." << "\n" << "\n";
+  if (this->armorHand)
+    ss << " Gantelet:  " << this->armorHand->toString() << "\n" << "\n";
+  else
+    ss << " Gantelet:  " << "aucuns gantelets equipes." << "\n" << "\n";
+  if (this->armorLegs)
+    ss << " Jambiere:  " << this->armorLegs->toString() << "\n" << "\n";
+  else
+    ss << " Jambiere:  " << "aucunes jambieres equipees." << "\n" << "\n";
+  if (this->armorFeet)
+    ss << " Soleret:  " << this->armorFeet->toString() << "\n" << "\n";
+  else
+    ss << " Soleret:  " << "aucuns solerets equipes." << "\n" << "\n";
   return (ss.str());
 }
 

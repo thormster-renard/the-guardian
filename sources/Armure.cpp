@@ -13,9 +13,9 @@
 #include    "../headers/Armure.hpp"
 
 // Constructeur et Destructeur
-
 Armure::Armure(int defense, unsigned armorType, std::string nom, unsigned type, unsigned rarete, unsigned valeur) : Item(nom, type, rarete, valeur)
 {
+  this->armorType = armorType;
   this->defense = defense;
 }
 

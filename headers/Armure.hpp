@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -22,22 +23,21 @@ enum armureTypes { ARMOR_HEAD = 0, ARMOR_CHEST, ARMOR_SHOULDERS, ARMOR_ARMS, ARM
 
 class       Armure : public Item
 {
-    private:
-        unsigned armorType;
-        int defense;
+private:
+  unsigned armorType;
+  int defense;
+public:
+  Armure(int, unsigned, std::string, unsigned, unsigned, unsigned);
+  virtual ~Armure();
 
-    public:
-            Armure(int, unsigned, std::string, unsigned, unsigned, unsigned);
-    virtual ~Armure();
+  // Accesseurs
+  inline const int& getDefense() const { return (this->defense); }
+  inline const int& getArmorType() const { return (this->armorType); }
+  const std::string getArmorTypeAsString() const;
 
-    // Accesseurs
-    inline const int& getDefense() const { return (this->defense); }
-    inline const int& getArmorType() const { return (this->armorType); }
-    const std::string getArmorTypeAsString() const;
-
-    // Fonctions
-    Armure* clone() const;
-    const std::string toString() const;
+  // Fonctions
+  Armure* clone() const;
+  const std::string toString() const;
 };
 
 #endif /* __ARMURE_HPP__ */

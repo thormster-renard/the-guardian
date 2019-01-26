@@ -44,13 +44,13 @@ void        PersonnageInventaireState::updateMenu()
     case 1:
 #ifdef _WIN32
       system("CLS");
-      //std::cout << this->personnage->toStringEquipe() << std::endl;
+      std::cout << this->personnage->toStringEquipe() << std::endl;
       std::cout << this->personnage->getInventaire().toString() << std::endl;
       system("PAUSE");
       break;
 #elif __linux__
       system("clear");
-      //std::cout << this->personnage->toStringEquipe() << std::endl;
+      std::cout << this->personnage->toStringEquipe() << std::endl;
       std::cout << this->personnage->getInventaire().toString() << std::endl;
       std::cin.get();
       break;
@@ -66,22 +66,33 @@ void        PersonnageInventaireState::updateMenu()
 	std::cout << this->personnage->toStringEquipe() << std::endl;
 	std::cout << this->personnage->getInventaire().toString() << std::endl;
 	int choice = this->getChoice();
-	if (choice < 0 || choice >= this->personnage->getInventaire().size( ))
+	if (choice < 0 || choice >= this->personnage->getInventaire().size())
 	  std::cout << gui::msgErreur("Aucun objet de ce genre dans l'item");
 	else
 	  {
 	    Weapon *weapon_p = dynamic_cast<Weapon*>(&this->personnage->getInventaire().at(choice));
 	    Armure *armor_p = dynamic_cast<Armure*>(&this->personnage->getInventaire().at(choice));
-	    
-	    if (armor_p)
-	      {
-		armor_p = static_cast<Armure*>(this->personnage->getInventaire().replace(choice, this->personnage->getArmure(armor_p->getArmorType())));
-		this->personnage->setArmure(armor_p, armor_p->getArmorType());
-	      }
-	    else if (weapon_p)
+	    if (weapon_p)
 	      {
 		weapon_p = static_cast<Weapon*>(this->personnage->getInventaire().replace(choice, this->personnage->getWeapon()));
 		this->personnage->setWeapon(weapon_p);
+		std::cout << gui::msgAlert(weapon_p->getNom() + " equipe.");
+#ifdef _WIN32
+		system("PAUSE");
+#elif __linux__
+		std::cin.get();
+#endif
+	      }
+	    else if (armor_p)
+	      {
+		armor_p = static_cast<Armure*>(this->personnage->getInventaire().replace(choice, this->personnage->getArmure(armor_p->getArmorType())));
+		this->personnage->setArmure(armor_p, armor_p->getArmorType());
+		std::cout << gui::msgAlert(armor_p->getNom() + " equipe.");
+#ifdef _WIN32
+		system("PAUSE");
+#elif __linux__
+		std::cin.get();
+#endif
 	      }
 	  }
 #ifdef _WIN32

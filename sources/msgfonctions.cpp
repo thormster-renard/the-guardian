@@ -40,6 +40,14 @@ const std::string gui::msgErreur(const std::string erreur)
 {
   std::stringstream ss;
 
-  ss << " (!)  [[ " << erreur << " ]]" << "\n" << "\n";
+  ss << std::string(4, ' ') << " (!)  [[ " << erreur << " ]]" << "\n" << "\n";
+  return (ss.str());
+}
+
+const std::string gui::msgAlert(const std::string erreur)
+{
+  std::stringstream ss;
+
+  ss << std::string(4, ' ') << " [[ (*) " << erreur << " ]]" << "\n" << "\n";
   return (ss.str());
 }
