@@ -354,44 +354,11 @@ const std::string Personnage::toString()
 {
   std::stringstream ss;
 
-  ss  << " Nom : " << this->nom << "\n" << "\n"
-      << " Bio : " << this->bio << "\n" << "\n"
-      << " Argent : " << this->gold << "\n"
-      << " Niveau : " << this->niveau << "\n"
-      << " Experience : " << this->experience << " / " << this->experience_suivante << "\n";
-  if (this->weapon)
-    {
-      ss << " Arme  " << this->weapon->toString() << "\n"
-	 << "\n";
-
-      ss << " Degats infliges : " << this->degatsMin + this->weapon->getDegatsMin()
-	 << " - " << this->degatsMax + this->weapon->getDegatsMax()
-	 << "\n";
-    }
-  else
-    {
-      ss << " Arme  " << "aucune arme equipee." << "\n"
-	 << "\n";
-      
-      ss << " Degats infliges : " << this->degatsMin << " - " << this->degatsMax << " (Min-Max)" << "\n"
-	 << "\n";
-    }
-  if (this->armorHead)
-    {
-      ss << " Heaume: " << this->degatsMin << " - " << this->degatsMax << "\n"
-	 << "\n";
-
-      ss << " Defense: " << this->defense + this->armorHead->getDefense() << "\n"
-	 << "\n";
-    }
-  else
-    {
-      ss << " Heaume: " << " Non equipe." << "\n"
-	 << "\n";
-
-      ss << " Defense: " << this->defense << "\n"
-	 << "\n";
-    }
+  ss << " Nom : " << this->nom << "\n" << "\n"
+     << " Bio : " << this->bio << "\n" << "\n"
+     << " Argent : " << this->gold << "\n"
+     << " Niveau : " << this->niveau << "\n"
+     << " Experience : " << this->experience << " / " << this->experience_suivante << "\n";
   ss << " Points de vie : " << this->pv << " / " << this->pvMax << "\n"
      << " Stamina : " << this->stamina << " / " << this->staminaMax << "\n"
      << " Mana : " << this->mana << " / " << this->manaMax << "\n"
@@ -401,8 +368,18 @@ const std::string Personnage::toString()
      << " Agilite :" << this->agilite << "\n"
      << " Dexterite :" << this->dexterite << "\n"
      << " Intelligence :" << this->intelligence << "\n"
-     << "\n"
-     << " Defense : " << this->defense << "\n"
+     << "\n";
+  if (this->weapon)
+    {
+      ss << " Arme: " << this->toString() << "\n" << "\n";
+      ss << " Degats: " << this->degatsMin + this->weapon->getDegatsMin() << " - " << this->degatsMax + this->weapon->getDegatsMax() << "\n";
+    }
+  else
+    {
+      ss << " Arme: " << " non equipee." << "\n" << "\n";      
+      ss << " Degats: " << this->degatsMin << " - " << this->degatsMax << "\n" << "\n";
+    }
+  ss << " Defense : " << this->defense << "\n"
      << " Attaque : " << this->chance_toucher << "\n"
      << " Critique : " << this->chance_critique << "\n"
      << " Chance de trouver des Objets Magiques : " << this->trouvailles_magiques << "\n"
@@ -410,7 +387,7 @@ const std::string Personnage::toString()
   return (ss.str());
 }
 
-const std::string Personnage::toStringNameBio()
+  const std::string Personnage::toStringNameBio()
 {
   std::stringstream ss;
 
@@ -421,7 +398,7 @@ const std::string Personnage::toStringNameBio()
   return (ss.str());
 }
 
-const std::string Personnage::toStringStats()
+const std::string Personnage::toStringShort()
 {
   std::stringstream ss;
 
@@ -438,20 +415,9 @@ const std::string Personnage::toStringStats()
       << " Dexterite : " << this->dexterite << "\n"
       << " Intelligence : " << this->intelligence << "\n"
       << "\n";
-  if (this->weapon)
-    {
-      ss << " Arme  " << this->weapon->toString() << "\n"
-	    << "\n"
-      << " Degats infliges : " << this->degatsMin + this->weapon->getDegatsMin()
-      << " - " << this->degatsMax + this->weapon->getDegatsMax()
-      << "\n";
-    }
-  else
-    {
-  ss << " Arme  " << "aucune arme equipee" << "\n"
-	   << "\n"
-     << " Degats infliges : " << this->degatsMin << " - " << this->degatsMax << " (Min-Max)" << "\n";
-    }
+
+  ss << this->toStringEquipe() << "\n";
+  
   ss << " Defense : " << this->defense << "\n"
      << " Attaque : " << this->chance_toucher << "\n"
      << " Critique : " << this->chance_critique << "\n"
@@ -473,6 +439,45 @@ const std::string Personnage::toStringEquipe() const
 
   if (this->weapon)
     ss << " Arme  " << this->weapon->toString() << "\n" << "\n";
+  else
+    ss << " Arme  " << "aucune arme equipee." << "\n" << "\n";
+  if (this->armorHead)
+    ss << " Heaume        :  " << this->armorHead->toString() << "\n" << "\n";
+  else
+    ss << " Heaume :  " << "       aucun heaume equipe." << "\n" << "\n";
+  if (this->armorChest)
+    ss << " Plastron :  " << this->armorChest->toString() << "\n" << "\n";
+  else
+    ss << " Plastron :  " << "     aucun plastron equipe." << "\n" << "\n";
+  if (this->armorShoulders)
+    ss << " Spaliere :  " << this->armorShoulders->toString() << "\n" << "\n";
+  else
+    ss << " Spaliere :  " << "     aucunes spalieres equipees." << "\n" << "\n";
+  if (this->armorArms)
+    ss << " Canon de bras :  " << this->armorArms->toString() << "\n" << "\n";
+  else
+    ss << " Canon de bras :  " << "aucuns canons de bras equipes." << "\n" << "\n";
+  if (this->armorHand)
+    ss << " Gantelet :  " << this->armorHand->toString() << "\n" << "\n";
+  else
+    ss << " Gantelet :  " << "     aucuns gantelets equipes." << "\n" << "\n";
+  if (this->armorLegs)
+    ss << " Jambiere :  " << this->armorLegs->toString() << "\n" << "\n";
+  else
+    ss << " Jambiere :  " << "     aucunes jambieres equipees." << "\n" << "\n";
+  if (this->armorFeet)
+    ss << " Soleret :  " << this->armorFeet->toString() << "\n" << "\n";
+  else
+    ss << " Soleret :  " << "      aucuns solerets equipes." << "\n" << "\n";
+  return (ss.str());
+}
+
+const std::string Personnage::toStringStats() const
+{
+  std::stringstream ss;
+
+  if (this->weapon)
+    ss << " Degats Min:  " << this->weapon->toString() << "\n" << "\n";
   else
     ss << " Arme  " << "aucune arme equipee." << "\n" << "\n";
   if (this->armorHead)
@@ -503,7 +508,6 @@ const std::string Personnage::toStringEquipe() const
     ss << " Soleret:  " << this->armorFeet->toString() << "\n" << "\n";
   else
     ss << " Soleret:  " << "aucuns solerets equipes." << "\n" << "\n";
-  return (ss.str());
 }
 
 void              Personnage::setWeapon(Weapon*)
